@@ -27,7 +27,10 @@
   grid-area: content;
   background-color: azure;
  }
-
+.content img{
+  width: 1000px;
+  height: 300px;
+}
 .footer{
   grid-area: footer;
 }
