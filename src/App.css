@@ -1,9 +1,12 @@
 .app-wrapper {
   display: grid;
+  width: 1200px;
+  margin: 0 auto;
+  background-color: green;
   grid-template-areas:
-  'header header header'
-  'nav content content'
-  'footer footer footer';
+  'header header '
+  'nav content '
+  'footer footer ';
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
   grid-gap: 10px;
@@ -12,13 +15,17 @@
 .header{
   grid-area: header;
 }
-
+.header img{
+  width: 50px;
+}
 .nav{
   grid-area: nav;
+  background-color: darkgreen;
 }
 
 .content{
   grid-area: content;
+  background-color: azure;
  }
 
 .footer{
