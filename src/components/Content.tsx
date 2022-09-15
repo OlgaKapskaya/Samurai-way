@@ -1,5 +1,7 @@
 import React from "react";
+import "../CSS-modules/Content.css"
 import {PostComponent} from "./PostComponent";
+
 
 function Content() {
     return (
@@ -29,8 +31,8 @@ function Content() {
             <div className={"postContainer"}>
                 <h3>My posts</h3>
                 <div>New post</div>
-                <div><input/></div>
-                <div><button>Send</button></div>
+                <div><input className={"input"}/></div>
+                <div><button className={"button"}>Send</button></div>
             </div>
             <PostComponent text={"Post1"}/>
             <PostComponent text={"Post2"}/>

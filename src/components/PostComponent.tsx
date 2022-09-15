@@ -1,4 +1,5 @@
 import React from "react";
+import "../CSS-modules/PostComponent.css"
 
 type PostComponentProps = {
     text: string,

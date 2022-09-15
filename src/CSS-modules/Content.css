@@ -1,0 +1,37 @@
+.content{
+    grid-area: content;
+    background-color: #DDF2EB;
+}
+.content .avatarImage{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.content .dataContainer {
+    padding-left: 15px;
+    padding-bottom: 10px;
+}
+
+.content .avatarContainer{
+    padding-left: 15px;
+}
+.content .headerContent{
+    width: 1000px;
+    height: 300px;
+}
+.content .Name {
+    padding-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.postContainer{
+    /*background-color: #B5E3D4;*/
+    /*border-radius: 10px;*/
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    border-top: 1px solid #BC9CB0;
+}
+.postContainer div{
+    padding-top: 10px;
+}
