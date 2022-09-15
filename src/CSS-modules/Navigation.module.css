@@ -1,0 +1,29 @@
+.nav{
+    grid-area: nav;
+    background-color: #D3CDD7;
+    margin-left: 10px;
+}
+.item{
+    color: #553A4B;
+    padding-top: 10px;
+    padding-left: 10px;
+    background-color: transparent;
+    font-size: 20px;
+
+}
+.item:hover{
+    background-color: #CDC6D2;
+    border: 1px solid #CDC6D2;
+    color: #493240;
+}
+
+.link{
+    text-decoration: none;
+    /*font-weight: bold;*/
+}
+.link:visited{
+    color: #493240;
+}
+.icons {
+    width: 15px;
+}
