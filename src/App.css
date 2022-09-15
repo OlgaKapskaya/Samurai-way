@@ -2,7 +2,7 @@
   display: grid;
   width: 1200px;
   margin: 0 auto;
-  background-color: green;
+  background-color: #BC9CB0;
   grid-template-areas:
   'header header '
   'nav content '
@@ -17,20 +17,67 @@
 }
 .header img{
   width: 50px;
+  padding-top: 10px;
+  padding-left: 10px;
 }
 .nav{
   grid-area: nav;
-  background-color: darkgreen;
+  background-color: #D3CDD7;
+  margin-left: 10px;
 }
 
 .content{
   grid-area: content;
-  background-color: azure;
+  background-color: #DDF2EB;
  }
-.content img{
+.content .avatarImage{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+
+}
+
+.content .Name {
+  padding-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.content .dataContainer {
+  padding-left: 15px;
+  padding-bottom: 10px;
+}
+
+.content .avatarContainer{
+  padding-left: 15px;
+}
+.content .headerContent{
   width: 1000px;
   height: 300px;
 }
 .footer{
   grid-area: footer;
+}
+
+.post {
+  padding-top: 10px;
+}
+
+.postContainer{
+  background-color: #B5E3D4;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+.nav div{
+  color: #553A4B;
+  padding-top: 10px;
+  padding-left: 10px;
+
+}
+.nav a{
+  text-decoration: none;
+  font-weight: bold;
 }
