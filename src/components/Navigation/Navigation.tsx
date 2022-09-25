@@ -5,16 +5,32 @@ import news from "./icons/news.png"
 import profile from "./icons/profile.png"
 import music from "./icons/music.png"
 import settings from "./icons/settings.png"
+import {NavLink} from "react-router-dom";
 
 
 function Navigation(){
     return (
         <nav className={nav.nav}>
-            <div className={nav.item}><img className={nav.icons} src={profile}/><a className={nav.link} href={"#"}> Profile</a></div>
-            <div className={nav.item}><img className={nav.icons} src={messages}/><a className={nav.link} href={"#"}> Messages</a></div>
-            <div className={nav.item}><img className={nav.icons} src={news}/><a className={nav.link} href={"#"}> News</a></div>
-            <div className={nav.item}><img className={nav.icons} src={music}/><a className={nav.link} href={"#"}> Music</a></div>
-            <div className={nav.item}><img className={nav.icons} src={settings}/><a className={nav.link} href={"#"}> Settings</a></div>
+            <div className={nav.item}>
+                <img className={nav.icons} src={profile}/>
+                <NavLink className={nav.link} to={"/profile"}> Profile</NavLink>
+            </div>
+            <div className={nav.item}>
+                <img className={nav.icons} src={messages}/>
+                <NavLink className={nav.link} to={"/dialogs"}> Messages</NavLink>
+            </div>
+            <div className={nav.item}>
+                <img className={nav.icons} src={news}/>
+                <NavLink className={nav.link} to={"/news"}> News</NavLink>
+            </div>
+            <div className={nav.item}>
+                <img className={nav.icons} src={music}/>
+                <NavLink className={nav.link} to={"/music"}> Music</NavLink>
+            </div>
+            <div className={nav.item}>
+                <img className={nav.icons} src={settings}/>
+                <NavLink className={nav.link} to={"/settings"}> Settings</NavLink>
+            </div>
         </nav>
     )
 }
