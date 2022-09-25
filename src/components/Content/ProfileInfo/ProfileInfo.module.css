@@ -1,0 +1,33 @@
+.avatarImage{
+    position: relative;
+    top: -45px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    z-index: 0;
+}
+.dataContainer {
+    padding-left: 25px;
+    margin-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.data {
+    padding-bottom: 2px;
+    font-size: 15px;
+    font-weight: normal;
+}
+.Name {
+    padding-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #493240;
+}
+.avatarContainer{
+    padding-left: 15px;
+}
+.headerContent{
+    width: 100%;
+    height: 200px;
+    border-radius: 5px 5px 0 0;
+}

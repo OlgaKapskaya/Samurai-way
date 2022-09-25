@@ -57,6 +57,7 @@
 .content{
   grid-area: content;
   background-color: #DDF2EB;
+  min-height: 700px;
   border-radius: 5px;
   margin-right: 10px;
 }

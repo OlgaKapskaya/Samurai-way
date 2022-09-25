@@ -2,12 +2,15 @@ import s from "./DialogsMessages.module.css";
 
 import React from "react";
 
-export const DialogsMessages = () => {
+
+type DialogsMessagesProps = {
+    message: string
+}
+export const DialogsMessages = (props: DialogsMessagesProps) => {
     return (
         <>
-
             <div className={s.messageContainer}>
-                <span className={s.message}>Message 1</span>
+                <span className={s.message}>{props.message}</span>
             </div>
         </>
     )
