@@ -7,7 +7,7 @@
   'header header '
   'nav content '
   'footer footer ';
-  grid-template-rows: 60px 1fr;
+  grid-template-rows: 70px 1fr;
   grid-template-columns: 2fr 10fr;
   grid-gap: 10px;
 }
@@ -54,5 +54,10 @@
   display: block;
   font-size: 16px;
 }
-
+.content{
+  grid-area: content;
+  background-color: #DDF2EB;
+  border-radius: 5px;
+  margin-right: 10px;
+}
 
