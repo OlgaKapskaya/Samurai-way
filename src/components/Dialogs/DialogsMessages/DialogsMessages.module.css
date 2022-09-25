@@ -1,11 +1,28 @@
 .messageContainer{
-    padding-left: 10px;
+    display: grid;
+    grid-template-columns: 5ch auto;
+    grid-template-areas:
+    'avatar message';
+    /*grid-gap: 10px;*/
+}
+.message{
+margin: 5px;
+}
+.messageBox{
+    grid-area: message;
+    display: flex;
+    align-items: center;
     margin: 1em;
     border: 1px solid #D3EEE5;
     border-radius: 5px;
     width: auto;
     background-color: #D3EEE5;
 }
-.message{
-    /*margin-top: auto;*/
+
+.avatar{
+    grid-area: avatar;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    margin: 10px;
 }
