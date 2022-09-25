@@ -1,8 +1,14 @@
 .header{
     grid-area: header;
+    border-radius: 5px;
+    border: 1px solid #D3CDD7;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 .logo{
-    width: 50px;
-    padding-top: 10px;
-    padding-left: 10px;
+    width: 40px;
+    margin-top: 5px;
+    margin-left: 5px;
+
 }

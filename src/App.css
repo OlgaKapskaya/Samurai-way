@@ -1,6 +1,6 @@
 .app-wrapper {
   display: grid;
-  width: 1200px;
+  /*width: 1200px;*/
   margin: 0 auto;
   background-color: #BC9CB0;
   grid-template-areas:
@@ -16,21 +16,39 @@
   grid-area: footer;
 }
 
-.input{
+.inputTextArea{
   background-color: transparent;
-  width: 90%;
+  width: auto;
   height:80px;
-  padding: 0 15px;
   border: 2px solid #D3CDD7;
   border-radius: 5px;
+  margin: 1em;
+  column-count: auto;
+  resize: none;
+  outline: none;
+
 }
 
+
 .button{
-  width: 100px;
+  width: 150px;
   height: 40px;
   line-height: 40px;
   background-color: #BC9CB0;
   border: 1px solid #553A4B;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  display: block;
+  font-size: 16px;
+}
+.button:hover{
+  width: 150px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #553A4B;
+  border: 1px solid #553A4B;
+  border-radius: 5px;
   cursor: pointer;
   color: #fff;
   display: block;

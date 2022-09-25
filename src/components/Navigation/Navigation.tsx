@@ -1,5 +1,5 @@
 import React from "react";
-import nav from "../CSS-modules/Navigation.module.css"
+import nav from "./Navigation.module.css"
 import messages from "./icons/messages.png"
 import news from "./icons/news.png"
 import profile from "./icons/profile.png"
