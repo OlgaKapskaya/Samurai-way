@@ -1,0 +1,13 @@
+.messageContainer{
+    padding-top: 10px;
+    padding-left: 10px;
+    margin: 1em;
+    border: 1px solid #D3EEE5;
+    border-radius: 5px;
+    width: auto;
+    background-color: #D3EEE5;
+}
+.message{
+    margin-top: auto;
+    padding-left: 10px;
+}
