@@ -3,18 +3,24 @@ import {PostComponent} from "./Posts/PostComponent";
 import content from "../MyPosts.module.css"
 import {AddPost} from "./AddPost/AddPost";
 
-export const MyPosts = () => {
-let postData = [
-    {id: 1, message: 'Hi, how are you?', likes: 3},
-    {id: 2, message: 'It\'s my first post', likes: 5},
-    {id: 3, message: 'Hi, how are you?', likes: 67},
-    {id: 4, message: 'Hi, how are you?', likes: 33},
-    {id: 5, message: 'Smile today', likes: 9},
-]
+type MyPostsProps = {
+    postData: Array<PostDataType>
+}
+
+type PostDataType = {
+    id: number
+    message: string
+    likes: number
+}
+
+
+
+export const MyPosts = (props: MyPostsProps) => {
+
     return (
         <>
             <AddPost/>
-            {postData.map(elem => {
+            {props.postData.map(elem => {
                 return (
                     <PostComponent message={elem.message} likes={elem.likes}/>
                 )

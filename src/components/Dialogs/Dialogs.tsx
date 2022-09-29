@@ -37,6 +37,7 @@ export const Dialogs = () => {
 
                 </div>
                 <div className={s.dialogsMessages}>
+
                     {messagesData.map(elem => {
                         return (
                             <DialogsMessages message={elem.message} avatar={elem.avatar}/>

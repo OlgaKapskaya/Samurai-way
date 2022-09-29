@@ -1,4 +1,5 @@
 .messageContainer{
+
     display: grid;
     grid-template-columns: 5ch auto;
     grid-template-areas:
