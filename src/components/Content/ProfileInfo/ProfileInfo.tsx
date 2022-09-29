@@ -1,7 +1,16 @@
 import React from "react";
 import content from "./ProfileInfo.module.css";
 
-export const ProfileInfo = () => {
+type ProfileInfoProps = {
+    id: number,
+    name: string,
+    dateOfBirth: string,
+    city: string,
+    education: string,
+    site?: string,
+    avatar: string
+}
+export const ProfileInfo = (props: ProfileInfoProps) => {
     return (
         <>
             <div>
@@ -14,14 +23,14 @@ export const ProfileInfo = () => {
                     <tr>
                         <td className={content.avatarContainer}>
                             <img className={content.avatarImage}
-                                 src={'https://st3.depositphotos.com/1007566/13175/v/600/depositphotos_131750410-stock-illustration-woman-female-avatar-character.jpg'}/>
+                                 src={props.avatar}/>
                         </td>
                         <td className={content.dataContainer}>
-                            <div className={content.Name}>Name</div>
-                            <div className={content.data}>Date of birth:</div>
-                            <div className={content.data}>City:</div>
-                            <div className={content.data}>Education:</div>
-                            <div className={content.data}>Web site:</div>
+                            <div className={content.Name}>{props.name}</div>
+                            <div className={content.data}>Date of birth: {props.dateOfBirth}</div>
+                            <div className={content.data}>City: {props.city}</div>
+                            <div className={content.data}>Education: {props.education}</div>
+                            <div className={content.data}>Web site: {props.site}</div>
                         </td>
                     </tr>
                 </table>

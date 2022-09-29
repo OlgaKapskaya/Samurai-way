@@ -9,7 +9,7 @@ let postData = [
     {id: 2, message: 'It\'s my first post', likes: 5},
     {id: 3, message: 'Hi, how are you?', likes: 67},
     {id: 4, message: 'Hi, how are you?', likes: 33},
-    {id: 5, message: 'Hi, how are you?', likes: 9},
+    {id: 5, message: 'Smile today', likes: 9},
 ]
     return (
         <>
