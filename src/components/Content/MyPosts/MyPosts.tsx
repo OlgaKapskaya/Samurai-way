@@ -3,11 +3,11 @@ import {PostComponent} from "./Posts/PostComponent";
 import content from "../MyPosts.module.css"
 import {AddPost} from "./AddPost/AddPost";
 
-type MyPostsProps = {
+export type MyPostsProps = {
     postData: Array<PostDataType>
 }
 
-type PostDataType = {
+export type PostDataType = {
     id: number
     message: string
     likes: number
