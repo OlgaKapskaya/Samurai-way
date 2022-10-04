@@ -2,7 +2,9 @@ import {UserType} from "../components/Content/Content";
 import {PostDataType} from "../components/Content/MyPosts/MyPosts";
 import {DialogsDataType, MessagesDataType} from "../components/Dialogs/Dialogs";
 import {v1} from "uuid";
-import {useState} from "react";
+import {rerenderAllTree} from "../render";
+
+
 
 export type StateType = {
     user: UserType
@@ -72,6 +74,16 @@ export const addPost = (message: string) => {
         likes: 0
     };
     state.postData.push(newPost);
+    rerenderAllTree(state);
+}
+
+export const addMessage = (message: string) => {
+    let newMessage = {
+        id: v1(),
+        message: message,
+        avatar: state.user.avatar
+    };
+    state.messagesData.push(newMessage);
 }
 
 

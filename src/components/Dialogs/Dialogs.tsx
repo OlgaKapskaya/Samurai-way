@@ -7,6 +7,7 @@ import {DialogsMessages} from "./DialogsMessages/DialogsMessages";
 export type DialogsProps = {
     dialogsData: DialogsDataType[]
     messagesData: MessagesDataType[]
+    sendMessage: (message: string) => void
 }
 export type DialogsDataType = {
     id: string
@@ -24,7 +25,11 @@ export const Dialogs = (props: DialogsProps) => {
         setMessage(event.currentTarget.value)
     }
     const sendMessageHandler = () => {
-        console.log(message)
+        if (message.trim() !== ''){
+            props.sendMessage(message.trim());
+            setMessage('');
+        }
+
     }
     return (
         <div className={"content"}>
@@ -40,7 +45,10 @@ export const Dialogs = (props: DialogsProps) => {
                 <div className={s.dialogsMessages}>
                     {props.messagesData.map(elem => {
                         return (
-                            <DialogsMessages message={elem.message} avatar={elem.avatar}/>
+                            <DialogsMessages
+                                message={elem.message}
+                                avatar={elem.avatar}
+                            />
                         )
                     })}
                 </div>

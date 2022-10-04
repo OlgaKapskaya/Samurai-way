@@ -2,11 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {state, addPost} from "./redux/state";
+import {state, addPost, addMessage} from "./redux/state";
+import {rerenderAllTree} from "./render";
 
-ReactDOM.render(
-    <App state={state}
-         addPost={addPost}
-    />,
-    document.getElementById('root')
-);
+rerenderAllTree(state);
