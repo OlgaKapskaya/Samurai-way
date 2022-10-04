@@ -6,5 +6,8 @@
 
 }
 .dialogsItems{
+    margin: 10px;
     display: flex;
+    border: 2px solid #D3CDD7;
+    border-radius: 10px;
 }
