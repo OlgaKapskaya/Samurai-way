@@ -2,7 +2,7 @@ import React from "react";
 import content from "./ProfileInfo.module.css";
 
 type ProfileInfoProps = {
-    id: number,
+    id: string,
     name: string,
     dateOfBirth: string,
     city: string,

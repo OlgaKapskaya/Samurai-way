@@ -5,10 +5,11 @@ import {AddPost} from "./AddPost/AddPost";
 
 export type MyPostsProps = {
     postData: Array<PostDataType>
+    addPost: (post:string) => void
 }
 
 export type PostDataType = {
-    id: number
+    id: string
     message: string
     likes: number
 }
@@ -19,7 +20,7 @@ export const MyPosts = (props: MyPostsProps) => {
 
     return (
         <>
-            <AddPost/>
+            <AddPost addPost={props.addPost}/>
             {props.postData.map(elem => {
                 return (
                     <PostComponent message={elem.message} likes={elem.likes}/>

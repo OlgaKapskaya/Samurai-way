@@ -1,13 +1,50 @@
-.dialogs{
+.dialogs {
     display: grid;
     grid-template-rows: 5fr auto;
 }
-.dialogsMessages{
+
+.dialogsMessages {
 
 }
-.dialogsItems{
+
+.dialogsItems {
     margin: 10px;
     display: flex;
     border: 2px solid #D3CDD7;
     border-radius: 10px;
+}
+
+.addDialogContainer {
+    display: block;
+    margin: 10px;
+}
+
+.messageInput {
+    background-color: transparent;
+    width: 99%;
+    height: 80px;
+    border: 2px solid #D3CDD7;
+    border-radius: 5px;
+    column-count: auto;
+    resize: none;
+    outline: none;
+}
+
+.button {
+    width: 150px;
+    height: 40px;
+    margin: 10px 0 0 auto;
+    line-height: 40px;
+    background-color: #BC9CB0;
+    border: 1px solid #553A4B;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    display: block;
+    font-size: 16px;
+}
+
+.button:hover {
+    background-color: #553A4B;
+    border: 1px solid #553A4B;
 }

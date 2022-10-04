@@ -7,9 +7,10 @@ import {MyPosts, PostDataType} from "./MyPosts/MyPosts";
 type ContentProps = {
     user: UserType
     postData: PostDataType[]
+    addPost: (post: string) => void
 }
 export type UserType = {
-    id: number
+    id: string
     name: string
     dateOfBirth: string
     city: string
@@ -29,8 +30,11 @@ function Content(props: ContentProps) {
                 city={props.user.city}
                 education={props.user.education}
                 site={props.user.site}
-                avatar={props.user.avatar}/>
-            <MyPosts postData={props.postData}/>
+                avatar={props.user.avatar}
+            />
+            <MyPosts postData={props.postData}
+                     addPost={props.addPost}
+            />
         </div>
     )
 }

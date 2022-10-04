@@ -1,7 +1,12 @@
 import React, {ChangeEvent, useRef, useState} from "react";
 import c from "./AddPost.module.css";
 
-export const AddPost = () => {
+type AddPostProps = {
+    addPost: (post: string) => void
+}
+
+export const AddPost = (props: AddPostProps) => {
+
     const [message, setMessage] = useState<string>('')
 
     const onChangeTextHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -10,7 +15,7 @@ export const AddPost = () => {
 
     const addPostHandler = () => {
         if (message.trim() !== ""){
-            alert(message);
+            props.addPost(message.trim());
             setMessage('');
         } else {
             alert("Error! Add post text");

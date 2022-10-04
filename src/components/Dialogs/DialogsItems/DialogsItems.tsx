@@ -4,7 +4,7 @@ import React from "react";
 import post from "../../Content/MyPosts/Posts/PostCompponent.module.css";
 
 type DialogsItemsProps = {
-    id: number
+    id: string
     name: string
     avatar: string
 }
