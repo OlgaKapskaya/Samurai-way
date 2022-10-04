@@ -77,6 +77,11 @@ export const addPost = (message: string) => {
     rerenderAllTree(state);
 }
 
+export const addLike = (id: string, count: number) => {
+    state.postData = state.postData.map(elem => elem.id === id ? {...elem, likes: count} : elem)
+    rerenderAllTree(state);
+}
+
 export const addMessage = (message: string) => {
     let newMessage = {
         id: v1(),

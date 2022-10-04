@@ -8,6 +8,7 @@ type ContentProps = {
     user: UserType
     postData: PostDataType[]
     addPost: (post: string) => void
+    addLike: (id: string, count: number) => void
 }
 export type UserType = {
     id: string
@@ -34,6 +35,7 @@ function Content(props: ContentProps) {
             />
             <MyPosts postData={props.postData}
                      addPost={props.addPost}
+                     addLike={props.addLike}
             />
         </div>
     )

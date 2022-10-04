@@ -8,12 +8,13 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
-import {StateType} from "./redux/state";
+import {addLike, StateType} from "./redux/state";
 
 type AppProps = {
     state: StateType
     addPost: (post: string) => void
     sendMessage: (message: string) => void
+    addLike: (id: string, count: number) => void
 
 }
 
@@ -23,8 +24,13 @@ function App(props: AppProps) {
             <div className='app-wrapper'>
                 <Header/>
                 <Navigation/>
-                <Route path={"/profile"} render={() => <Content postData={props.state.postData} user={props.state.user} addPost={props.addPost}/>}/>
-                <Route path={"/dialogs"} render={() => <Dialogs dialogsData={props.state.dialogsData} messagesData={props.state.messagesData} sendMessage={props.sendMessage}/>}/>
+                <Route path={"/profile"} render={() => <Content postData={props.state.postData}
+                                                                user={props.state.user}
+                                                                addPost={props.addPost}
+                                                                addLike={props.addLike}/>}/>
+                <Route path={"/dialogs"} render={() => <Dialogs dialogsData={props.state.dialogsData}
+                                                                messagesData={props.state.messagesData}
+                                                                sendMessage={props.sendMessage}/>}/>
                 <Route path={"/news"} render={() => <News/>}/>
                 <Route path={"/music"} render={() => <Music/>}/>
                 <Route path={"/settings"} render={() => <Settings/>}/>
