@@ -73,7 +73,7 @@ export const addPost = (message: string) => {
         message: message,
         likes: 0
     };
-    state.postData.push(newPost);
+    state.postData = [newPost, ...state.postData];
     rerenderAllTree(state);
 }
 

@@ -12,10 +12,10 @@ type DialogsItemsProps = {
 export const DialogsItems = (props: DialogsItemsProps) => {
     return (
         <div className={s.dialogsItems}>
-            <img className={s.avatar} src={props.avatar}/>
-            <div className={s.link}>
-                <NavLink to={'/dialogs/' + props.id}>{props.name}</NavLink>
-            </div>
+            <NavLink to={'/dialogs/' + props.id}>
+                {props.name}
+                <img className={s.avatar} src={props.avatar}/>
+            </NavLink>
 
         </div>
     )

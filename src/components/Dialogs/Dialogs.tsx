@@ -26,7 +26,7 @@ export const Dialogs = (props: DialogsProps) => {
     }
     const sendMessageHandler = () => {
         if (message.trim() !== ''){
-            props.sendMessage(message.trim());
+            props.sendMessage(message);
             setMessage('');
         }
 
