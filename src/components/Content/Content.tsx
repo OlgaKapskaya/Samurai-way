@@ -1,5 +1,4 @@
 import React from "react";
-import content from "./Content.module.css"
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {MyPosts, PostDataType} from "./MyPosts/MyPosts";
 
@@ -9,6 +8,8 @@ type ContentProps = {
     postData: PostDataType[]
     addPost: (post: string) => void
     addLike: (id: string, count: number) => void
+    newPostText: string
+    changeNewPostText: (message: string) => void
 }
 export type UserType = {
     id: string
@@ -18,6 +19,7 @@ export type UserType = {
     education: string
     site?: string
     avatar: string
+
 }
 
 
@@ -36,6 +38,8 @@ function Content(props: ContentProps) {
             <MyPosts postData={props.postData}
                      addPost={props.addPost}
                      addLike={props.addLike}
+                     newPostText={props.newPostText}
+                     changeNewPostText={props.changeNewPostText}
             />
         </div>
     )

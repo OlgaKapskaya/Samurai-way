@@ -2,8 +2,11 @@ import {UserType} from "../components/Content/Content";
 import {PostDataType} from "../components/Content/MyPosts/MyPosts";
 import {DialogsDataType, MessagesDataType} from "../components/Dialogs/Dialogs";
 import {v1} from "uuid";
-import {rerenderAllTree} from "../render";
 
+
+let rerenderAllTree = () => {
+    console.log('hello')
+}
 
 
 export type StateType = {
@@ -11,6 +14,7 @@ export type StateType = {
     postData: PostDataType[]
     dialogsData: DialogsDataType[]
     messagesData: MessagesDataType[]
+    newPostText: string
 
 }
 export let state = {
@@ -23,6 +27,7 @@ export let state = {
         site: '-',
         avatar: 'https://st3.depositphotos.com/1007566/13175/v/600/depositphotos_131750410-stock-illustration-woman-female-avatar-character.jpg'
     },
+    newPostText: "",
     postData: [
         {id: v1(), message: 'Hi, how are you?', likes: 3},
         {id: v1(), message: 'It\'s my first post', likes: 5},
@@ -74,12 +79,12 @@ export const addPost = (message: string) => {
         likes: 0
     };
     state.postData = [newPost, ...state.postData];
-    rerenderAllTree(state);
+    rerenderAllTree();
 }
 
 export const addLike = (id: string, count: number) => {
     state.postData = state.postData.map(elem => elem.id === id ? {...elem, likes: count} : elem)
-    rerenderAllTree(state);
+    rerenderAllTree();
 }
 
 export const addMessage = (message: string) => {
@@ -90,5 +95,10 @@ export const addMessage = (message: string) => {
     };
     state.messagesData.push(newMessage);
 }
-
-
+export const changeNewPostText = (message: string) => {
+    state.newPostText = message
+    rerenderAllTree();
+}
+export const subscribe = (observer: () => void) => {
+    rerenderAllTree = observer;
+}

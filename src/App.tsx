@@ -8,13 +8,14 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
-import {addLike, StateType} from "./redux/state";
+import {addLike, changeNewPostText, StateType} from "./redux/state";
 
 type AppProps = {
     state: StateType
     addPost: (post: string) => void
     sendMessage: (message: string) => void
     addLike: (id: string, count: number) => void
+    changeNewPostText: (message: string) => void
 
 }
 
@@ -27,7 +28,9 @@ function App(props: AppProps) {
                 <Route path={"/profile"} render={() => <Content postData={props.state.postData}
                                                                 user={props.state.user}
                                                                 addPost={props.addPost}
-                                                                addLike={props.addLike}/>}/>
+                                                                addLike={props.addLike}
+                                                                newPostText={props.state.newPostText}
+                                                                changeNewPostText={props.changeNewPostText}/>}/>
                 <Route path={"/dialogs"} render={() => <Dialogs dialogsData={props.state.dialogsData}
                                                                 messagesData={props.state.messagesData}
                                                                 sendMessage={props.sendMessage}/>}/>
