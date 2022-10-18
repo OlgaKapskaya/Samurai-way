@@ -8,7 +8,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
-import {addLike, changeNewPostText, StateType} from "./redux/state";
+import {StateType} from "./redux/state";
 
 type AppProps = {
     state: StateType
@@ -25,6 +25,12 @@ function App(props: AppProps) {
             <div className='app-wrapper'>
                 <Header/>
                 <Navigation/>
+                {/*<Route path={'/'} render={() => <Content postData={props.state.postData}*/}
+                {/*                                         user={props.state.user}*/}
+                {/*                                         addPost={props.addPost}*/}
+                {/*                                         addLike={props.addLike}*/}
+                {/*                                         newPostText={props.state.newPostText}*/}
+                {/*                                         changeNewPostText={props.changeNewPostText}/>}/>*/}
                 <Route path={"/profile"} render={() => <Content postData={props.state.postData}
                                                                 user={props.state.user}
                                                                 addPost={props.addPost}

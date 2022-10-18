@@ -10,7 +10,6 @@ type AddPostProps = {
 export const AddPost = (props: AddPostProps) => {
 
     const [message, setMessage] = useState<string>(props.newPostText)
-    console.log(props.newPostText)
     const onChangeTextHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setMessage(event.currentTarget.value)
         props.changeNewPostText(event.currentTarget.value)
