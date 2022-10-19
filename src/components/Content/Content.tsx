@@ -1,15 +1,15 @@
 import React from "react";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {MyPosts, PostDataType} from "./MyPosts/MyPosts";
+import {ActionDispatchType} from "../../redux/state";
 
 
 type ContentProps = {
     user: UserType
     postData: PostDataType[]
-    addPost: (post: string) => void
-    addLike: (id: string, count: number) => void
+    dispatch: (action: ActionDispatchType) => void
     newPostText: string
-    changeNewPostText: (message: string) => void
+
 }
 export type UserType = {
     id: string
@@ -36,10 +36,8 @@ function Content(props: ContentProps) {
                 avatar={props.user.avatar}
             />
             <MyPosts postData={props.postData}
-                     addPost={props.addPost}
-                     addLike={props.addLike}
+                     dispatch={props.dispatch}
                      newPostText={props.newPostText}
-                     changeNewPostText={props.changeNewPostText}
             />
         </div>
     )

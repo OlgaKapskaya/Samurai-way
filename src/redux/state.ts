@@ -4,11 +4,6 @@ import {DialogsDataType, MessagesDataType} from "../components/Dialogs/Dialogs";
 import {v1} from "uuid";
 
 
-let rerenderAllTree = () => {
-    console.log('hello')
-}
-
-
 export type StateType = {
     user: UserType
     postData: PostDataType[]
@@ -17,8 +12,31 @@ export type StateType = {
     newPostText: string
 
 }
-
-export const store = {
+export type StoreType = {
+    _state: StateType
+    _subscribe: (observer: () => void) => void
+    getState: () => StateType
+    dispatch: (action: ActionDispatchType) => void
+    _rerenderAllTree: () => void
+}
+ export type ActionDispatchType = AddPostActionType | ChangePostTextType | AddLikeActionType | AddMessageActionType
+type AddPostActionType = {
+    type: "ADD-POST"
+}
+type ChangePostTextType = {
+    type: "CHANGE-NEW-POST-TEXT"
+    message: string
+}
+type AddLikeActionType = {
+    type: "ADD-LIKE"
+    id: string
+    count: number
+}
+type AddMessageActionType = {
+    type: "ADD-MESSAGE"
+    message: string
+}
+export const store: StoreType = {
     _state: {
         user: {
             id: v1(),
@@ -75,36 +93,45 @@ export const store = {
     getState() {
         return this._state
     },
-    addPost(message: string) {
-        let newPost = {
-            id: v1(),
-            message: message,
-            likes: 0
-        }
-        this._state.postData = [newPost, ...this._state.postData]
-        this._rerenderAllTree()
-    },
-    addLike(id: string, count: number) {
-        this._state.postData = this._state.postData.map(elem => elem.id === id ? {...elem, likes: count} : elem)
-        rerenderAllTree();
-    },
-    addMessage(message: string) {
-        let newMessage = {
-            id: v1(),
-            message: message,
-            avatar: store._state.user.avatar
-        };
-        this._state.messagesData.push(newMessage);
-    },
-    changeNewPostText(message: string) {
-        this._state.newPostText = message
-        this._rerenderAllTree();
-    },
-    subscribe(observer: () => void) {
-        rerenderAllTree = observer;
+    _subscribe(observer: () => void) {
+        this._rerenderAllTree = observer;
     },
     _rerenderAllTree() {
-        console.log('hello')
+        this._rerenderAllTree()
+    },
+    dispatch(action: ActionDispatchType) {
+        switch (action.type) {
+            case "ADD-POST" : {
+                let newPost = {
+                    id: v1(),
+                    message: this._state.newPostText,
+                    likes: 0
+                }
+                this._state.postData = [newPost, ...this._state.postData]
+                this._rerenderAllTree()
+                break
+            }
+            case "CHANGE-NEW-POST-TEXT": {
+                this._state.newPostText = action.message
+                this._rerenderAllTree();
+                break
+            }
+            case "ADD-LIKE" : {
+                this._state.postData = this._state.postData.map(elem => elem.id === action.id ? {...elem, likes: action.count} : elem)
+                this._rerenderAllTree();
+                break
+            }
+            case "ADD-MESSAGE" : {
+                let newMessage = {
+                    id: v1(),
+                    message: action.message,
+                    avatar: store._state.user.avatar
+                };
+                this._state.messagesData = [ ...this._state.messagesData, newMessage];
+                this._rerenderAllTree();
+                break
+            }
+        }
     }
 }
 
