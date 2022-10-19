@@ -2,13 +2,13 @@ import React from 'react';
 import './App.css';
 import Navigation from "./components/Navigation/Navigation";
 import Header from "./components/Header/Header";
-import {Dialogs, DialogsDataType, MessagesDataType} from "./components/Dialogs/Dialogs";
-import Content, {UserType} from "./components/Content/Content";
+import {Dialogs} from "./components/Dialogs/Dialogs";
+import Content from "./components/Content/Content";
 import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
-import {ActionDispatchType, StateType, store} from "./redux/state";
+import {ActionDispatchType, StateType} from "./redux/state";
 
 
 type AppProps = {

@@ -1,6 +1,5 @@
-import React, {useState} from "react";
+import React from "react";
 import post from "./PostCompponent.module.css"
-import like from "./img/like.png"
 import likefill from "./img/like_fill.png"
 import {ActionDispatchType} from "../../../../redux/state";
 

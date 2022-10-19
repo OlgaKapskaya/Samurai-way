@@ -1,6 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
 import s from "./Dialogs.module.css"
-import {NavLink} from "react-router-dom";
 import {DialogsItems} from "./DialogsItems/DialogsItems";
 import {DialogsMessages} from "./DialogsMessages/DialogsMessages";
 import {ActionDispatchType} from "../../redux/state";

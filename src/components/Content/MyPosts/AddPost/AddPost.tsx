@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useRef, useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 import c from "./AddPost.module.css";
 import {ActionDispatchType} from "../../../../redux/state";
 
