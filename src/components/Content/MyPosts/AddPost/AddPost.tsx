@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useState} from "react";
 import c from "./AddPost.module.css";
-import {ActionDispatchType} from "../../../../redux/state";
+import {ActionDispatchType, AddPostActionCreator, ChangePostTextActionCreator} from "../../../../redux/state";
 
 type AddPostProps = {
     dispatch: (action: ActionDispatchType) => void
@@ -13,14 +13,14 @@ export const AddPost = (props: AddPostProps) => {
     const [message, setMessage] = useState<string>(props.newPostText)
     const onChangeTextHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setMessage(event.currentTarget.value)
-        props.dispatch({type: "CHANGE-NEW-POST-TEXT", message: event.currentTarget.value})
+        props.dispatch(ChangePostTextActionCreator(event.currentTarget.value))
     }
 
     const addPostHandler = () => {
         if (message.trim() !== ""){
-            props.dispatch({type: "ADD-POST"})
+            props.dispatch(AddPostActionCreator())
             setMessage('');
-            props.dispatch({type: "CHANGE-NEW-POST-TEXT", message: ""});
+            props.dispatch(ChangePostTextActionCreator(""));
         } else {
             alert("Error! Add post text");
         }

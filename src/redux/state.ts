@@ -3,7 +3,13 @@ import {PostDataType} from "../components/Content/MyPosts/MyPosts";
 import {DialogsDataType, MessagesDataType} from "../components/Dialogs/Dialogs";
 import {v1} from "uuid";
 
+//const
+const ADD_POST = 'ADD-POST'
+const CHANGE_NEW_POST_TEXT = 'CHANGE-NEW-POST-TEXT'
+const ADD_LIKE = 'ADD-LIKE'
+const ADD_MESSAGE = 'ADD-MESSAGE'
 
+//types
 export type StateType = {
     user: UserType
     postData: PostDataType[]
@@ -19,7 +25,9 @@ export type StoreType = {
     dispatch: (action: ActionDispatchType) => void
     _rerenderAllTree: () => void
 }
- export type ActionDispatchType = AddPostActionType | ChangePostTextType | AddLikeActionType | AddMessageActionType
+export type ActionDispatchType = AddPostActionType | ChangePostTextType
+    | AddLikeActionType | AddMessageActionType
+//dispatch action types
 type AddPostActionType = {
     type: "ADD-POST"
 }
@@ -36,6 +44,8 @@ type AddMessageActionType = {
     type: "ADD-MESSAGE"
     message: string
 }
+
+//store
 export const store: StoreType = {
     _state: {
         user: {
@@ -101,7 +111,7 @@ export const store: StoreType = {
     },
     dispatch(action: ActionDispatchType) {
         switch (action.type) {
-            case "ADD-POST" : {
+            case ADD_POST : {
                 let newPost = {
                     id: v1(),
                     message: this._state.newPostText,
@@ -111,17 +121,17 @@ export const store: StoreType = {
                 this._rerenderAllTree()
                 break
             }
-            case "CHANGE-NEW-POST-TEXT": {
+            case CHANGE_NEW_POST_TEXT: {
                 this._state.newPostText = action.message
                 this._rerenderAllTree();
                 break
             }
-            case "ADD-LIKE" : {
+            case ADD_LIKE: {
                 this._state.postData = this._state.postData.map(elem => elem.id === action.id ? {...elem, likes: action.count} : elem)
                 this._rerenderAllTree();
                 break
             }
-            case "ADD-MESSAGE" : {
+            case ADD_MESSAGE : {
                 let newMessage = {
                     id: v1(),
                     message: action.message,
@@ -135,3 +145,12 @@ export const store: StoreType = {
     }
 }
 
+//dispatch action creators
+export const AddPostActionCreator = () => {return <AddPostActionType>{type: ADD_POST}}
+export const ChangePostTextActionCreator = (message: string) => {
+    return <ChangePostTextType>{type: CHANGE_NEW_POST_TEXT, message: message}
+}
+export const AddLikeActionCreator = (count: number, id: string) => {
+    return <AddLikeActionType>{type: ADD_LIKE, count: count, id: id}
+}
+export const AddMessageActionCreator = (message: string) => {return <AddMessageActionType>{type: ADD_MESSAGE, message: message}}

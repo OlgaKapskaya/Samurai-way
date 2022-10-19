@@ -1,7 +1,7 @@
 import React from "react";
 import post from "./PostCompponent.module.css"
 import likefill from "./img/like_fill.png"
-import {ActionDispatchType} from "../../../../redux/state";
+import {ActionDispatchType, AddLikeActionCreator} from "../../../../redux/state";
 
 type PostComponentProps = {
     id: string
@@ -15,7 +15,7 @@ export const PostComponent = (props: PostComponentProps) => {
 
     const onClickLikeHandler = () => {
         let count = props.likes+1
-        props.dispatch({type: "ADD-LIKE", count: count, id: props.id})
+        props.dispatch(AddLikeActionCreator(count, props.id))
         console.log(count)
     }
     return (
