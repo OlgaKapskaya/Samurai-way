@@ -6,8 +6,18 @@ const ADD_POST = 'ADD-POST'
 const CHANGE_NEW_POST_TEXT = 'CHANGE-NEW-POST-TEXT'
 const ADD_LIKE = 'ADD-LIKE'
 
+let initialState = {
+    newPostText: "",
+    postData: [
+        {id: v1(), message: 'Hi, how are you?', likes: 3},
+        {id: v1(), message: 'It\'s my first post', likes: 5},
+        {id: v1(), message: 'Hi, how are you?', likes: 67},
+        {id: v1(), message: 'Hi, how are you?', likes: 33},
+        {id: v1(), message: 'Smile today', likes: 9},
+    ]
+}
 
-export const profileReducer = (state:profilePageType, action: ActionDispatchType) => {
+export const profileReducer = (state:profilePageType = initialState, action: ActionDispatchType) => {
     switch (action.type) {
         case ADD_POST : {
             let newPost = {

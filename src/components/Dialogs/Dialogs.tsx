@@ -18,7 +18,7 @@ export type DialogsDataType = {
 export type MessagesDataType = {
     id: string
     message: string
-    avatar: string
+    avatar?: string
 }
 export const Dialogs = (props: DialogsProps) => {
     const [message, setMessage] = useState('');
@@ -48,7 +48,6 @@ export const Dialogs = (props: DialogsProps) => {
                         return (
                             <DialogsMessages
                                 message={elem.message}
-                                avatar={elem.avatar}
                             />
                         )
                     })}
