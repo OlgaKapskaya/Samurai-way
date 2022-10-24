@@ -1,7 +1,7 @@
 import React from "react";
 import {PostComponent} from "./Posts/PostComponent";
 import {AddPost} from "./AddPost/AddPost";
-import {ActionDispatchType} from "../../../redux/state";
+import {ActionDispatchType} from "../../../redux/store";
 
 export type MyPostsProps = {
     postData: Array<PostDataType>

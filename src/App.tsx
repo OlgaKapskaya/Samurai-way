@@ -8,7 +8,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
-import {ActionDispatchType, StateType} from "./redux/state";
+import {ActionDispatchType, StateType} from "./redux/store";
 
 
 type AppProps = {
@@ -28,13 +28,13 @@ function App(props: AppProps) {
                 {/*                                         addLike={props.addLike}*/}
                 {/*                                         newPostText={props.state.newPostText}*/}
                 {/*                                         changeNewPostText={props.changeNewPostText}/>}/>*/}
-                <Route path={"/profile"} render={() => <Content postData={props.state.postData}
+                <Route path={"/profile"} render={() => <Content postData={props.state.profilePage.postData}
                                                                 user={props.state.user}
                                                                 dispatch={props.dispatch}
-                                                                newPostText={props.state.newPostText}
+                                                                newPostText={props.state.profilePage.newPostText}
                 />}/>
-                <Route path={"/dialogs"} render={() => <Dialogs dialogsData={props.state.dialogsData}
-                                                                messagesData={props.state.messagesData}
+                <Route path={"/dialogs"} render={() => <Dialogs dialogsData={props.state.dialogsPage.dialogsData}
+                                                                messagesData={props.state.dialogsPage.messagesData}
                                                                 dispatch={props.dispatch}
                 />}/>
                 <Route path={"/news"} render={() => <News/>}/>

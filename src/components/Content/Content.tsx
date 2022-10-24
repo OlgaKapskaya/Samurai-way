@@ -1,7 +1,7 @@
 import React from "react";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {MyPosts, PostDataType} from "./MyPosts/MyPosts";
-import {ActionDispatchType} from "../../redux/state";
+import {ActionDispatchType} from "../../redux/store";
 
 
 type ContentProps = {

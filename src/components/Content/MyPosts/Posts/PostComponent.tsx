@@ -1,7 +1,8 @@
 import React from "react";
 import post from "./PostCompponent.module.css"
 import likefill from "./img/like_fill.png"
-import {ActionDispatchType, AddLikeActionCreator} from "../../../../redux/state";
+import {AddLikeActionCreator} from "../../../../redux/profileReduser";
+import {ActionDispatchType} from "../../../../redux/store";
 
 type PostComponentProps = {
     id: string

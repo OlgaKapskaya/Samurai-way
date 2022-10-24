@@ -1,6 +1,7 @@
 import React, {ChangeEvent, useState} from "react";
 import c from "./AddPost.module.css";
-import {ActionDispatchType, AddPostActionCreator, ChangePostTextActionCreator} from "../../../../redux/state";
+import {AddPostActionCreator, ChangePostTextActionCreator} from "../../../../redux/profileReduser";
+import {ActionDispatchType} from "../../../../redux/store";
 
 type AddPostProps = {
     dispatch: (action: ActionDispatchType) => void
