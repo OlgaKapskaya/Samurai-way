@@ -1,14 +1,13 @@
 import React from "react";
 import post from "./PostCompponent.module.css"
 import likefill from "./img/like_fill.png"
-import {AddLikeActionCreator} from "../../../../redux/profileReduser";
-import {ActionDispatchType} from "../../../../redux/store";
+
 
 type PostComponentProps = {
     id: string
     message: string
     likes: number
-    dispatch: (action: ActionDispatchType) => void
+    addLike: (count: number, id: string) => void
 }
 
 export const PostComponent = (props: PostComponentProps) => {
@@ -16,9 +15,9 @@ export const PostComponent = (props: PostComponentProps) => {
 
     const onClickLikeHandler = () => {
         let count = props.likes+1
-        props.dispatch(AddLikeActionCreator(count, props.id))
-        console.log(count)
+        props.addLike(count, props.id)
     }
+
     return (
         <div className={post.post}>
             <img className={post.avatar} src={"https://st3.depositphotos.com/1007566/13175/v/600/depositphotos_131750410-stock-illustration-woman-female-avatar-character.jpg"}/>

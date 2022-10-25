@@ -2,13 +2,12 @@ import React, {ChangeEvent, useState} from 'react';
 import s from "./Dialogs.module.css"
 import {DialogsItems} from "./DialogsItems/DialogsItems";
 import {DialogsMessages} from "./DialogsMessages/DialogsMessages";
-import {AddMessageActionCreator} from "../../redux/dialogsReducer";
-import {ActionDispatchType} from "../../redux/store";
+
 
 export type DialogsProps = {
     dialogsData: DialogsDataType[]
     messagesData: MessagesDataType[]
-    dispatch: (action: ActionDispatchType) => void
+    sendMessage: (message: string) => void
 }
 export type DialogsDataType = {
     id: string
@@ -27,7 +26,7 @@ export const Dialogs = (props: DialogsProps) => {
     }
     const sendMessageHandler = () => {
         if (message.trim() !== ''){
-            props.dispatch(AddMessageActionCreator(message))
+            props.sendMessage(message)
             setMessage('');
         }
 

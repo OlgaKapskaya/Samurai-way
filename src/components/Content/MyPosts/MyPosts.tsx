@@ -1,7 +1,7 @@
 import React from "react";
-import {PostComponent} from "./Posts/PostComponent";
-import {AddPost} from "./AddPost/AddPost";
 import {ActionDispatchType} from "../../../redux/store";
+import {AddPostContainer} from "./AddPost/AddPostContainer";
+import {PostComponentContainer} from "./Posts/PostComponentContainer";
 
 export type MyPostsProps = {
     postData: Array<PostDataType>
@@ -20,18 +20,13 @@ export const MyPosts = (props: MyPostsProps) => {
 
     return (
         <>
-            <AddPost
-                dispatch={props.dispatch}
-                newPostText={props.newPostText}
-            />
+            <AddPostContainer dispatch={props.dispatch}
+                              newPostText={props.newPostText}/>
             {props.postData.map(elem => {
                 return (
-                    <PostComponent
-                        id={elem.id}
-                        message={elem.message}
-                        likes={elem.likes}
-                        dispatch={props.dispatch}
-                    />
+                    <PostComponentContainer postData={elem}
+                                            dispatch={props.dispatch}/>
+
                 )
             })}
 
