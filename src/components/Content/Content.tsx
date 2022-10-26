@@ -1,13 +1,11 @@
 import React from "react";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {MyPosts, PostDataType} from "./MyPosts/MyPosts";
-import {ActionDispatchType} from "../../redux/store";
 
 
 type ContentProps = {
     user: UserType
     postData: PostDataType[]
-    dispatch: (action: ActionDispatchType) => void
     newPostText: string
 
 }
@@ -36,7 +34,6 @@ function Content(props: ContentProps) {
                 avatar={props.user.avatar}
             />
             <MyPosts postData={props.postData}
-                     dispatch={props.dispatch}
                      newPostText={props.newPostText}
             />
         </div>

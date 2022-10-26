@@ -7,7 +7,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
-import {ActionDispatchType, StateType, StoreType} from "./redux/store";
+import {ActionDispatchType, StateType} from "./redux/store";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
 
@@ -30,12 +30,9 @@ function App(props: AppProps) {
                 {/*                                         changeNewPostText={props.changeNewPostText}/>}/>*/}
                 <Route path={"/profile"} render={() => <Content postData={props.state.profilePage.postData}
                                                                 user={props.state.user}
-                                                                dispatch={props.dispatch}
                                                                 newPostText={props.state.profilePage.newPostText}
                 />}/>
-                <Route path={"/dialogs"} render={() => <DialogsContainer state={props.state}
-                                                                         dispatch={props.dispatch}
-                />}/>
+                <Route path={"/dialogs"} render={() => <DialogsContainer />}/>
                 <Route path={"/news"} render={() => <News/>}/>
                 <Route path={"/music"} render={() => <Music/>}/>
                 <Route path={"/settings"} render={() => <Settings/>}/>

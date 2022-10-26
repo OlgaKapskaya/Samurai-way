@@ -1,12 +1,12 @@
 import s from "./DialogsItems.module.css";
 import {NavLink} from "react-router-dom";
 import React from "react";
-import post from "../../Content/MyPosts/Posts/PostCompponent.module.css";
 
 type DialogsItemsProps = {
     id: string
     name: string
     avatar: string
+    key: string
 }
 
 export const DialogsItems = (props: DialogsItemsProps) => {
@@ -14,7 +14,7 @@ export const DialogsItems = (props: DialogsItemsProps) => {
         <div className={s.dialogsItems}>
             <NavLink to={'/dialogs/' + props.id}>
                 {props.name}
-                <img className={s.avatar} src={props.avatar}/>
+                <img className={s.avatar} src={props.avatar} alt={'avatar'}/>
             </NavLink>
 
         </div>

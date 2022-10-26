@@ -20,10 +20,10 @@ export const PostComponent = (props: PostComponentProps) => {
 
     return (
         <div className={post.post}>
-            <img className={post.avatar} src={"https://st3.depositphotos.com/1007566/13175/v/600/depositphotos_131750410-stock-illustration-woman-female-avatar-character.jpg"}/>
+            <img className={post.avatar} src={"https://st3.depositphotos.com/1007566/13175/v/600/depositphotos_131750410-stock-illustration-woman-female-avatar-character.jpg"} alt={'avatar'}/>
             <span className={post.message}> {props.message}</span>
             <div className={post.likes}>
-                <img className={post.likeimg} src={likefill} onClick={onClickLikeHandler}/>
+                <img className={post.likeimg} src={likefill} onClick={onClickLikeHandler} alt={'likes'}/>
                 <span> {props.likes}</span>
 
             </div>

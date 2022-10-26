@@ -22,6 +22,11 @@ export type dialogsPageType = {
     dialogsData: DialogsDataType[]
     messagesData: MessagesDataType[]
 }
+export type StoreReduxType = {
+    getState: () => StateType
+    dispatch: (action: ActionDispatchType) => void
+    subscribe: (observer: () => void) => void
+}
 export type StoreType = {
     _state: StateType
     _subscribe: (observer: () => void) => void

@@ -1,25 +1,33 @@
 import React from "react";
 import {AddPostActionCreator, ChangePostTextActionCreator} from "../../../../redux/profileReduser";
-import {ActionDispatchType} from "../../../../redux/store";
 import {AddPost} from "./AddPost";
+import {StoreContext} from "../../../../StoreContext";
 
-type AddPostProps = {
-    dispatch: (action: ActionDispatchType) => void
-    newPostText: string
+// type AddPostProps = {
+//     dispatch: (action: ActionDispatchType) => void
+//     newPostText: string
+// }
 
-}
 
+export const AddPostContainer = () => {
 
-export const AddPostContainer = (props: AddPostProps) => {
-    const addPost = () => {
-        props.dispatch(AddPostActionCreator())
-    }
-    const changePostText = (text: string) => {
-        props.dispatch(ChangePostTextActionCreator(text))
-    }
     return (
-        <AddPost addPost={ addPost }
-                 changePostText={ changePostText }
-                 newPostText={ props.newPostText }/>
+        <StoreContext.Consumer>
+            {(store) => {
+                //functions
+                const addPost = () => {
+                    store.dispatch(AddPostActionCreator())
+                }
+                const changePostText = (text: string) => {
+                    store.dispatch(ChangePostTextActionCreator(text))
+                }
+
+                return (<AddPost addPost={addPost}
+                                 changePostText={changePostText}
+                                 newPostText={store.getState().profilePage.newPostText}/>
+                )
+            }
+        }
+        </StoreContext.Consumer>
     )
 }

@@ -1,23 +1,32 @@
 import React from "react";
-import post from "./PostCompponent.module.css"
-import likefill from "./img/like_fill.png"
 import {AddLikeActionCreator} from "../../../../redux/profileReduser";
 import {ActionDispatchType} from "../../../../redux/store";
 import {PostComponent} from "./PostComponent";
 import {PostDataType} from "../MyPosts";
+import { StoreContext } from "../../../../StoreContext";
 
 type PostComponentProps = {
     postData: PostDataType
-    dispatch: (action: ActionDispatchType) => void
+    key: string
 }
 
 export const PostComponentContainer = (props: PostComponentProps) => {
 
     return (
-        <PostComponent id={props.postData.id}
-                       message={props.postData.message}
-                       likes={props.postData.likes}
-                       addLike={(count, id) => props.dispatch(AddLikeActionCreator(count, id))}/>
+        <StoreContext.Consumer>
+            {(store) => {
+                const addLike = (count: number, id: string) => {
+                    store.dispatch(AddLikeActionCreator(count, id))
+                }
+                return (
+                    <PostComponent id={props.postData.id}
+                                   message={props.postData.message}
+                                   likes={props.postData.likes}
+                                   addLike={ addLike }/>
+                )
+            }}
+
+        </StoreContext.Consumer>
         )
 
 }
