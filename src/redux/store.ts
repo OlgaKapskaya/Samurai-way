@@ -4,6 +4,7 @@ import {DialogsDataType, MessagesDataType} from "../components/Dialogs/Dialogs";
 import {v1} from "uuid";
 import {profileReducer} from "./profileReduser";
 import {dialogsReducer} from "./dialogsReducer";
+import {ChangePersonalDataAction} from "./userReducer";
 
 
 //types
@@ -35,7 +36,7 @@ export type StoreType = {
     _rerenderAllTree: () => void
 }
 export type ActionDispatchType = AddPostActionType | ChangePostTextType
-    | AddLikeActionType | AddMessageActionType
+    | AddLikeActionType | AddMessageActionType | ChangePersonalDataAction
 
 //dispatch action types
 export type AddPostActionType = {

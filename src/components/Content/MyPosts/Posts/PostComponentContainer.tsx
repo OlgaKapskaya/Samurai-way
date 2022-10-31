@@ -22,6 +22,7 @@ export const PostComponentContainer = (props: PostComponentProps) => {
                     <PostComponent id={props.postData.id}
                                    message={props.postData.message}
                                    likes={props.postData.likes}
+                                   userName={store.getState().user.name}
                                    addLike={ addLike }/>
                 )
             }}

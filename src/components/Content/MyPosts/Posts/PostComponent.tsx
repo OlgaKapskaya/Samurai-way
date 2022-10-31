@@ -1,12 +1,15 @@
 import React from "react";
 import post from "./PostCompponent.module.css"
 import likefill from "./img/like_fill.png"
+import {IconButton} from "@material-ui/core";
+import {FavoriteBorder} from "@material-ui/icons";
 
 
 type PostComponentProps = {
     id: string
     message: string
     likes: number
+    userName: string
     addLike: (count: number, id: string) => void
 }
 
@@ -20,10 +23,17 @@ export const PostComponent = (props: PostComponentProps) => {
 
     return (
         <div className={post.post}>
-            <img className={post.avatar} src={"https://st3.depositphotos.com/1007566/13175/v/600/depositphotos_131750410-stock-illustration-woman-female-avatar-character.jpg"} alt={'avatar'}/>
+            <div className={post.avatarAndName}>
+                <img className={post.avatar}
+                     src={"https://st3.depositphotos.com/1007566/13175/v/600/depositphotos_131750410-stock-illustration-woman-female-avatar-character.jpg"}
+                     alt={'avatar'}/>
+                <h5>{props.userName}</h5>
+            </div>
             <span className={post.message}> {props.message}</span>
             <div className={post.likes}>
-                <img className={post.likeimg} src={likefill} onClick={onClickLikeHandler} alt={'likes'}/>
+                <IconButton onClick={onClickLikeHandler} size={'small'}>
+                    <FavoriteBorder color={'primary'}/>
+                </IconButton>
                 <span> {props.likes}</span>
 
             </div>

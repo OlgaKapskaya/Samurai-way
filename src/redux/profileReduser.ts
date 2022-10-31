@@ -17,7 +17,7 @@ let initialState = {
     ]
 }
 
-export const profileReducer = (state:profilePageType = initialState, action: ActionDispatchType) => {
+export const profileReducer = (state:profilePageType = initialState, action: ActionDispatchType):profilePageType => {
     switch (action.type) {
         case ADD_POST : {
             let newPost = {
@@ -25,16 +25,18 @@ export const profileReducer = (state:profilePageType = initialState, action: Act
                 message: state.newPostText,
                 likes: 0
             }
-            state.postData = [newPost, ...state.postData]
-            return state
+            let newState = {...state, postData: [newPost, ...state.postData]}
+            return newState
         }
         case CHANGE_NEW_POST_TEXT: {
-            state.newPostText = action.message
-            return state
+            let newState = {...state}
+            newState.newPostText = action.message
+            return newState
         }
         case ADD_LIKE: {
-            state.postData = state.postData.map(elem => elem.id === action.id ? {...elem, likes: action.count} : elem)
-            return state
+            let newState = {...state, postData: state.postData.map(elem => elem.id === action.id ? {...elem, likes: action.count} : elem)}
+            return newState
+
         }
         default: return state}
 

@@ -1,6 +1,5 @@
 import * as React from "react";
 import {StoreReduxType} from "./redux/store";
-import {store} from "./redux/redux-store";
 import {ReactNode} from "react";
 
 

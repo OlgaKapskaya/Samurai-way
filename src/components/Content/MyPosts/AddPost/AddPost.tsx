@@ -1,5 +1,6 @@
 import React, {ChangeEvent, useState} from "react";
 import c from "./AddPost.module.css";
+import {Button, TextField} from "@material-ui/core";
 
 type AddPostProps = {
     newPostText: string
@@ -17,7 +18,7 @@ export const AddPost = (props: AddPostProps) => {
     }
 
     const addPostHandler = () => {
-        if (message.trim() !== ""){
+        if (message.trim() !== "") {
             props.addPost()
             setMessage('');
             props.changePostText("")
@@ -29,21 +30,19 @@ export const AddPost = (props: AddPostProps) => {
     return (
 
         <div className={c.postContainer}>
-            <h3 className={c.myPosts}>My posts</h3>
-            <div className={c.newPost}>New post</div>
+            <h3 className={c.title}>My posts</h3>
             <div>
-                <textarea value={message}
-                          onChange={onChangeTextHandler}
-                          className={c.inputTextArea}
-                          rows={3}/>
+                <TextField value={message}
+                           onChange={onChangeTextHandler}
+                           variant={'outlined'}
+                           label={'Enter post'}
+                           style={{width: '100%', marginTop: '10px'}}
+                />
             </div>
-            <div>
-                <button
-                    className={c.button}
-                    onClick={addPostHandler}>
-
-                    Send
-                </button>
+            <div className={c.buttonContainer}>
+                <Button onClick={addPostHandler}
+                        variant={'outlined'}
+                        color={'primary'}>Send</Button>
             </div>
         </div>
     )

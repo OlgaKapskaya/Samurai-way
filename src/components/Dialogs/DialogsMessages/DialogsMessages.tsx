@@ -10,13 +10,11 @@ type DialogsMessagesProps = {
 }
 export const DialogsMessages = (props: DialogsMessagesProps) => {
     return (
-        <>
             <div className={s.messageContainer}>
                 <img className={s.avatar} src={props.avatar} alt={'avatar'}/>
                 <div className={s.messageBox}>
                     <span className={s.message}>{props.message}</span>
                 </div>
             </div>
-        </>
     )
 }

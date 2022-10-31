@@ -1,5 +1,5 @@
 import React from "react";
-import content from "./ProfileInfo.module.css";
+import s from "./ProfileInfo.module.css";
 
 type ProfileInfoProps = {
     id: string,
@@ -12,29 +12,17 @@ type ProfileInfoProps = {
 }
 export const ProfileInfo = (props: ProfileInfoProps) => {
     return (
-        <>
-            <div>
-                <img className={content.headerContent}
-                     src='https://cdn57.androidauthority.net/wp-content/uploads/2015/11/00-best-backgrounds-and-wallpaper-apps-for-android.jpg'/>
-
+        <div className={s.mainContainer}>
+            <div className={s.avatarContainer}>
+                <img src={props.avatar} className={s.avatar}/>
             </div>
-            <div>
-                <table>
-                    <tr>
-                        <td className={content.avatarContainer}>
-                            <img className={content.avatarImage}
-                                 src={props.avatar}/>
-                        </td>
-                        <td className={content.dataContainer}>
-                            <div className={content.Name}>{props.name}</div>
-                            <div className={content.data}>Date of birth: {props.dateOfBirth}</div>
-                            <div className={content.data}>City: {props.city}</div>
-                            <div className={content.data}>Education: {props.education}</div>
-                            <div className={content.data}>Web site: {props.site}</div>
-                        </td>
-                    </tr>
-                </table>
+            <div className={s.infoContainer}>
+                <div className={s.Name}>{props.name}</div>
+                <div className={s.data}><span> Date of birth: </span> {props.dateOfBirth}</div>
+                <div className={s.data}><span> City: </span> {props.city}</div>
+                <div className={s.data}><span> Education: </span> {props.education}</div>
+                <div className={s.data}><span> Web site: </span> {props.site}</div>
             </div>
-        </>
+        </div>
     )
 }
