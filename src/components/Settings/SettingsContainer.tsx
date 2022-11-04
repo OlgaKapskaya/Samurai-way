@@ -1,9 +1,9 @@
 import React from 'react';
 import {UserType} from "../Content/Content";
 import {Settings} from "./Settings";
-import {ChangePersonalDataActionCreator} from "../../redux/userReducer";
-import {StateType} from "../../redux/store";
-import {dispatchType} from "../../redux/redux-store";
+import {ChangePersonalDataActionCreator} from "../../BLL/userReducer";
+import {StateType} from "../../BLL/store";
+import {dispatchType} from "../../BLL/redux-store";
 import {connect} from "react-redux";
 
 let mapStateToProps = (state: StateType) => {

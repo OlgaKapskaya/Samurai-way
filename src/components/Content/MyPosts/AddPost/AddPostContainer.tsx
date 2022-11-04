@@ -1,9 +1,9 @@
 import React from "react";
-import {AddPostActionCreator, ChangePostTextActionCreator} from "../../../../redux/profileReduser";
+import {AddPostActionCreator, ChangePostTextActionCreator} from "../../../../BLL/profileReduser";
 import {AddPost} from "./AddPost";
 import {connect} from "react-redux";
-import {StateType} from "../../../../redux/store";
-import {dispatchType} from "../../../../redux/redux-store";
+import {StateType} from "../../../../BLL/store";
+import {dispatchType} from "../../../../BLL/redux-store";
 
 let mapStateToProps = (state: StateType) => {
     return {

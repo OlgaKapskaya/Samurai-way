@@ -5,7 +5,7 @@ import Content from "./components/Content/Content";
 import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
-import {StateType} from "./redux/store";
+import {StateType} from "./BLL/store";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {SettingsContainer} from "./components/Settings/SettingsContainer";
 
