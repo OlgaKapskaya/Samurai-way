@@ -1,7 +1,7 @@
 import React from "react";
 import {AddPostContainer} from "./AddPost/AddPostContainer";
 import s from './MyPosts.module.css'
-import {PostComponent} from "./Posts/PostComponent";
+import {PostComponentContainer} from "./Posts/PostComponent";
 
 export type MyPostsProps = {
     postData: Array<PostDataType>
@@ -17,21 +17,21 @@ export type PostDataType = {
 }
 
 
-export const MyPosts = (props: MyPostsProps) => {
-
+const MyPosts = (props: MyPostsProps) => {
     return (
         <div className={s.myPostsContainer}>
                 <AddPostContainer />
                 {props.postData.map(elem => {
                     return (
-                        <PostComponent id={elem.id}
-                                       message={elem.message}
-                                       likes={elem.likes}
-                                       userName={props.userName}
-                                       addLike={props.addLike}/>
+                        <PostComponentContainer id={elem.id}
+                                   message={elem.message}
+                                   likes={elem.likes}
+                                   userName={props.userName}
+                                   addLike={props.addLike}/>
 
                     )
                 })}
         </div>
     )
 }
+export const MyPostsComponent = React.memo(MyPosts)

@@ -13,17 +13,12 @@ const theme = createTheme({
     },
 });
 
-let rerenderAllTree = () => {
-    ReactDOM.render(
-        <Provider store={store}>
-            <ThemeProvider theme={theme}>
-                <App state={store.getState()}
-                />
-            </ThemeProvider>
-        </Provider>,
-        document.getElementById('root')
-    )
-    ;
-}
-rerenderAllTree()
-store.subscribe(rerenderAllTree);
+ReactDOM.render(
+    <Provider store={store}>
+        <ThemeProvider theme={theme}>
+            <App state={store.getState()}
+            />
+        </ThemeProvider>
+    </Provider>,
+    document.getElementById('root')
+)

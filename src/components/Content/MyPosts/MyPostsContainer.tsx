@@ -2,7 +2,7 @@ import {StateType} from "../../../BLL/store";
 import {dispatchType} from "../../../BLL/redux-store";
 import {AddLikeActionCreator} from "../../../BLL/profileReduser";
 import {connect} from "react-redux";
-import {MyPosts} from "./MyPosts";
+import {MyPostsComponent} from "./MyPosts";
 
 let mapStateToProps = (state: StateType) => {
     return {
@@ -18,4 +18,4 @@ let mapDispatchToProps = (dispatch: dispatchType) => {
     }
 }
 
-export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPostsComponent)

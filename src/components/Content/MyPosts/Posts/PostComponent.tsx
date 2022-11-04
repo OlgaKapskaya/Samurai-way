@@ -1,6 +1,5 @@
 import React from "react";
 import post from "./PostCompponent.module.css"
-import likefill from "./img/like_fill.png"
 import {IconButton} from "@material-ui/core";
 import {FavoriteBorder} from "@material-ui/icons";
 
@@ -13,9 +12,8 @@ type PostComponentProps = {
     addLike: (count: number, id: string) => void
 }
 
-export const PostComponent = (props: PostComponentProps) => {
 
-
+const PostComponent = (props: PostComponentProps) => {
     const onClickLikeHandler = () => {
         let count = props.likes+1
         props.addLike(count, props.id)
@@ -42,3 +40,4 @@ export const PostComponent = (props: PostComponentProps) => {
         )
 
 }
+export const PostComponentContainer = React.memo(PostComponent)

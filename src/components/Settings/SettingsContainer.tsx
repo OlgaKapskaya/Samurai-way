@@ -1,4 +1,3 @@
-import React from 'react';
 import {UserType} from "../Content/Content";
 import {Settings} from "./Settings";
 import {ChangePersonalDataActionCreator} from "../../BLL/userReducer";

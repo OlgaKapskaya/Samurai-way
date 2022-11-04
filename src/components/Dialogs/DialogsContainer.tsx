@@ -1,4 +1,3 @@
-import React from 'react';
 import {AddMessageActionCreator} from "../../BLL/dialogsReducer";
 import {Dialogs} from "./Dialogs";
 import {StateType} from "../../BLL/store";

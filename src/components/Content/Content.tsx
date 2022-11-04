@@ -1,6 +1,6 @@
 import React from "react";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {MyPosts, PostDataType} from "./MyPosts/MyPosts";
+import {PostDataType} from "./MyPosts/MyPosts";
 import s from './Content.module.css'
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 

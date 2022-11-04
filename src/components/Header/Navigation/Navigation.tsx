@@ -5,7 +5,7 @@ import {Announcement, MailOutline, Person, PlayCircleOutline, Settings} from "@m
 
 
 
-function Navigation(){
+export function Navigation(){
     return (
         <nav className={nav.nav}>
             <div className={nav.item}>
@@ -31,4 +31,3 @@ function Navigation(){
         </nav>
     )
 }
-export default Navigation;

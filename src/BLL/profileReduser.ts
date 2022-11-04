@@ -25,8 +25,7 @@ export const profileReducer = (state:profilePageType = initialState, action: Act
                 message: state.newPostText,
                 likes: 0
             }
-            let newState = {...state, postData: [newPost, ...state.postData]}
-            return newState
+            return {...state, postData: [newPost, ...state.postData]}
         }
         case CHANGE_NEW_POST_TEXT: {
             let newState = {...state}
@@ -34,8 +33,7 @@ export const profileReducer = (state:profilePageType = initialState, action: Act
             return newState
         }
         case ADD_LIKE: {
-            let newState = {...state, postData: state.postData.map(elem => elem.id === action.id ? {...elem, likes: action.count} : elem)}
-            return newState
+            return {...state, postData: state.postData.map(elem => elem.id === action.id ? {...elem, likes: action.count} : elem)}
 
         }
         default: return state}
@@ -45,9 +43,9 @@ export const profileReducer = (state:profilePageType = initialState, action: Act
 
 
 //dispatch action creators
-export const AddPostActionCreator = () => {return <AddPostActionType>{type: ADD_POST}}
-export const ChangePostTextActionCreator = (message: string) => {
-    return <ChangePostTextType>{type: CHANGE_NEW_POST_TEXT, message: message}
+export const AddPostActionCreator = (): AddPostActionType => {return {type: ADD_POST}}
+export const ChangePostTextActionCreator = (message: string): ChangePostTextType => {
+    return {type: CHANGE_NEW_POST_TEXT, message: message}
 }
-export const AddLikeActionCreator = (count: number, id: string) => {
-    return <AddLikeActionType>{type: ADD_LIKE, count: count, id: id}}
+export const AddLikeActionCreator = (count: number, id: string): AddLikeActionType => {
+    return {type: ADD_LIKE, count: count, id: id}}
