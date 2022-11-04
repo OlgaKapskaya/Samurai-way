@@ -1,11 +1,6 @@
 .dialogsContainer{
     display: flex;
     flex-direction: row;
-    /*padding: 10px;*/
-    /*border-radius: 5px;*/
-    /*box-shadow: 1px 1px 5px rgba(0,0,0, .2);*/
-    /*margin-top: 10px;*/
-    /*background: ghostwhite;*/
 }
 .dialogs {
     display: flex;

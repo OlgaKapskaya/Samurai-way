@@ -1,4 +1,3 @@
-import React from "react";
 import {AddPostActionCreator, ChangePostTextActionCreator} from "../../../../BLL/profileReduser";
 import {AddPost} from "./AddPost";
 import {connect} from "react-redux";

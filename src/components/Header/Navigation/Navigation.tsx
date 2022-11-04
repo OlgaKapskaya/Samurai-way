@@ -1,7 +1,7 @@
 import React from "react";
 import nav from "./Navigation.module.css"
 import {NavLink} from "react-router-dom";
-import {Announcement, MailOutline, Person, PlayCircleOutline, Settings} from "@material-ui/icons";
+import {Announcement, MailOutline, Person, PlayCircleOutline, Search, Settings} from "@material-ui/icons";
 
 
 
@@ -17,7 +17,9 @@ export function Navigation(){
                 <NavLink className={(isActive) => isActive ? nav.active : nav.link} to={"/dialogs"}> <MailOutline/>Messages </NavLink>
             </div>
             <div className={nav.item}>
-
+                <NavLink className={(isActive) => isActive ? nav.active : nav.link} to={"/users"}> <Search/> Find</NavLink>
+            </div>
+            <div className={nav.item}>
                 <NavLink className={(isActive) => isActive ? nav.active : nav.link} to={"/news"}> <Announcement/> News</NavLink>
             </div>
             <div className={nav.item}>

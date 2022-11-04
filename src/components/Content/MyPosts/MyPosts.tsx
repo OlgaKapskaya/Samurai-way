@@ -20,17 +20,18 @@ export type PostDataType = {
 const MyPosts = (props: MyPostsProps) => {
     return (
         <div className={s.myPostsContainer}>
-                <AddPostContainer />
-                {props.postData.map(elem => {
-                    return (
-                        <PostComponentContainer id={elem.id}
-                                   message={elem.message}
-                                   likes={elem.likes}
-                                   userName={props.userName}
-                                   addLike={props.addLike}/>
+            <AddPostContainer/>
+            {props.postData.map(elem => {
+                return (
+                    <PostComponentContainer key={elem.id}
+                                            id={elem.id}
+                                            message={elem.message}
+                                            likes={elem.likes}
+                                            userName={props.userName}
+                                            addLike={props.addLike}/>
 
-                    )
-                })}
+                )
+            })}
         </div>
     )
 }

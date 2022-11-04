@@ -9,27 +9,27 @@ test('add message function', () => {
     const data = {
         dialogsData: [
             {
-                id: v1(),
+                id: '1',
                 name: "Viktor",
                 avatar: "https://img2.freepng.ru/20180904/vji/kisspng-avatar-image-computer-icons-likengo-usertesting-index-5b8ec1242fdcf5.6000571015360822121961.jpg"
             },
-            {id: v1(), name: 'Boris', avatar: 'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-Vector.png'},
-            {id: v1(), name: 'Veronika', avatar: 'https://cdn-icons-png.flaticon.com/512/194/194938.png'},
+            {id: '2', name: 'Boris', avatar: 'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-Vector.png'},
+            {id: '3', name: 'Veronika', avatar: 'https://cdn-icons-png.flaticon.com/512/194/194938.png'},
         ],
         messagesData: [
-            {id: v1(), message: "Hello!", avatar: 'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-Vector.png'},
+            {id: '4', message: "Hello!", avatar: 'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-Vector.png'},
             {
-                id: v1(),
+                id: '5',
                 message: 'How are you?',
                 avatar: 'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-Vector.png'
             },
             {
-                id: v1(),
+                id: '6',
                 message: 'Ayyyyyyyyy!!!!!',
                 avatar: 'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-Vector.png'
             },
             {
-                id: v1(),
+                id: '7',
                 message: 'a part that combines with other parts to form something bigger:' +
                     '                        "television/aircraft/computer components' +
                     '                        "The factory supplies electrical components for cars.' +
@@ -38,7 +38,7 @@ test('add message function', () => {
                     '                        "The control of inflation is a key component of the governments economic policy.',
                 avatar: 'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-Vector.png'
             },
-            {id: v1(), message: "Hey!", avatar: 'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-Vector.png'}
+            {id: '8', message: "Hey!", avatar: 'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-Vector.png'}
         ]
     }
     const newMessage = 'newMessage'

@@ -8,6 +8,8 @@ import {Music} from "./components/Music/Music";
 import {StateType} from "./BLL/store";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {SettingsContainer} from "./components/Settings/SettingsContainer";
+import {FindUsers} from "./components/Users/FindUsers";
+import {FindUsersContainer} from "./components/Users/FindUsersContainer";
 
 
 type AppProps = {
@@ -17,6 +19,7 @@ type AppProps = {
 function App(props: AppProps) {
     return (
         <BrowserRouter>
+
             <div className='app-wrapper'>
                 <Header/>
                 {/*<Route path={'/'} render={() => <Content postData={props.state.profilePage.postData}*/}
@@ -31,6 +34,7 @@ function App(props: AppProps) {
                 <Route path={"/dialogs"} render={() => <DialogsContainer/>}/>
                 <Route path={"/news"} render={() => <News/>}/>
                 <Route path={"/music"} render={() => <Music/>}/>
+                <Route path={"/users"} render={() => <FindUsersContainer/>}/>
                 <Route path={"/settings"} render={() => <SettingsContainer/>}/>
                 {/*<Footer/>*/}
 
