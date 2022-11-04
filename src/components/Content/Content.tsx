@@ -2,6 +2,7 @@ import React from "react";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {MyPosts, PostDataType} from "./MyPosts/MyPosts";
 import s from './Content.module.css'
+import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
 
 type ContentProps = {
@@ -43,9 +44,7 @@ function Content(props: ContentProps) {
                     />
                 </div>
                 <div className={s.containerPosts}>
-                    <MyPosts postData={props.postData}
-                             newPostText={props.newPostText}
-                    />
+                    <MyPostsContainer/>
                 </div>
 
             </div>

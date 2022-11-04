@@ -1,12 +1,10 @@
 import React from 'react';
 import './App.css';
-import Navigation from "./components/Header/Navigation/Navigation";
 import Header from "./components/Header/Header";
 import Content from "./components/Content/Content";
 import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
-import {Settings} from "./components/Settings/Settings";
 import {StateType} from "./redux/store";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {SettingsContainer} from "./components/Settings/SettingsContainer";

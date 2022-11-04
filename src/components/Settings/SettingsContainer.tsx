@@ -1,37 +1,20 @@
 import React from 'react';
-import s from "./Settings.module.css"
-import {Button, TextField} from "@material-ui/core";
 import {UserType} from "../Content/Content";
-import { StoreContext } from '../../StoreContext';
-import {AddMessageActionCreator} from "../../redux/dialogsReducer";
-import {Dialogs} from "../Dialogs/Dialogs";
 import {Settings} from "./Settings";
 import {ChangePersonalDataActionCreator} from "../../redux/userReducer";
+import {StateType} from "../../redux/store";
+import {dispatchType} from "../../redux/redux-store";
+import {connect} from "react-redux";
 
-type SettingsProps = {
-    userData: UserType
-    onChangePersonalData: (userID: string,
-                           userName: string,
-                           dateOfBirth: string,
-                           city: string,
-                           education: string,
-                           site: string,
-                           avatar: string) => void
+let mapStateToProps = (state: StateType) => {
+    return {
+        userData: state.user
+    }
+}
+let mapDispatchToProps = (dispatch: dispatchType) => {
+    return {
+        onChangePersonalData: (user: UserType) => dispatch(ChangePersonalDataActionCreator(user))
+    }
 }
 
-export const SettingsContainer = () => {
-    return (
-        <StoreContext.Consumer>
-            {(store) => {
-                const changePersonalDataHandler = (user: UserType) => {
-                    store.dispatch(ChangePersonalDataActionCreator(user))
-                }
-
-                return (
-                    <Settings userData={store.getState().user}
-                              onChangePersonalData={changePersonalDataHandler}/>
-                )
-            }}
-        </StoreContext.Consumer>
-    )
-}
+export const SettingsContainer = connect(mapStateToProps, mapDispatchToProps)(Settings)

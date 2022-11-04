@@ -53,6 +53,7 @@ export const Dialogs = (props: DialogsProps) => {
                             return (
                                 <DialogsMessages
                                     message={elem.message}
+                                    avatar={elem.avatar}
                                     key={elem.id}
                                 />
                             )

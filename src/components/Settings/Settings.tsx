@@ -10,6 +10,7 @@ type SettingsProps = {
 
 export const Settings = (props: SettingsProps) => {
     const [changeUserData, setChangeUserData] = useState<UserType>(props.userData)
+    //editing input
     const onChangeUserNameHandler = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         setChangeUserData({...changeUserData, name: event.currentTarget.value})
     }
@@ -25,6 +26,10 @@ export const Settings = (props: SettingsProps) => {
     const onChangeUserSiteHandler = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         setChangeUserData({...changeUserData, site: event.currentTarget.value})
     }
+    const onChangeUserAvatarHandler = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+       //setChangeUserData({...changeUserData, avatar: event.currentTarget.value})
+    }
+    //function save
     const onClickSavePersonalDataHandler = () => {
         if (changeUserData.name.trim() !== "") {
             props.onChangePersonalData(changeUserData)
@@ -64,11 +69,13 @@ export const Settings = (props: SettingsProps) => {
                         <label className={s.labelItem}> Web site: </label>
                         <TextField type={'text'}
                                    value={changeUserData.site}
-                        onChange={onChangeUserSiteHandler}/>
+                                   onChange={onChangeUserSiteHandler}/>
 
                         <label className={s.labelItem}> Avatar: </label>
-                        <TextField type={'file'}/>
+                        <TextField type={'file'}
+                                   onChange={onChangeUserAvatarHandler}/>
                         <div className={s.saveButtonContainer}>
+                            {/*<span> saved </span>*/}
                             <Button onClick={onClickSavePersonalDataHandler}
                                     size={'small'}
                                     variant={'outlined'}
