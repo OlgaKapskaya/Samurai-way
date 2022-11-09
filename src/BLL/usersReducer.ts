@@ -5,7 +5,7 @@ const SET_USERS = 'SET_USERS'
 
 export type FollowUserAT = {
     type: 'FOLLOW_USER'
-    userID: string
+    userID: number
 }
 export type SetUsersAT = {
     type: 'SET_USERS'
@@ -16,13 +16,13 @@ let initialState: usersPageType = {users: []}
 export const usersReducer = (state: usersPageType = initialState, action: ActionDispatchType): usersPageType => {
     switch (action.type) {
         case FOLLOW_USER:
-            return {...state, users: state.users.map(elem => elem.userID === action.userID ? {...elem, followed: !elem.followed} : elem)}
+            return {...state, users: state.users.map(elem => elem.id === action.userID ? {...elem, followed: !elem.followed} : elem)}
         case SET_USERS:
             return {...state, users: [...state.users, ...action.users]}
         default: return state
     }
 }
-export const FollowUserAC = (userID: string): FollowUserAT => {
+export const FollowUserAC = (userID: number): FollowUserAT => {
     return {type: FOLLOW_USER, userID}
 }
 export const SetUsersAC = (users: UsersType[]): SetUsersAT => {

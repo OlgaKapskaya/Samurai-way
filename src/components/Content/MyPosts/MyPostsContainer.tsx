@@ -2,9 +2,18 @@ import {StateType} from "../../../BLL/store";
 import {dispatchType} from "../../../BLL/redux-store";
 import {AddLikeActionCreator} from "../../../BLL/profileReduser";
 import {connect} from "react-redux";
-import {MyPostsComponent} from "./MyPosts";
+import {MyPostsComponent, PostDataType} from "./MyPosts";
 
-let mapStateToProps = (state: StateType) => {
+type mapStateToPropsType = {
+    postData: PostDataType[]
+    newPostText: string
+    userName: string
+}
+type mapDispatchToPropsType  = {
+    addLike: (count: number, id: string) => void
+}
+
+let mapStateToProps = (state: StateType):mapStateToPropsType => {
     return {
         postData: state.profilePage.postData,
         newPostText: state.profilePage.newPostText,
@@ -12,7 +21,7 @@ let mapStateToProps = (state: StateType) => {
     }
 }
 
-let mapDispatchToProps = (dispatch: dispatchType) => {
+let mapDispatchToProps = (dispatch: dispatchType): mapDispatchToPropsType => {
     return {
         addLike: (count: number, id: string) => dispatch(AddLikeActionCreator(count, id)),
     }

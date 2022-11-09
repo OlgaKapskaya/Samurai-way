@@ -14,15 +14,15 @@ export type StateType = {
 }
 
 export type UsersType = {
-    userID: string
     name: string
-    followed: boolean
+    id: number
+    uniqueUrlName: string
+    photos: {
+        small: string
+        large: string
+    },
     status: string
-    avatar: string
-    location: {country: string, city: string}
-    dateOfBirth: string
-    site: string
-    education: string
+    followed: boolean
 }
 export type profilePageType = {
     postData: PostDataType[]

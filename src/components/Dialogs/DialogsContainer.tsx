@@ -1,16 +1,25 @@
 import {AddMessageActionCreator} from "../../BLL/dialogsReducer";
-import {Dialogs} from "./Dialogs";
+import {Dialogs, DialogsDataType, MessagesDataType} from "./Dialogs";
 import {StateType} from "../../BLL/store";
 import {dispatchType} from "../../BLL/redux-store";
 import {connect} from "react-redux";
+import {PostDataType} from "../Content/MyPosts/MyPosts";
 
-let mapStateToProps = (state: StateType) => {
+type mapStateToPropsType = {
+    dialogsData: DialogsDataType[]
+    messagesData: MessagesDataType[]
+}
+type mapDispatchToPropsType  = {
+    sendMessage: (message: string) => void
+}
+
+let mapStateToProps = (state: StateType): mapStateToPropsType => {
     return {
         dialogsData: state.dialogsPage.dialogsData,
         messagesData: state.dialogsPage.messagesData,
     }
 }
-let mapDispatchToProps = (dispatch: dispatchType) => {
+let mapDispatchToProps = (dispatch: dispatchType): mapDispatchToPropsType => {
     return {
         sendMessage: (message: string) => dispatch(AddMessageActionCreator(message))
     }
