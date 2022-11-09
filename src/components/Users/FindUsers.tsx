@@ -2,6 +2,7 @@ import {UserCard} from "./UserCard/UserCard";
 import s from './FindUser.module.css'
 import {usersPageType, UsersType} from "../../BLL/store";
 import axios from "axios";
+import {useEffect} from "react";
 
 type FindUsersProps = {
     users: usersPageType
@@ -9,10 +10,12 @@ type FindUsersProps = {
     setUsers: (users: UsersType[]) => void
 }
 export const FindUsers = (props: FindUsersProps) => {
-    if (props.users.users.length === 0) {
+
+    useEffect(() => {
         axios.get('https://social-network.samuraijs.com/api/1.0/users')
             .then(response => props.setUsers(response.data.items))
-    }
+    }, [])
+
     return (
         <div className={"content"}>
             <div className={s.usersContainer}>
