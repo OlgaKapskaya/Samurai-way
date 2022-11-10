@@ -1,11 +1,11 @@
-import {StateType, usersPageType, UsersType} from "../../BLL/store";
+import {StateType, UsersType} from "../../BLL/store";
 import {dispatchType} from "../../BLL/redux-store";
 import {connect} from "react-redux";
-import {FindUsers} from "./FindUsers";
 import {FollowUserAC, SetUsersAC} from "../../BLL/usersReducer";
+import {FindUsers} from "./FindUsers";
 
 type mapStateToPropsType = {
-    users: usersPageType
+    users: UsersType[]
 }
 type mapDispatchToPropsType = {
     setFollow: (userID: number) => void
@@ -14,7 +14,7 @@ type mapDispatchToPropsType = {
 
 let mapStateToProps = (state: StateType):mapStateToPropsType=> {
     return {
-        users: state.usersPage
+        users: state.usersPage.users
     }
 }
 

@@ -3,7 +3,6 @@ import {Dialogs, DialogsDataType, MessagesDataType} from "./Dialogs";
 import {StateType} from "../../BLL/store";
 import {dispatchType} from "../../BLL/redux-store";
 import {connect} from "react-redux";
-import {PostDataType} from "../Content/MyPosts/MyPosts";
 
 type mapStateToPropsType = {
     dialogsData: DialogsDataType[]
