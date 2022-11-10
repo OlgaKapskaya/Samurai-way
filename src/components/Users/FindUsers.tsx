@@ -1,6 +1,6 @@
 import {UserCard} from "./UserCard/UserCard";
 import s from './FindUser.module.css'
-import {usersPageType, UsersType} from "../../BLL/store";
+import {UsersType} from "../../BLL/store";
 import axios from "axios";
 import React from "react";
 import {stateType} from "../../BLL/redux-store";
@@ -12,8 +12,7 @@ type FindUsersProps = {
 }
 
 export class FindUsers extends React.Component<FindUsersProps, stateType> { //React.Component<PROPS_Type, STATE_Type>
-    constructor(props: FindUsersProps) {
-        super(props);
+    componentDidMount() {
         axios.get('https://social-network.samuraijs.com/api/1.0/users')
             .then(response => this.props.setUsers(response.data.items))
     }
