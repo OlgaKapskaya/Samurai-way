@@ -2,7 +2,7 @@ import {UserType} from "../components/Content/Content";
 import {PostDataType} from "../components/Content/MyPosts/MyPosts";
 import {DialogsDataType, MessagesDataType} from "../components/Dialogs/Dialogs";
 import {ChangePersonalDataAction} from "./userReducer";
-import {FollowUserAT, SetUsersAT} from "./usersReducer";
+import {FollowUserAT, SetCurrentPageAT, SetTotalUserCountAT, SetUsersAT} from "./usersReducer";
 
 
 //types
@@ -34,6 +34,9 @@ export type dialogsPageType = {
 }
 export type usersPageType = {
     users: UsersType[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 export type StoreReduxType = {
     getState: () => StateType
@@ -48,7 +51,8 @@ export type StoreType = {
     _rerenderAllTree: () => void
 }
 export type ActionDispatchType = AddPostActionType | ChangePostTextType
-    | AddLikeActionType | AddMessageActionType | ChangePersonalDataAction | FollowUserAT | SetUsersAT
+    | AddLikeActionType | AddMessageActionType | ChangePersonalDataAction
+    | FollowUserAT | SetUsersAT | SetCurrentPageAT | SetTotalUserCountAT
 
 //dispatch action types
 export type AddPostActionType = {

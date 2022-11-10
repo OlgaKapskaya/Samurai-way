@@ -9,3 +9,13 @@
     flex-direction: column;
     width: 40%;
 }
+.paginationContainer{
+
+}
+.paginationContainerSelectedItem{
+font-weight: bold;
+}
+.paginationContainerItem{
+
+}
+
