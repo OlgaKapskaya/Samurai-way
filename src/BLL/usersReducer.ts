@@ -4,6 +4,7 @@ const FOLLOW_USER = 'FOLLOW_USER'
 const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_TOTAL_USER_COUNT = 'SET_TOTAL_USER_COUNT'
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 
 export type FollowUserAT = {
     type: 'FOLLOW_USER'
@@ -21,11 +22,16 @@ export type SetTotalUserCountAT = {
     type: 'SET_TOTAL_USER_COUNT'
     count: number
 }
+export type ToggleIsFetchingAT = {
+    type: 'TOGGLE_IS_FETCHING'
+    isFetching: boolean
+}
 let initialState: usersPageType = {
     users: [],
     pageSize: 50,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: true
 }
 
 export const usersReducer = (state: usersPageType = initialState, action: ActionDispatchType): usersPageType => {
@@ -41,6 +47,8 @@ export const usersReducer = (state: usersPageType = initialState, action: Action
             return {...state, currentPage: action.newCurrentPage}
         case SET_TOTAL_USER_COUNT:
             return {...state, totalUsersCount: action.count}
+        case TOGGLE_IS_FETCHING:
+            return {...state, isFetching: action.isFetching}
         default:
             return state
     }
@@ -56,4 +64,7 @@ export const SetCurrentPageAC = (newCurrentPage: number):SetCurrentPageAT => {
 }
 export const SetTotalUserCountAC = (count: number): SetTotalUserCountAT => {
     return {type: SET_TOTAL_USER_COUNT, count}
+}
+export const ToggleIsFetchingAC = (isFetching: boolean):ToggleIsFetchingAT => {
+    return {type: TOGGLE_IS_FETCHING, isFetching}
 }

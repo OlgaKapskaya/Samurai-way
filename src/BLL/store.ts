@@ -2,7 +2,7 @@ import {UserType} from "../components/Content/Content";
 import {PostDataType} from "../components/Content/MyPosts/MyPosts";
 import {DialogsDataType, MessagesDataType} from "../components/Dialogs/Dialogs";
 import {ChangePersonalDataAction} from "./userReducer";
-import {FollowUserAT, SetCurrentPageAT, SetTotalUserCountAT, SetUsersAT} from "./usersReducer";
+import {FollowUserAT, SetCurrentPageAT, SetTotalUserCountAT, SetUsersAT, ToggleIsFetchingAT} from "./usersReducer";
 
 
 //types
@@ -37,6 +37,7 @@ export type usersPageType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 export type StoreReduxType = {
     getState: () => StateType
@@ -53,6 +54,7 @@ export type StoreType = {
 export type ActionDispatchType = AddPostActionType | ChangePostTextType
     | AddLikeActionType | AddMessageActionType | ChangePersonalDataAction
     | FollowUserAT | SetUsersAT | SetCurrentPageAT | SetTotalUserCountAT
+    | ToggleIsFetchingAT
 
 //dispatch action types
 export type AddPostActionType = {

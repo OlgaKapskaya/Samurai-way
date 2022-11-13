@@ -20,13 +20,13 @@ export const Users = (props: UsersPropsType) => {
     }
 
     return (
-        <div className={"content"}>
-
+        <div className={'content'}>
             <div className={s.usersContainer}>
                 <div className={s.sidebar}>
 
                 </div>
                 <div className={s.usersCards}>
+
                     <div className={s.paginationContainer}>
                         {pages.map(elem => <span key={elem}
                                                  onClick={() => props.onPageChanged(elem)}
@@ -35,8 +35,8 @@ export const Users = (props: UsersPropsType) => {
                             </span>)}
                     </div>
                     {props.users.map(elem => <UserCard key={elem.id}
-                                                            userInfo={elem}
-                                                            setFollow={props.setFollow}/>)}
+                                                       userInfo={elem}
+                                                       setFollow={props.setFollow}/>)}
                 </div>
             </div>
 

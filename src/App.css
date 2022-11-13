@@ -46,6 +46,7 @@
   grid-area: content;
   background-color: #e9ecef;
   min-height: 700px;
+  height: 100%;
   border-radius: 5px;
   margin-right: 10px;
   margin-top: 10px;
