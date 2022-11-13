@@ -20,11 +20,11 @@ type mapStateToPropsType = {
     isFetching: boolean
 }
 type mapDispatchToPropsType = {
-    setFollow: () => ReturnType<typeof FollowUserAC>
-    setUsers: () => ReturnType<typeof SetUsersAC>
-    setCurrentPage: () => ReturnType<typeof SetCurrentPageAC>
-    setTotalUserCount: () => ReturnType<typeof SetTotalUserCountAC>
-    toggleIsFetching: () => ReturnType<typeof ToggleIsFetchingAC>
+    setFollow: (userID: number) => void
+    setUsers: (users: UsersType[]) => void
+    setCurrentPage: (newCurrentPage: number) => void
+    setTotalUserCount: (count: number) => void
+    toggleIsFetching: (isFetching: boolean) => void
 }
 type FindUsersProps = {
     users: UsersType[]
@@ -50,7 +50,6 @@ class FindUsersAPIComponent extends React.Component<FindUsersProps, FindUsersSta
                 this.props.setTotalUserCount(response.data.totalCount)
             })
     }
-
     render() {
         return (
             <>

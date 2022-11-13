@@ -1,4 +1,4 @@
-import {AddPostActionCreator, ChangePostTextActionCreator} from "../../../../BLL/profileReduser";
+import {AddPostAC, ChangePostText} from "../../../../BLL/profileReduser";
 import {AddPost} from "./AddPost";
 import {connect} from "react-redux";
 import {StateType} from "../../../../BLL/store";
@@ -12,8 +12,8 @@ let mapStateToProps = (state: StateType) => {
 
 let mapDispatchToProps = (dispatch: dispatchType) => {
     return {
-        addPost: () => dispatch(AddPostActionCreator()),
-        changePostText: (text: string) => dispatch(ChangePostTextActionCreator(text))
+        addPost: () => dispatch(AddPostAC()),
+        changePostText: (text: string) => dispatch(ChangePostText(text))
     }
 }
 

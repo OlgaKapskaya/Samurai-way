@@ -1,13 +1,12 @@
-import {UserType} from "../components/Content/Content";
+
 import {PostDataType} from "../components/Content/MyPosts/MyPosts";
 import {DialogsDataType, MessagesDataType} from "../components/Dialogs/Dialogs";
-import {ChangePersonalDataAction} from "./userReducer";
 import {FollowUserAT, SetCurrentPageAT, SetTotalUserCountAT, SetUsersAT, ToggleIsFetchingAT} from "./usersReducer";
+import {AddLikeActionType, AddPostActionType, ChangePostTextType, SetUserProfileAT} from "./profileReduser";
 
 
 //types
 export type StateType = {
-    user: UserType
     profilePage: profilePageType
     dialogsPage: dialogsPageType
     usersPage: usersPageType
@@ -27,6 +26,7 @@ export type UsersType = {
 export type profilePageType = {
     postData: PostDataType[]
     newPostText: string
+    profile: ProfileUserType
 }
 export type dialogsPageType = {
     dialogsData: DialogsDataType[]
@@ -39,36 +39,47 @@ export type usersPageType = {
     currentPage: number
     isFetching: boolean
 }
+export type ProfileUserType = {
+    aboutMe: string
+    contacts: {
+        facebook: string
+        website: string
+        vk: string
+        twitter: string
+        instagram: string
+        youtube: string
+        github: string
+        mainLink: string
+    },
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: {
+        small: string
+        large: string
+    }
+}
+
 export type StoreReduxType = {
     getState: () => StateType
     dispatch: (action: ActionDispatchType) => void
     subscribe: (observer: () => void) => void
 }
-export type StoreType = {
-    _state: StateType
-    _subscribe: (observer: () => void) => void
-    getState: () => StateType
-    dispatch: (action: ActionDispatchType) => void
-    _rerenderAllTree: () => void
-}
+// export type StoreType = {
+//     _state: StateType
+//     _subscribe: (observer: () => void) => void
+//     getState: () => StateType
+//     dispatch: (action: ActionDispatchType) => void
+//     _rerenderAllTree: () => void
+// }
 export type ActionDispatchType = AddPostActionType | ChangePostTextType
-    | AddLikeActionType | AddMessageActionType | ChangePersonalDataAction
+    | AddLikeActionType | AddMessageActionType
     | FollowUserAT | SetUsersAT | SetCurrentPageAT | SetTotalUserCountAT
-    | ToggleIsFetchingAT
+    | ToggleIsFetchingAT | SetUserProfileAT
 
 //dispatch action types
-export type AddPostActionType = {
-    type: "ADD-POST"
-}
-export type ChangePostTextType = {
-    type: "CHANGE-NEW-POST-TEXT"
-    message: string
-}
-export type AddLikeActionType = {
-    type: "ADD-LIKE"
-    id: string
-    count: number
-}
+
 export type AddMessageActionType = {
     type: "ADD-MESSAGE"
     message: string

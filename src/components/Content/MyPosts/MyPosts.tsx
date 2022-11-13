@@ -6,7 +6,6 @@ import {PostComponentContainer} from "./Posts/PostComponent";
 export type MyPostsProps = {
     postData: Array<PostDataType>
     newPostText: string
-    userName: string
     addLike: (count: number, id: string) => void
 }
 
@@ -27,7 +26,7 @@ const MyPosts = (props: MyPostsProps) => {
                                             id={elem.id}
                                             message={elem.message}
                                             likes={elem.likes}
-                                            userName={props.userName}
+                                            userName={"props.userName"}
                                             addLike={props.addLike}/>
 
                 )

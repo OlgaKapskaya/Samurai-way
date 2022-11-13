@@ -1,27 +1,27 @@
 import React from "react";
 import s from "./ProfileInfo.module.css";
+import {ProfileUserType} from "../../../BLL/store";
+import noAvatarImg from "../../../IMG/no_avatar_img.webp";
+import {Preloader} from "../../common/Preloader/Preloader";
 
 type ProfileInfoProps = {
-    id: string,
-    name: string,
-    dateOfBirth: string,
-    city: string,
-    education: string,
-    site?: string,
-    avatar: string
+    profile: ProfileUserType
 }
 export const ProfileInfo = (props: ProfileInfoProps) => {
+    if (!props.profile) {
+        return <Preloader/>
+    }
     return (
         <div className={s.mainContainer}>
             <div className={s.avatarContainer}>
-                <img src={props.avatar} className={s.avatar}/>
+                <img src={props.profile.photos.large !== null ? props.profile.photos.large : noAvatarImg} className={s.avatar}/>
             </div>
             <div className={s.infoContainer}>
-                <div className={s.Name}>{props.name}</div>
-                <div className={s.data}><span> Date of birth: </span> {props.dateOfBirth}</div>
-                <div className={s.data}><span> City: </span> {props.city}</div>
-                <div className={s.data}><span> Education: </span> {props.education}</div>
-                <div className={s.data}><span> Web site: </span> {props.site}</div>
+                <div className={s.Name}>{props.profile.fullName}</div>
+                <div className={s.data}><span> About me: </span> {props.profile.aboutMe}</div>
+                <div className={s.data}><span> Looking for a job: <input type={'checkbox'} checked={props.profile.lookingForAJob}/></span></div>
+                <div className={s.data}><span> Description: </span> {props.profile.lookingForAJobDescription}</div>
+                <div className={s.data}><span> GitHub: </span> {props.profile.contacts.github}</div>
             </div>
         </div>
     )
