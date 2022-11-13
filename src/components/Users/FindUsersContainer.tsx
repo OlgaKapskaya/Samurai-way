@@ -1,17 +1,15 @@
 import {StateType, UsersType} from "../../BLL/store";
-import {dispatchType} from "../../BLL/redux-store";
 import {connect} from "react-redux";
 import {
     FollowUserAC,
     SetCurrentPageAC,
     SetTotalUserCountAC,
     SetUsersAC,
-    ToggleIsFetchingAC
+    ToggleIsFetchingAC,
 } from "../../BLL/usersReducer";
 import React from "react";
 import axios from "axios";
 import {Users} from "./Users";
-import {CircularProgress} from "@material-ui/core";
 import {Preloader} from "../common/Preloader/Preloader";
 
 type mapStateToPropsType = {
@@ -22,11 +20,11 @@ type mapStateToPropsType = {
     isFetching: boolean
 }
 type mapDispatchToPropsType = {
-    setFollow: (userID: number) => void
-    setUsers: (users: UsersType[]) => void
-    setCurrentPage: (newCurrentPage: number) => void
-    setTotalUserCount: (count: number) => void
-    toggleIsFetching: (isFetching: boolean) => void
+    setFollow: () => ReturnType<typeof FollowUserAC>
+    setUsers: () => ReturnType<typeof SetUsersAC>
+    setCurrentPage: () => ReturnType<typeof SetCurrentPageAC>
+    setTotalUserCount: () => ReturnType<typeof SetTotalUserCountAC>
+    toggleIsFetching: () => ReturnType<typeof ToggleIsFetchingAC>
 }
 type FindUsersProps = {
     users: UsersType[]
@@ -88,14 +86,11 @@ let mapStateToProps = (state: StateType): mapStateToPropsType => {
         isFetching: state.usersPage.isFetching
     }
 }
-let mapDispatchToProps = (dispatch: dispatchType): mapDispatchToPropsType => {
-    return {
-        setFollow: (userID: number) => dispatch(FollowUserAC(userID)),
-        setUsers: (users: UsersType[]) => dispatch(SetUsersAC(users)),
-        setCurrentPage: (newCurrentPage: number) => dispatch(SetCurrentPageAC(newCurrentPage)),
-        setTotalUserCount: (count: number) => dispatch(SetTotalUserCountAC(count)),
-        toggleIsFetching: (isFetching: boolean) => dispatch(ToggleIsFetchingAC(isFetching))
-    }
-}
-export const FindUsersContainer = connect(mapStateToProps, mapDispatchToProps)(FindUsersAPIComponent)
 
+export const FindUsersContainer = connect(mapStateToProps, {
+    setFollow: FollowUserAC,
+    setUsers: SetUsersAC,
+    setCurrentPage: SetCurrentPageAC,
+    setTotalUserCount: SetTotalUserCountAC,
+    toggleIsFetching: ToggleIsFetchingAC
+} as mapDispatchToPropsType)(FindUsersAPIComponent)
