@@ -8,7 +8,6 @@ import {Music} from "./components/Music/Music";
 import {StateType} from "./BLL/store";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {SettingsContainer} from "./components/Settings/SettingsContainer";
-import {FindUsers} from "./components/Users/FindUsers";
 import {FindUsersContainer} from "./components/Users/FindUsersContainer";
 
 
