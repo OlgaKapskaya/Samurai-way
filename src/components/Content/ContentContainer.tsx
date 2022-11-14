@@ -22,17 +22,10 @@ type PathParamsType = {
     userID: string,
 }
 
-type ContentPropsType = RouteComponentProps<PathParamsType> & {
-    postData: PostDataType[]
-    newPostText: string
-    profile: ProfileUserType
-    AddPost: () => void
-    ChangePostText: (message: string) => void
-    AddLike: (count: number, id: string) => void
-    SetUserProfile: (profile: ProfileUserType) => void
-}
+type ContentPropsType = RouteComponentProps<PathParamsType> & mapStateToPropsType
+    & mapDispatchToPropsType
 
-export class ContentContainer extends React.Component<ContentPropsType>{
+export class ContentContainer extends React.Component<ContentPropsType> {
     componentDidMount() {
 
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${this.props.match.params.userID !== undefined ? this.props.match.params.userID : 2}`)

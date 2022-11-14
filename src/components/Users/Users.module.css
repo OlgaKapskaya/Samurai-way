@@ -9,19 +9,8 @@
     flex-direction: column;
     width: 40%;
 }
-.paginationContainer{
-
-}
-.paginationContainerSelectedItem{
-font-weight: bold;
-}
-.paginationContainerItem{
-
-}
-.pagination{
-    display: flex;
-}
-.pagination li{
-    list-style-type: none;
+.usersCards nav{
+    margin-top: 10px;
+    align-self: center;
 }
 

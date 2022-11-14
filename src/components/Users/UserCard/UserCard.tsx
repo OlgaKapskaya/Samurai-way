@@ -13,9 +13,9 @@ export const UserCard = (props: UserCardProps) => {
         <div className={s.userCardContainer}>
             <div className={s.avatarAndButton}>
                 <NavLink to={'/profile/' + props.userInfo.id}>
-                <img className={s.avatar}
-                     alt={'avatar'}
-                     src={props.userInfo.photos.large !== null ? props.userInfo.photos.large : noAvatarImg}/>
+                    <img className={s.avatar}
+                         alt={'avatar'}
+                         src={props.userInfo.photos.large !== null ? props.userInfo.photos.large : noAvatarImg}/>
                 </NavLink>
                 <Button size={'small'}
                         variant={'outlined'}
@@ -25,7 +25,9 @@ export const UserCard = (props: UserCardProps) => {
                 </Button>
             </div>
             <div className={s.userInfo}>
-                <div className={s.name}>{props.userInfo.name}</div>
+                <NavLink to={'/profile/' + props.userInfo.id}>
+                    <div className={s.name}>{props.userInfo.name}</div>
+                </NavLink>
                 <div>Status: {props.userInfo.status}</div>
             </div>
             <div className={s.userLocation}>

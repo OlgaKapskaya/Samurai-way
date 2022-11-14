@@ -3,6 +3,7 @@ import {ActionDispatchType, usersPageType, UsersType} from "./store";
 const FOLLOW_USER = 'FOLLOW_USER'
 const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
+const SET_PAGE_SIZE = 'SET_PAGE_SIZE'
 const SET_TOTAL_USER_COUNT = 'SET_TOTAL_USER_COUNT'
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 
@@ -17,6 +18,10 @@ export type SetUsersAT = {
 export type SetCurrentPageAT = {
     type: 'SET_CURRENT_PAGE'
     newCurrentPage: number
+}
+export type SetPageSizeAT = {
+    type: 'SET_PAGE_SIZE'
+    pageSize: number
 }
 export type SetTotalUserCountAT = {
     type: 'SET_TOTAL_USER_COUNT'
@@ -45,6 +50,8 @@ export const usersReducer = (state: usersPageType = initialState, action: Action
             return {...state, users: [...action.users]}
         case SET_CURRENT_PAGE:
             return {...state, currentPage: action.newCurrentPage}
+        case SET_PAGE_SIZE:
+            return {...state, pageSize: action.pageSize}
         case SET_TOTAL_USER_COUNT:
             return {...state, totalUsersCount: action.count}
         case TOGGLE_IS_FETCHING:
@@ -67,4 +74,7 @@ export const SetTotalUserCountAC = (count: number): SetTotalUserCountAT => {
 }
 export const ToggleIsFetchingAC = (isFetching: boolean):ToggleIsFetchingAT => {
     return {type: TOGGLE_IS_FETCHING, isFetching}
+}
+export const SetPageSizeAC = (pageSize: number):SetPageSizeAT => {
+    return {type: SET_PAGE_SIZE, pageSize}
 }

@@ -2,7 +2,7 @@ import {StateType, UsersType} from "../../BLL/store";
 import {connect} from "react-redux";
 import {
     FollowUserAC,
-    SetCurrentPageAC,
+    SetCurrentPageAC, SetPageSizeAC,
     SetTotalUserCountAC,
     SetUsersAC,
     ToggleIsFetchingAC,
@@ -23,24 +23,14 @@ type mapDispatchToPropsType = {
     setFollow: (userID: number) => void
     setUsers: (users: UsersType[]) => void
     setCurrentPage: (newCurrentPage: number) => void
+    setPageSize: (pageSize: number) => void
     setTotalUserCount: (count: number) => void
     toggleIsFetching: (isFetching: boolean) => void
 }
-type FindUsersProps = {
-    users: UsersType[]
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    isFetching: boolean
-    setFollow: (userID: number) => void
-    setUsers: (users: UsersType[]) => void
-    setCurrentPage: (newCurrentPage: number) => void
-    setTotalUserCount: (count: number) => void
-    toggleIsFetching: (isFetching: boolean) => void
-}
-type FindUsersStateType = {}
+type FindUsersProps = mapStateToPropsType & mapDispatchToPropsType
 
-class FindUsersAPIComponent extends React.Component<FindUsersProps, FindUsersStateType> { //React.Component<PROPS_Type, COMPONENT_LOCAL_STATE_Type>
+
+class FindUsersAPIComponent extends React.Component<FindUsersProps> { //React.Component<PROPS_Type, COMPONENT_LOCAL_STATE_Type>
     componentDidMount() {
         this.props.toggleIsFetching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
@@ -76,7 +66,7 @@ class FindUsersAPIComponent extends React.Component<FindUsersProps, FindUsersSta
 }
 
 
-let mapStateToProps = (state: StateType): mapStateToPropsType => {
+const mapStateToProps = (state: StateType): mapStateToPropsType => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
@@ -91,5 +81,6 @@ export const FindUsersContainer = connect(mapStateToProps, {
     setUsers: SetUsersAC,
     setCurrentPage: SetCurrentPageAC,
     setTotalUserCount: SetTotalUserCountAC,
-    toggleIsFetching: ToggleIsFetchingAC
+    toggleIsFetching: ToggleIsFetchingAC,
+    setPageSize: SetPageSizeAC
 } as mapDispatchToPropsType)(FindUsersAPIComponent)

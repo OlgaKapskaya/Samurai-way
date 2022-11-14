@@ -2,6 +2,7 @@ import s from "./Users.module.css";
 import {UserCard} from "./UserCard/UserCard";
 import React from "react";
 import {UsersType} from "../../BLL/store";
+import {Pagination} from "@material-ui/lab";
 
 type UsersPropsType = {
     users: UsersType[]
@@ -10,14 +11,10 @@ type UsersPropsType = {
     currentPage: number
     setFollow: (userID: number) => void
     onPageChanged: (pageNumber: number) => void
-
 }
 export const Users = (props: UsersPropsType) => {
     const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    const pages = []
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i)
-    }
+
 
     return (
         <div className={'content'}>
@@ -26,14 +23,15 @@ export const Users = (props: UsersPropsType) => {
 
                 </div>
                 <div className={s.usersCards}>
-
-                    <div className={s.paginationContainer}>
-                        {pages.map(elem => <span key={elem}
-                                                 onClick={() => props.onPageChanged(elem)}
-                                                 className={props.currentPage === elem ? s.paginationContainerSelectedItem : s.paginationContainerItem}>
-                                {elem}
-                            </span>)}
-                    </div>
+                    <Pagination count={pagesCount}
+                                color={'primary'}
+                                variant="outlined"
+                                shape="rounded"
+                                showFirstButton
+                                showLastButton
+                                page={props.currentPage}
+                                onChange={(event, page) => props.onPageChanged(page)}
+                    />
                     {props.users.map(elem => <UserCard key={elem.id}
                                                        userInfo={elem}
                                                        setFollow={props.setFollow}/>)}

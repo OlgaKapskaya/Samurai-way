@@ -1,8 +1,15 @@
-
 import {PostDataType} from "../components/Content/MyPosts/MyPosts";
 import {DialogsDataType, MessagesDataType} from "../components/Dialogs/Dialogs";
-import {FollowUserAT, SetCurrentPageAT, SetTotalUserCountAT, SetUsersAT, ToggleIsFetchingAT} from "./usersReducer";
+import {
+    FollowUserAT,
+    SetCurrentPageAT,
+    SetPageSizeAT,
+    SetTotalUserCountAT,
+    SetUsersAT,
+    ToggleIsFetchingAT
+} from "./usersReducer";
 import {AddLikeActionType, AddPostActionType, ChangePostTextType, SetUserProfileAT} from "./profileReduser";
+import {AddMessageActionType} from "./dialogsReducer";
 
 
 //types
@@ -11,7 +18,6 @@ export type StateType = {
     dialogsPage: dialogsPageType
     usersPage: usersPageType
 }
-
 export type UsersType = {
     name: string
     id: number
@@ -61,11 +67,16 @@ export type ProfileUserType = {
     }
 }
 
-export type StoreReduxType = {
-    getState: () => StateType
-    dispatch: (action: ActionDispatchType) => void
-    subscribe: (observer: () => void) => void
-}
+
+//dispatch action full type
+export type ActionDispatchType = AddPostActionType | ChangePostTextType
+    | AddLikeActionType | AddMessageActionType
+    | FollowUserAT | SetUsersAT | SetCurrentPageAT | SetTotalUserCountAT
+    | ToggleIsFetchingAT | SetUserProfileAT | SetPageSizeAT
+
+
+
+
 // export type StoreType = {
 //     _state: StateType
 //     _subscribe: (observer: () => void) => void
@@ -73,19 +84,7 @@ export type StoreReduxType = {
 //     dispatch: (action: ActionDispatchType) => void
 //     _rerenderAllTree: () => void
 // }
-export type ActionDispatchType = AddPostActionType | ChangePostTextType
-    | AddLikeActionType | AddMessageActionType
-    | FollowUserAT | SetUsersAT | SetCurrentPageAT | SetTotalUserCountAT
-    | ToggleIsFetchingAT | SetUserProfileAT
 
-//dispatch action types
-
-export type AddMessageActionType = {
-    type: "ADD-MESSAGE"
-    message: string
-}
-
-//store
 // export const store: StoreType = {
 //     _state: {
 //         user: {
