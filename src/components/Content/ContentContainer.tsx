@@ -5,6 +5,7 @@ import {ProfileUserType, StateType} from "../../BLL/store";
 import {connect} from "react-redux";
 import {AddLike, AddPostAC, ChangePostText, SetUserProfile} from "../../BLL/profileReduser";
 import axios from "axios";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 
 type mapStateToPropsType = {
     postData: PostDataType[]
@@ -17,8 +18,11 @@ type mapDispatchToPropsType = {
     AddLike: (count: number, id: string) => void
     SetUserProfile: (profile: ProfileUserType) => void
 }
+type PathParamsType = {
+    userID: string,
+}
 
-type ContentProps = {
+type ContentPropsType = RouteComponentProps<PathParamsType> & {
     postData: PostDataType[]
     newPostText: string
     profile: ProfileUserType
@@ -27,12 +31,11 @@ type ContentProps = {
     AddLike: (count: number, id: string) => void
     SetUserProfile: (profile: ProfileUserType) => void
 }
-type ContentStateType = {}
 
-export class ContentContainer extends React.Component<ContentProps, ContentStateType>{
+export class ContentContainer extends React.Component<ContentPropsType>{
     componentDidMount() {
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${this.props.match.params.userID !== undefined ? this.props.match.params.userID : 2}`)
             .then(response => {
                 this.props.SetUserProfile(response.data)
             })
@@ -50,7 +53,13 @@ let mapStateToProps = (state: StateType): mapStateToPropsType => {
         profile: state.profilePage.profile
     }
 }
-
-export const ContentC = connect(mapStateToProps, {
+export const ContentC = withRouter(connect(mapStateToProps, {
     AddPost: AddPostAC, ChangePostText, AddLike, SetUserProfile
-} as mapDispatchToPropsType)(ContentContainer)
+} as mapDispatchToPropsType)(ContentContainer))
+
+//refactor this code
+
+// const WithURLDataContainerComponent = withRouter(ContentContainer)
+// export const ContentC = connect(mapStateToProps, {
+//     AddPost: AddPostAC, ChangePostText, AddLike, SetUserProfile
+// } as mapDispatchToPropsType)(ContentContainer)

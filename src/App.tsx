@@ -26,7 +26,7 @@ function App(props: AppProps) {
                 {/*                                         newPostText={props.state.profilePage.newPostText}/>}*/}
                 {/*/>*/}
 
-                <Route path={"/profile"} render={() => <ContentC/>}/>
+                <Route path={"/profile/:userID?"} render={() => <ContentC/>}/>
                 <Route path={"/dialogs"} render={() => <DialogsContainer/>}/>
                 <Route path={"/news"} render={() => <News/>}/>
                 <Route path={"/music"} render={() => <Music/>}/>
