@@ -8,9 +8,10 @@ import {
     ToggleIsFetchingAC,
 } from "../../BLL/usersReducer";
 import React from "react";
-import axios from "axios";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
+import {usersAPI} from "../../API/api";
+
 
 type mapStateToPropsType = {
     users: UsersType[]
@@ -34,16 +35,12 @@ type FindUsersProps = mapStateToPropsType & mapDispatchToPropsType
 class FindUsersAPIComponent extends React.Component<FindUsersProps> { //React.Component<PROPS_Type, COMPONENT_LOCAL_STATE_Type>
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{
-            withCredentials: true,
-            headers: {
-                "API-KEY": "a3689f8d-4bdb-4cdd-9a1a-83733437adfc"
-            }
-        })
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
             .then(response => {
+
                 this.props.toggleIsFetching(false)
-                this.props.setUsers(response.data.items)
-                this.props.setTotalUserCount(response.data.totalCount)
+                this.props.setUsers(response.items)
+                this.props.setTotalUserCount(response.totalCount)
             })
     }
     render() {
@@ -64,15 +61,10 @@ class FindUsersAPIComponent extends React.Component<FindUsersProps> { //React.Co
     onPageChanged = (newPageNumber: number) => {
         this.props.toggleIsFetching(true)
         this.props.setCurrentPage(newPageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${newPageNumber}&count=${this.props.pageSize}`,{
-            withCredentials: true,
-            headers: {
-                "API-KEY": "a3689f8d-4bdb-4cdd-9a1a-83733437adfc"
-            }
-        })
+        usersAPI.getUsers(newPageNumber, this.props.pageSize)
             .then(response => {
                 this.props.toggleIsFetching(false)
-                this.props.setUsers(response.data.items)
+                this.props.setUsers(response.items)
             })
     }
 }

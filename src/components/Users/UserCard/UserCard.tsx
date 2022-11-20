@@ -3,7 +3,7 @@ import s from './UserCard.module.css'
 import {Button} from "@material-ui/core";
 import noAvatarImg from '../../../IMG/no_avatar_img.webp'
 import {NavLink} from "react-router-dom";
-import axios from "axios";
+import {usersAPI} from "../../../API/api";
 
 type UserCardProps = {
     userInfo: UsersType
@@ -12,27 +12,17 @@ type UserCardProps = {
 }
 export const UserCard = (props: UserCardProps) => {
     const setFollowHandler = () => {
-        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${props.userInfo.id}`, {}, {
-            withCredentials: true,
-            headers: {
-                "API-KEY": "a3689f8d-4bdb-4cdd-9a1a-83733437adfc"
-            }
-        })
-            .then(response => {
-                if (response.data.resultCode === 0){
+        usersAPI.setFollow(props.userInfo.id)
+            .then( response => {
+                if (response === 0){
                     props.setFollow(props.userInfo.id)
                 }
             })
     }
     const setUnfollowHandler = () => {
-        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${props.userInfo.id}`, {
-            withCredentials: true,
-            headers: {
-                "API-KEY": "a3689f8d-4bdb-4cdd-9a1a-83733437adfc"
-            }
-        })
+        usersAPI.setUnfollow(props.userInfo.id)
             .then(response => {
-                if (response.data.resultCode === 0){
+                if (response === 0){
                     props.setUnfollow(props.userInfo.id)
                 }
             })
