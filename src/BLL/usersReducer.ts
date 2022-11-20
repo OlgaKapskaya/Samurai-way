@@ -33,7 +33,7 @@ export type ToggleIsFetchingAT = {
 }
 let initialState: usersPageType = {
     users: [],
-    pageSize: 50,
+    pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true

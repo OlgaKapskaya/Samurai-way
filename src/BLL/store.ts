@@ -10,6 +10,7 @@ import {
 } from "./usersReducer";
 import {AddLikeActionType, AddPostActionType, ChangePostTextType, SetUserProfileAT} from "./profileReduser";
 import {AddMessageActionType} from "./dialogsReducer";
+import {SetUserDataAT} from "./authReducer";
 
 
 //types
@@ -17,6 +18,12 @@ export type StateType = {
     profilePage: profilePageType
     dialogsPage: dialogsPageType
     usersPage: usersPageType
+}
+export type AuthDataType = {
+    id: number|null
+    login: string
+    email: string
+    isAuth: boolean
 }
 export type UsersType = {
     name: string
@@ -72,7 +79,7 @@ export type ProfileUserType = {
 export type ActionDispatchType = AddPostActionType | ChangePostTextType
     | AddLikeActionType | AddMessageActionType
     | FollowUserAT | SetUsersAT | SetCurrentPageAT | SetTotalUserCountAT
-    | ToggleIsFetchingAT | SetUserProfileAT | SetPageSizeAT
+    | ToggleIsFetchingAT | SetUserProfileAT | SetPageSizeAT | SetUserDataAT
 
 
 

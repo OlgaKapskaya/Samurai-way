@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import Header from "./components/Header/Header";
 import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
@@ -9,6 +8,7 @@ import {FindUsersContainer} from "./components/Users/FindUsersContainer";
 import {Settings} from "./components/Settings/Settings";
 import {stateType} from "./BLL/redux-store";
 import {ContentC} from "./components/Content/ContentContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 
 type AppProps = {
@@ -20,7 +20,7 @@ function App(props: AppProps) {
         <BrowserRouter>
 
             <div className='app-wrapper'>
-                <Header/>
+                <HeaderContainer/>
                 {/*<Route path={'/'} render={() => <Content postData={props.state.profilePage.postData}*/}
                 {/*                                         user={props.state.user}*/}
                 {/*                                         newPostText={props.state.profilePage.newPostText}/>}*/}
