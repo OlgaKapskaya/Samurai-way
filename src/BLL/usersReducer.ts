@@ -1,4 +1,5 @@
-import {ActionDispatchType, usersPageType, UsersType} from "./store";
+import {usersPageType, UsersType} from "./store";
+
 
 const FOLLOW_USER = 'FOLLOW_USER'
 const UNFOLLOW_USER = 'UNFOLLOW_USER'
@@ -7,6 +8,7 @@ const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_PAGE_SIZE = 'SET_PAGE_SIZE'
 const SET_TOTAL_USER_COUNT = 'SET_TOTAL_USER_COUNT'
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
+const FOLLOWING_IN_PROGRESS = 'FOLLOWING_IN_PROGRESS'
 
 export type FollowUserAT = {
     type: 'FOLLOW_USER'
@@ -36,15 +38,27 @@ export type ToggleIsFetchingAT = {
     type: 'TOGGLE_IS_FETCHING'
     isFetching: boolean
 }
+export type FollowingInProgressAT = {
+    type: 'FOLLOWING_IN_PROGRESS'
+    followingInProgress: boolean
+    id: number
+}
+
+export type UserReducerAT = FollowUserAT | UnfollowUserAT
+    | SetUsersAT | SetCurrentPageAT | SetPageSizeAT
+    | SetTotalUserCountAT | ToggleIsFetchingAT | FollowingInProgressAT
+
+
 let initialState: usersPageType = {
     users: [],
     pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: true
+    isFetching: true,
+    followingInProgress: []
 }
 
-export const usersReducer = (state: usersPageType = initialState, action: ActionDispatchType): usersPageType => {
+export const usersReducer = (state: usersPageType = initialState, action: UserReducerAT): usersPageType => {
     switch (action.type) {
         case FOLLOW_USER:
             return {
@@ -66,6 +80,10 @@ export const usersReducer = (state: usersPageType = initialState, action: Action
             return {...state, totalUsersCount: action.count}
         case TOGGLE_IS_FETCHING:
             return {...state, isFetching: action.isFetching}
+        case FOLLOWING_IN_PROGRESS:
+            return {...state, followingInProgress: action.followingInProgress
+                    ? [...state.followingInProgress, action.id]
+                    : state.followingInProgress.filter( elem => elem !== action.id)}
         default:
             return state
     }
@@ -90,4 +108,7 @@ export const ToggleIsFetchingAC = (isFetching: boolean):ToggleIsFetchingAT => {
 }
 export const SetPageSizeAC = (pageSize: number):SetPageSizeAT => {
     return {type: SET_PAGE_SIZE, pageSize}
+}
+export const followingInProgressAC = (followingInProgress: boolean, id: number):FollowingInProgressAT => {
+    return {type: FOLLOWING_IN_PROGRESS, followingInProgress, id}
 }

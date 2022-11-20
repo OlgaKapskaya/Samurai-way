@@ -1,16 +1,17 @@
 import {PostDataType} from "../components/Content/MyPosts/MyPosts";
 import {DialogsDataType, MessagesDataType} from "../components/Dialogs/Dialogs";
 import {
+    FollowingInProgressAT,
     FollowUserAT,
     SetCurrentPageAT,
     SetPageSizeAT,
     SetTotalUserCountAT,
     SetUsersAT,
-    ToggleIsFetchingAT, UnfollowUserAT
+    ToggleIsFetchingAT, UnfollowUserAT, UserReducerAT
 } from "./usersReducer";
 import {AddLikeActionType, AddPostActionType, ChangePostTextType, SetUserProfileAT} from "./profileReduser";
 import {AddMessageActionType} from "./dialogsReducer";
-import {SetUserDataAT} from "./authReducer";
+import {AuthReducerAT, SetUserDataAT} from "./authReducer";
 
 
 //types
@@ -20,7 +21,7 @@ export type StateType = {
     usersPage: usersPageType
 }
 export type AuthDataType = {
-    id: number|null
+    id: number | null
     login: string
     email: string
     isAuth: boolean
@@ -51,6 +52,7 @@ export type usersPageType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgress: number[]
 }
 export type ProfileUserType = {
     aboutMe: string
@@ -78,10 +80,7 @@ export type ProfileUserType = {
 //dispatch action full type
 export type ActionDispatchType = AddPostActionType | ChangePostTextType
     | AddLikeActionType | AddMessageActionType
-    | FollowUserAT | SetUsersAT | SetCurrentPageAT | SetTotalUserCountAT
-    | ToggleIsFetchingAT | SetUserProfileAT | SetPageSizeAT | SetUserDataAT | UnfollowUserAT
-
-
+    | SetUserProfileAT | AuthReducerAT | UserReducerAT
 
 
 // export type StoreType = {

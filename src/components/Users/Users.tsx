@@ -9,9 +9,11 @@ type UsersPropsType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    followingInProgress: number[]
     setFollow: (userID: number) => void
     setUnfollow: (userID: number) => void
     onPageChanged: (pageNumber: number) => void
+    setFollowingInProgress: (followingInProgress: boolean, id: number) => void
 }
 export const Users = (props: UsersPropsType) => {
     const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -35,7 +37,9 @@ export const Users = (props: UsersPropsType) => {
                     />
                     {props.users.map(elem => <UserCard key={elem.id}
                                                        userInfo={elem}
+                                                       followingInProgress={props.followingInProgress}
                                                        setFollow={props.setFollow}
+                                                       setFollowingInProgress={props.setFollowingInProgress}
                                                        setUnfollow = {props.setUnfollow}/>)}
                 </div>
             </div>

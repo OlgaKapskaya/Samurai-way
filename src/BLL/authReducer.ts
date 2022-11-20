@@ -9,6 +9,7 @@ const initState:AuthDataType = {
     isAuth: false
 }
 
+export type AuthReducerAT = SetUserDataAT
 export type SetUserDataAT = {
     type: 'SET_USER_DATA'
     data: {
@@ -19,7 +20,8 @@ export type SetUserDataAT = {
 
 }
 
-export const authReducer = (state = initState, action: ActionDispatchType): AuthDataType => {
+
+export const authReducer = (state = initState, action: AuthReducerAT): AuthDataType => {
     switch (action.type) {
         case SET_USER_DATA:
             return {

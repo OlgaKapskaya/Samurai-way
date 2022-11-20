@@ -1,6 +1,7 @@
 import {StateType, UsersType} from "../../BLL/store";
 import {connect} from "react-redux";
 import {
+    followingInProgressAC,
     FollowUserAC,
     SetCurrentPageAC, SetPageSizeAC,
     SetTotalUserCountAC, setUnfollowUserAC,
@@ -19,6 +20,7 @@ type mapStateToPropsType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgress: number[]
 }
 type mapDispatchToPropsType = {
     setFollow: (userID: number) => void
@@ -28,6 +30,7 @@ type mapDispatchToPropsType = {
     setPageSize: (pageSize: number) => void
     setTotalUserCount: (count: number) => void
     toggleIsFetching: (isFetching: boolean) => void
+    setFollowingInProgress: (followingInProgress: boolean, id: number) => void
 }
 type FindUsersProps = mapStateToPropsType & mapDispatchToPropsType
 
@@ -50,9 +53,11 @@ class FindUsersAPIComponent extends React.Component<FindUsersProps> { //React.Co
                 {!this.props.isFetching && <Users users={this.props.users}
                                                   totalUsersCount={this.props.totalUsersCount}
                                                   pageSize={this.props.pageSize}
+                                                  followingInProgress={this.props.followingInProgress}
                                                   onPageChanged={this.onPageChanged}
                                                   currentPage={this.props.currentPage}
                                                   setUnfollow={this.props.setUnfollow}
+                                                  setFollowingInProgress={this.props.setFollowingInProgress}
                                                   setFollow={this.props.setFollow}/>}
             </>
         )
@@ -76,7 +81,8 @@ const mapStateToProps = (state: StateType): mapStateToPropsType => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 
@@ -87,5 +93,7 @@ export const FindUsersContainer = connect(mapStateToProps, {
     setTotalUserCount: SetTotalUserCountAC,
     toggleIsFetching: ToggleIsFetchingAC,
     setPageSize: SetPageSizeAC,
-    setUnfollow: setUnfollowUserAC
+    setUnfollow: setUnfollowUserAC,
+    setFollowingInProgress: followingInProgressAC
+
 } as mapDispatchToPropsType)(FindUsersAPIComponent)

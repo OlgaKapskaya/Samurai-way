@@ -7,24 +7,30 @@ import {usersAPI} from "../../../API/api";
 
 type UserCardProps = {
     userInfo: UsersType
+    followingInProgress: number[]
     setFollow: (userID: number) => void
     setUnfollow: (userID: number) => void
+    setFollowingInProgress: (followingInProgress: boolean, id: number) => void
 }
 export const UserCard = (props: UserCardProps) => {
     const setFollowHandler = () => {
+        props.setFollowingInProgress(true, props.userInfo.id)
         usersAPI.setFollow(props.userInfo.id)
             .then( response => {
                 if (response === 0){
                     props.setFollow(props.userInfo.id)
                 }
+                props.setFollowingInProgress(false, props.userInfo.id)
             })
     }
     const setUnfollowHandler = () => {
+        props.setFollowingInProgress(true, props.userInfo.id)
         usersAPI.setUnfollow(props.userInfo.id)
             .then(response => {
                 if (response === 0){
                     props.setUnfollow(props.userInfo.id)
                 }
+                props.setFollowingInProgress(false, props.userInfo.id)
             })
 
     }
@@ -42,12 +48,14 @@ export const UserCard = (props: UserCardProps) => {
                     ? <Button size='small'
                               variant='outlined'
                               color='primary'
+                              disabled={props.followingInProgress.some(id => id === props.userInfo.id)}
                               onClick={setFollowHandler}>
                         FOLLOW
                     </Button>
                     : <Button size='small'
                               variant='outlined'
                               color='secondary'
+                              disabled={props.followingInProgress.some(id => id === props.userInfo.id)}
                               onClick={setUnfollowHandler}>
                         UNFOLLOW
                     </Button>
