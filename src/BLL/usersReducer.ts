@@ -1,6 +1,7 @@
 import {ActionDispatchType, usersPageType, UsersType} from "./store";
 
 const FOLLOW_USER = 'FOLLOW_USER'
+const UNFOLLOW_USER = 'UNFOLLOW_USER'
 const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_PAGE_SIZE = 'SET_PAGE_SIZE'
@@ -9,6 +10,10 @@ const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 
 export type FollowUserAT = {
     type: 'FOLLOW_USER'
+    userID: number
+}
+export type UnfollowUserAT = {
+    type: 'UNFOLLOW_USER'
     userID: number
 }
 export type SetUsersAT = {
@@ -44,7 +49,12 @@ export const usersReducer = (state: usersPageType = initialState, action: Action
         case FOLLOW_USER:
             return {
                 ...state,
-                users: state.users.map(elem => elem.id === action.userID ? {...elem, followed: !elem.followed} : elem)
+                users: state.users.map(elem => elem.id === action.userID ? {...elem, followed: true} : elem)
+            }
+        case UNFOLLOW_USER:
+            return {
+                ...state,
+                users: state.users.map(elem => elem.id === action.userID ? {...elem, followed: false} : elem)
             }
         case SET_USERS:
             return {...state, users: [...action.users]}
@@ -62,6 +72,9 @@ export const usersReducer = (state: usersPageType = initialState, action: Action
 }
 export const FollowUserAC = (userID: number): FollowUserAT => {
     return {type: FOLLOW_USER, userID}
+}
+export const setUnfollowUserAC = (userID: number): UnfollowUserAT => {
+    return {type: UNFOLLOW_USER, userID}
 }
 export const SetUsersAC = (users: UsersType[]): SetUsersAT => {
     return {type: SET_USERS, users}

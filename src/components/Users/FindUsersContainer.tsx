@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {
     FollowUserAC,
     SetCurrentPageAC, SetPageSizeAC,
-    SetTotalUserCountAC,
+    SetTotalUserCountAC, setUnfollowUserAC,
     SetUsersAC,
     ToggleIsFetchingAC,
 } from "../../BLL/usersReducer";
@@ -21,6 +21,7 @@ type mapStateToPropsType = {
 }
 type mapDispatchToPropsType = {
     setFollow: (userID: number) => void
+    setUnfollow: (userID: number) => void
     setUsers: (users: UsersType[]) => void
     setCurrentPage: (newCurrentPage: number) => void
     setPageSize: (pageSize: number) => void
@@ -33,7 +34,12 @@ type FindUsersProps = mapStateToPropsType & mapDispatchToPropsType
 class FindUsersAPIComponent extends React.Component<FindUsersProps> { //React.Component<PROPS_Type, COMPONENT_LOCAL_STATE_Type>
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{
+            withCredentials: true,
+            headers: {
+                "API-KEY": "a3689f8d-4bdb-4cdd-9a1a-83733437adfc"
+            }
+        })
             .then(response => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(response.data.items)
@@ -49,6 +55,7 @@ class FindUsersAPIComponent extends React.Component<FindUsersProps> { //React.Co
                                                   pageSize={this.props.pageSize}
                                                   onPageChanged={this.onPageChanged}
                                                   currentPage={this.props.currentPage}
+                                                  setUnfollow={this.props.setUnfollow}
                                                   setFollow={this.props.setFollow}/>}
             </>
         )
@@ -57,7 +64,12 @@ class FindUsersAPIComponent extends React.Component<FindUsersProps> { //React.Co
     onPageChanged = (newPageNumber: number) => {
         this.props.toggleIsFetching(true)
         this.props.setCurrentPage(newPageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${newPageNumber}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${newPageNumber}&count=${this.props.pageSize}`,{
+            withCredentials: true,
+            headers: {
+                "API-KEY": "a3689f8d-4bdb-4cdd-9a1a-83733437adfc"
+            }
+        })
             .then(response => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(response.data.items)
@@ -82,5 +94,6 @@ export const FindUsersContainer = connect(mapStateToProps, {
     setCurrentPage: SetCurrentPageAC,
     setTotalUserCount: SetTotalUserCountAC,
     toggleIsFetching: ToggleIsFetchingAC,
-    setPageSize: SetPageSizeAC
+    setPageSize: SetPageSizeAC,
+    setUnfollow: setUnfollowUserAC
 } as mapDispatchToPropsType)(FindUsersAPIComponent)

@@ -28,7 +28,7 @@ type ContentPropsType = RouteComponentProps<PathParamsType> & mapStateToPropsTyp
 export class ContentContainer extends React.Component<ContentPropsType> {
     componentDidMount() {
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${this.props.match.params.userID !== undefined ? this.props.match.params.userID : 2}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${this.props.match.params.userID !== undefined ? this.props.match.params.userID : 26580}`)
             .then(response => {
                 this.props.SetUserProfile(response.data)
             })

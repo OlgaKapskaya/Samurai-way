@@ -6,7 +6,7 @@ import {
     SetPageSizeAT,
     SetTotalUserCountAT,
     SetUsersAT,
-    ToggleIsFetchingAT
+    ToggleIsFetchingAT, UnfollowUserAT
 } from "./usersReducer";
 import {AddLikeActionType, AddPostActionType, ChangePostTextType, SetUserProfileAT} from "./profileReduser";
 import {AddMessageActionType} from "./dialogsReducer";
@@ -79,7 +79,7 @@ export type ProfileUserType = {
 export type ActionDispatchType = AddPostActionType | ChangePostTextType
     | AddLikeActionType | AddMessageActionType
     | FollowUserAT | SetUsersAT | SetCurrentPageAT | SetTotalUserCountAT
-    | ToggleIsFetchingAT | SetUserProfileAT | SetPageSizeAT | SetUserDataAT
+    | ToggleIsFetchingAT | SetUserProfileAT | SetPageSizeAT | SetUserDataAT | UnfollowUserAT
 
 
 

@@ -10,6 +10,7 @@ type UsersPropsType = {
     totalUsersCount: number
     currentPage: number
     setFollow: (userID: number) => void
+    setUnfollow: (userID: number) => void
     onPageChanged: (pageNumber: number) => void
 }
 export const Users = (props: UsersPropsType) => {
@@ -34,7 +35,8 @@ export const Users = (props: UsersPropsType) => {
                     />
                     {props.users.map(elem => <UserCard key={elem.id}
                                                        userInfo={elem}
-                                                       setFollow={props.setFollow}/>)}
+                                                       setFollow={props.setFollow}
+                                                       setUnfollow = {props.setUnfollow}/>)}
                 </div>
             </div>
 
