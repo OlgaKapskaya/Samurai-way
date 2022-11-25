@@ -20,15 +20,23 @@ export const usersAPI = {
     setUnfollow(userID: number) {
         return instance.delete(`follow/${userID}`)
             .then(response => response.data.resultCode)
+    },
+    getUserProfile(userID: number) {
+        if (!userID) {
+            userID = 26580
+        }
+        return instance.get(`profile/${userID}`)
+
     }
 }
 
 export const authAPI = {
     getAuth() {
-        return instance.get('/auth/me')
+        return instance.get('auth/me')
             .then(response => response.data)
     }
 }
+
 
 
 

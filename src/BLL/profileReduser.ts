@@ -1,5 +1,7 @@
 import {ActionDispatchType, profilePageType, ProfileUserType} from "./store";
 import {v1} from "uuid";
+import {Dispatch} from "redux";
+import {usersAPI} from "../API/api";
 
 
 const ADD_POST = 'ADD-POST'
@@ -92,4 +94,11 @@ export const AddLike = (count: number, id: string): AddLikeActionType => {
     return {type: ADD_LIKE, count: count, id: id}}
 export const SetUserProfile = (profile: ProfileUserType): SetUserProfileAT => {
     return {type: SET_USER_PROFILE, profile}
+}
+
+export const getUserProfileTC = (userID: number) => (dispatch: Dispatch<ActionDispatchType>) => {
+    usersAPI.getUserProfile(userID)
+        .then(response => {
+            dispatch(SetUserProfile(response.data))
+        })
 }

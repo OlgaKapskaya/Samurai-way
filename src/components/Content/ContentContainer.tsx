@@ -3,9 +3,9 @@ import Content from "./Content";
 import {PostDataType} from "./MyPosts/MyPosts";
 import {ProfileUserType, StateType} from "../../BLL/store";
 import {connect} from "react-redux";
-import {AddLike, AddPostAC, ChangePostText, SetUserProfile} from "../../BLL/profileReduser";
-import axios from "axios";
+import {AddLike, AddPostAC, ChangePostText, getUserProfileTC, SetUserProfile} from "../../BLL/profileReduser";
 import {RouteComponentProps, withRouter} from "react-router-dom";
+import {usersAPI} from "../../API/api";
 
 type mapStateToPropsType = {
     postData: PostDataType[]
@@ -17,6 +17,7 @@ type mapDispatchToPropsType = {
     ChangePostText: (message: string) => void
     AddLike: (count: number, id: string) => void
     SetUserProfile: (profile: ProfileUserType) => void
+    getUserProfileTC: (userID: number) => void
 }
 type PathParamsType = {
     userID: string,
@@ -27,11 +28,7 @@ type ContentPropsType = RouteComponentProps<PathParamsType> & mapStateToPropsTyp
 
 export class ContentContainer extends React.Component<ContentPropsType> {
     componentDidMount() {
-
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${this.props.match.params.userID !== undefined ? this.props.match.params.userID : 26580}`)
-            .then(response => {
-                this.props.SetUserProfile(response.data)
-            })
+        this.props.getUserProfileTC(+this.props.match.params.userID)
     }
 
     render() {
@@ -47,8 +44,10 @@ let mapStateToProps = (state: StateType): mapStateToPropsType => {
     }
 }
 export const ContentC = withRouter(connect(mapStateToProps, {
-    AddPost: AddPostAC, ChangePostText, AddLike, SetUserProfile
+    AddPost: AddPostAC, ChangePostText, AddLike, SetUserProfile, getUserProfileTC
 } as mapDispatchToPropsType)(ContentContainer))
+
+
 
 //refactor this code
 
