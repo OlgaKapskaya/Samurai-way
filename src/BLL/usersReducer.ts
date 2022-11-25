@@ -1,4 +1,6 @@
 import {usersPageType, UsersType} from "./store";
+import {Dispatch} from "redux";
+import {usersAPI} from "../API/api";
 
 
 const FOLLOW_USER = 'FOLLOW_USER'
@@ -111,4 +113,39 @@ export const SetPageSizeAC = (pageSize: number):SetPageSizeAT => {
 }
 export const followingInProgressAC = (followingInProgress: boolean, id: number):FollowingInProgressAT => {
     return {type: FOLLOWING_IN_PROGRESS, followingInProgress, id}
+}
+
+
+export const getUsersTC = (currentPage: number, pageSize: number) => (dispatch: Dispatch<UserReducerAT>) => {
+    dispatch(ToggleIsFetchingAC(true))
+    usersAPI.getUsers(currentPage, pageSize)
+        .then(response => {
+
+            dispatch(ToggleIsFetchingAC(false))
+            dispatch(SetUsersAC(response.items))
+            dispatch(SetCurrentPageAC(currentPage))
+            dispatch(SetTotalUserCountAC(response.totalCount))
+        })
+}
+
+export const setFollowTC = (userID: number) => (dispatch: Dispatch<UserReducerAT>) => {
+    dispatch(followingInProgressAC(true, userID))
+    usersAPI.setFollow(userID)
+        .then( response => {
+            if (response === 0){
+                dispatch(FollowUserAC(userID))
+            }
+            dispatch(followingInProgressAC(false, userID))
+        })
+}
+
+export const setUnFollowTC = (userID: number) => (dispatch: Dispatch<UserReducerAT>) => {
+    dispatch(followingInProgressAC(true, userID))
+    usersAPI.setUnfollow(userID)
+        .then( response => {
+            if (response === 0){
+                dispatch(setUnfollowUserAC(userID))
+            }
+            dispatch(followingInProgressAC(false, userID))
+        })
 }

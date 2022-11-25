@@ -3,36 +3,20 @@ import s from './UserCard.module.css'
 import {Button} from "@material-ui/core";
 import noAvatarImg from '../../../IMG/no_avatar_img.webp'
 import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../../API/api";
 
 type UserCardProps = {
     userInfo: UsersType
     followingInProgress: number[]
-    setFollow: (userID: number) => void
-    setUnfollow: (userID: number) => void
-    setFollowingInProgress: (followingInProgress: boolean, id: number) => void
+    setFollowTC: (userID: number) => void
+    setUnFollowTC: (userID: number) => void
+
 }
 export const UserCard = (props: UserCardProps) => {
     const setFollowHandler = () => {
-        props.setFollowingInProgress(true, props.userInfo.id)
-        usersAPI.setFollow(props.userInfo.id)
-            .then( response => {
-                if (response === 0){
-                    props.setFollow(props.userInfo.id)
-                }
-                props.setFollowingInProgress(false, props.userInfo.id)
-            })
+        props.setFollowTC(props.userInfo.id)
     }
     const setUnfollowHandler = () => {
-        props.setFollowingInProgress(true, props.userInfo.id)
-        usersAPI.setUnfollow(props.userInfo.id)
-            .then(response => {
-                if (response === 0){
-                    props.setUnfollow(props.userInfo.id)
-                }
-                props.setFollowingInProgress(false, props.userInfo.id)
-            })
-
+        props.setUnFollowTC(props.userInfo.id)
     }
 
     return (

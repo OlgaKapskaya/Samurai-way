@@ -1,17 +1,13 @@
 import {StateType, UsersType} from "../../BLL/store";
 import {connect} from "react-redux";
 import {
-    followingInProgressAC,
-    FollowUserAC,
-    SetCurrentPageAC, SetPageSizeAC,
-    SetTotalUserCountAC, setUnfollowUserAC,
-    SetUsersAC,
-    ToggleIsFetchingAC,
+    getUsersTC,
+    SetCurrentPageAC, setFollowTC, SetPageSizeAC, setUnFollowTC,
+
 } from "../../BLL/usersReducer";
 import React from "react";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
-import {usersAPI} from "../../API/api";
 
 
 type mapStateToPropsType = {
@@ -23,29 +19,20 @@ type mapStateToPropsType = {
     followingInProgress: number[]
 }
 type mapDispatchToPropsType = {
-    setFollow: (userID: number) => void
-    setUnfollow: (userID: number) => void
-    setUsers: (users: UsersType[]) => void
     setCurrentPage: (newCurrentPage: number) => void
     setPageSize: (pageSize: number) => void
-    setTotalUserCount: (count: number) => void
-    toggleIsFetching: (isFetching: boolean) => void
-    setFollowingInProgress: (followingInProgress: boolean, id: number) => void
+    getUsersTC: (currentPage: number, pageSize: number) => void
+    setFollowTC: (userID: number) => void
+    setUnFollowTC: (userID: number) => void
 }
 type FindUsersProps = mapStateToPropsType & mapDispatchToPropsType
 
 
 class FindUsersAPIComponent extends React.Component<FindUsersProps> { //React.Component<PROPS_Type, COMPONENT_LOCAL_STATE_Type>
     componentDidMount() {
-        this.props.toggleIsFetching(true)
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-            .then(response => {
-
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(response.items)
-                this.props.setTotalUserCount(response.totalCount)
-            })
+        this.props.getUsersTC(this.props.currentPage, this.props.pageSize)
     }
+
     render() {
         return (
             <>
@@ -56,21 +43,14 @@ class FindUsersAPIComponent extends React.Component<FindUsersProps> { //React.Co
                                                   followingInProgress={this.props.followingInProgress}
                                                   onPageChanged={this.onPageChanged}
                                                   currentPage={this.props.currentPage}
-                                                  setUnfollow={this.props.setUnfollow}
-                                                  setFollowingInProgress={this.props.setFollowingInProgress}
-                                                  setFollow={this.props.setFollow}/>}
+                                                  setFollowTC={this.props.setFollowTC}
+                                                  setUnFollowTC={this.props.setUnFollowTC}/>}
             </>
         )
     }
 
     onPageChanged = (newPageNumber: number) => {
-        this.props.toggleIsFetching(true)
-        this.props.setCurrentPage(newPageNumber)
-        usersAPI.getUsers(newPageNumber, this.props.pageSize)
-            .then(response => {
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(response.items)
-            })
+        this.props.getUsersTC(newPageNumber, this.props.pageSize)
     }
 }
 
@@ -87,13 +67,10 @@ const mapStateToProps = (state: StateType): mapStateToPropsType => {
 }
 
 export const FindUsersContainer = connect(mapStateToProps, {
-    setFollow: FollowUserAC,
-    setUsers: SetUsersAC,
     setCurrentPage: SetCurrentPageAC,
-    setTotalUserCount: SetTotalUserCountAC,
-    toggleIsFetching: ToggleIsFetchingAC,
     setPageSize: SetPageSizeAC,
-    setUnfollow: setUnfollowUserAC,
-    setFollowingInProgress: followingInProgressAC
+    getUsersTC: getUsersTC,
+    setFollowTC: setFollowTC,
+    setUnFollowTC: setUnFollowTC
 
 } as mapDispatchToPropsType)(FindUsersAPIComponent)
