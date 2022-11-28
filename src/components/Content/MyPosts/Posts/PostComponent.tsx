@@ -2,6 +2,7 @@ import React from "react";
 import post from "./PostCompponent.module.css"
 import {IconButton} from "@material-ui/core";
 import {FavoriteBorder} from "@material-ui/icons";
+import noAvatarImg from "../../../../IMG/no_avatar_img.webp";
 
 
 type PostComponentProps = {
@@ -9,6 +10,7 @@ type PostComponentProps = {
     message: string
     likes: number
     userName: string
+    userAvatar: string
     addLike: (count: number, id: string) => void
 }
 
@@ -23,7 +25,7 @@ const PostComponent = (props: PostComponentProps) => {
         <div className={post.post}>
             <div className={post.avatarAndName}>
                 <img className={post.avatar}
-                     src={"https://st3.depositphotos.com/1007566/13175/v/600/depositphotos_131750410-stock-illustration-woman-female-avatar-character.jpg"}
+                     src={props.userAvatar !== null ? props.userAvatar : noAvatarImg}
                      alt={'avatar'}/>
                 <h5>{props.userName}</h5>
             </div>

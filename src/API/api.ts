@@ -21,9 +21,9 @@ export const usersAPI = {
         return instance.delete(`follow/${userID}`)
             .then(response => response.data.resultCode)
     },
-    getUserProfile(userID: number) {
+    getUserProfile(userID: string) {
         if (!userID) {
-            userID = 26580
+            userID = '26580'
         }
         return instance.get(`profile/${userID}`)
 

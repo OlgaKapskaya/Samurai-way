@@ -7,6 +7,8 @@ import {MyPostsComponent, PostDataType} from "./MyPosts";
 type mapStateToPropsType = {
     postData: PostDataType[]
     newPostText: string
+    userName: string
+    userAvatar: string
 }
 type mapDispatchToPropsType  = {
     addLike: (count: number, id: string) => void
@@ -16,6 +18,8 @@ let mapStateToProps = (state: StateType):mapStateToPropsType => {
     return {
         postData: state.profilePage.postData,
         newPostText: state.profilePage.newPostText,
+        userName: state.profilePage.profile.fullName,
+        userAvatar: state.profilePage.profile.photos.small
     }
 }
 

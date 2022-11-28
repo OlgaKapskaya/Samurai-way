@@ -3,11 +3,13 @@ import s from "./Dialogs.module.css"
 import {DialogsItems} from "./DialogsItems/DialogsItems";
 import {DialogsMessages} from "./DialogsMessages/DialogsMessages";
 import {Button, TextField} from "@material-ui/core";
+import {Redirect} from "react-router-dom";
 
 
 export type DialogsProps = {
     dialogsData: DialogsDataType[]
     messagesData: MessagesDataType[]
+    isAuth: boolean
     sendMessage: (message: string) => void
 }
 export type DialogsDataType = {
@@ -21,6 +23,7 @@ export type MessagesDataType = {
     avatar?: string
 }
 export const Dialogs = (props: DialogsProps) => {
+
     const [message, setMessage] = useState('');
     const onChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setMessage(event.currentTarget.value)
@@ -30,10 +33,10 @@ export const Dialogs = (props: DialogsProps) => {
             props.sendMessage(message)
             setMessage('');
         }
-
     }
+    if (!props.isAuth) return <Redirect to='/login'/>
     return (
-        <div className={"content"}>
+        <div className="content">
             <div className={s.dialogsContainer}>
 
                 <div className={s.sidebar}>

@@ -1,23 +1,24 @@
 import React from "react";
 import Content from "./Content";
 import {PostDataType} from "./MyPosts/MyPosts";
-import {ProfileUserType, StateType} from "../../BLL/store";
+import {ProfileUserType} from "../../BLL/store";
 import {connect} from "react-redux";
 import {AddLike, AddPostAC, ChangePostText, getUserProfileTC, SetUserProfile} from "../../BLL/profileReduser";
-import {RouteComponentProps, withRouter} from "react-router-dom";
-import {usersAPI} from "../../API/api";
+import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
+import {stateType} from "../../BLL/redux-store";
 
 type mapStateToPropsType = {
     postData: PostDataType[]
     newPostText: string
     profile: ProfileUserType
+    isAuth: boolean
 }
 type mapDispatchToPropsType = {
     AddPost: () => void
     ChangePostText: (message: string) => void
     AddLike: (count: number, id: string) => void
     SetUserProfile: (profile: ProfileUserType) => void
-    getUserProfileTC: (userID: number) => void
+    getUserProfileTC: (userID: string) => void
 }
 type PathParamsType = {
     userID: string,
@@ -28,19 +29,21 @@ type ContentPropsType = RouteComponentProps<PathParamsType> & mapStateToPropsTyp
 
 export class ContentContainer extends React.Component<ContentPropsType> {
     componentDidMount() {
-        this.props.getUserProfileTC(+this.props.match.params.userID)
+        this.props.getUserProfileTC(this.props.match.params.userID)
     }
 
     render() {
+        if (!this.props.isAuth) return <Redirect to='/login'/>
         return <Content {...this.props}/>
     }
 }
 
-let mapStateToProps = (state: StateType): mapStateToPropsType => {
+let mapStateToProps = (state: stateType): mapStateToPropsType => {
     return {
         postData: state.profilePage.postData,
         newPostText: state.profilePage.newPostText,
-        profile: state.profilePage.profile
+        profile: state.profilePage.profile,
+        isAuth: state.auth.isAuth
     }
 }
 export const ContentC = withRouter(connect(mapStateToProps, {

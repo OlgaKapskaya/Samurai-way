@@ -9,6 +9,7 @@ import {Settings} from "./components/Settings/Settings";
 import {stateType} from "./BLL/redux-store";
 import {ContentC} from "./components/Content/ContentContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import {Login} from "./components/Login/Login";
 
 
 type AppProps = {
@@ -26,12 +27,14 @@ function App(props: AppProps) {
                 {/*                                         newPostText={props.state.profilePage.newPostText}/>}*/}
                 {/*/>*/}
 
-                <Route path={"/profile/:userID?"} render={() => <ContentC/>}/>
-                <Route path={"/dialogs"} render={() => <DialogsContainer/>}/>
-                <Route path={"/news"} render={() => <News/>}/>
-                <Route path={"/music"} render={() => <Music/>}/>
-                <Route path={"/users"} render={() => <FindUsersContainer/>}/>
-                <Route path={"/settings"} render={() => <Settings/>}/>
+                <Route path="/profile/:userID?" render={() => <ContentC/>}/>
+                <Route path="/dialogs" render={() => <DialogsContainer/>}/>
+                <Route path="/news" render={() => <News/>}/>
+                <Route path="/music" render={() => <Music/>}/>
+                <Route path="/users" render={() => <FindUsersContainer/>}/>
+                <Route path="/settings" render={() => <Settings/>}/>
+
+                <Route path="/login" render={() => <Login/>}/>
                 {/*<Footer/>*/}
 
             </div>
