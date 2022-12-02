@@ -1,5 +1,5 @@
 export const Login = () => {
     return (
-        <h1> LOGIN </h1>
+        <h1 style={{padding: '100px'}}> LOGIN </h1>
     )
 }

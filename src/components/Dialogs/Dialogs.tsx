@@ -3,7 +3,6 @@ import s from "./Dialogs.module.css"
 import {DialogsItems} from "./DialogsItems/DialogsItems";
 import {DialogsMessages} from "./DialogsMessages/DialogsMessages";
 import {Button, TextField} from "@material-ui/core";
-import {Redirect} from "react-router-dom";
 
 
 export type DialogsProps = {
@@ -34,7 +33,7 @@ export const Dialogs = (props: DialogsProps) => {
             setMessage('');
         }
     }
-    if (!props.isAuth) return <Redirect to='/login'/>
+    // if (!props.isAuth) return <Redirect to='/login'/>
     return (
         <div className="content">
             <div className={s.dialogsContainer}>
@@ -83,3 +82,4 @@ export const Dialogs = (props: DialogsProps) => {
         </div>
     )
 }
+

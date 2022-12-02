@@ -4,14 +4,14 @@ import {PostDataType} from "./MyPosts/MyPosts";
 import {ProfileUserType} from "../../BLL/store";
 import {connect} from "react-redux";
 import {AddLike, AddPostAC, ChangePostText, getUserProfileTC, SetUserProfile} from "../../BLL/profileReduser";
-import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 import {stateType} from "../../BLL/redux-store";
+import {withAuthRedirect} from "../../HOC/withAuthRedirect";
 
 type mapStateToPropsType = {
     postData: PostDataType[]
     newPostText: string
     profile: ProfileUserType
-    isAuth: boolean
 }
 type mapDispatchToPropsType = {
     AddPost: () => void
@@ -33,7 +33,7 @@ export class ContentContainer extends React.Component<ContentPropsType> {
     }
 
     render() {
-        if (!this.props.isAuth) return <Redirect to='/login'/>
+
         return <Content {...this.props}/>
     }
 }
@@ -43,13 +43,15 @@ let mapStateToProps = (state: stateType): mapStateToPropsType => {
         postData: state.profilePage.postData,
         newPostText: state.profilePage.newPostText,
         profile: state.profilePage.profile,
-        isAuth: state.auth.isAuth
     }
 }
-export const ContentC = withRouter(connect(mapStateToProps, {
-    AddPost: AddPostAC, ChangePostText, AddLike, SetUserProfile, getUserProfileTC
-} as mapDispatchToPropsType)(ContentContainer))
 
+export const ContentC = withAuthRedirect(
+    withRouter(
+        connect(mapStateToProps, {AddPost: AddPostAC, ChangePostText,
+            AddLike, SetUserProfile, getUserProfileTC} as mapDispatchToPropsType)(ContentContainer)
+    )
+)
 
 
 //refactor this code

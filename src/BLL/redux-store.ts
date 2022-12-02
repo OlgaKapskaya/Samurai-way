@@ -7,14 +7,14 @@ import thunkMiddleware from "redux-thunk"
 
 
 
-let reducers = combineReducers({
+let rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     usersPage: usersReducer,
     auth: authReducer
 })
-export let store = legacy_createStore(reducers, applyMiddleware(thunkMiddleware));
+export let store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
-export type stateType = ReturnType<typeof reducers> // типизация того,что наш стор вернет
+export type stateType = ReturnType<typeof rootReducer> // типизация того,что наш стор вернет
 export type storeType = typeof store // типизация самого стора
 export type dispatchType = typeof store.dispatch

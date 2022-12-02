@@ -2,27 +2,26 @@ import {AddMessageActionCreator} from "../../BLL/dialogsReducer";
 import {Dialogs, DialogsDataType, MessagesDataType} from "./Dialogs";
 import {dispatchType, stateType} from "../../BLL/redux-store";
 import {connect} from "react-redux";
+import {withAuthRedirect} from "../../HOC/withAuthRedirect";
 
-type mapStateToPropsType = {
+type MapStateToPropsType = {
     dialogsData: DialogsDataType[]
     messagesData: MessagesDataType[]
-    isAuth: boolean
 }
-type mapDispatchToPropsType  = {
+type MapDispatchToPropsType  = {
     sendMessage: (message: string) => void
 }
 
-let mapStateToProps = (state: stateType): mapStateToPropsType => {
+let mapStateToProps = (state: stateType): MapStateToPropsType => {
     return {
         dialogsData: state.dialogsPage.dialogsData,
         messagesData: state.dialogsPage.messagesData,
-        isAuth: state.auth.isAuth
     }
 }
-let mapDispatchToProps = (dispatch: dispatchType): mapDispatchToPropsType => {
+let mapDispatchToProps = (dispatch: dispatchType): MapDispatchToPropsType => {
     return {
         sendMessage: (message: string) => dispatch(AddMessageActionCreator(message))
     }
 }
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+export const DialogsContainer = withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(Dialogs))
