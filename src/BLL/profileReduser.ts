@@ -1,15 +1,20 @@
 import {ActionDispatchType, profilePageType, ProfileUserType} from "./store";
 import {v1} from "uuid";
 import {Dispatch} from "redux";
-import {usersAPI} from "../API/api";
+import {profileAPI} from "../API/api";
 
 
 const ADD_POST = 'ADD-POST'
 const CHANGE_NEW_POST_TEXT = 'CHANGE-NEW-POST-TEXT'
 const ADD_LIKE = 'ADD-LIKE'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
+const SET_STATUS = 'SET_STATUS'
 
 //action types
+export type SetStatusAT = {
+    type: 'SET_STATUS',
+    status: string
+}
 export type SetUserProfileAT = {
     type: 'SET_USER_PROFILE'
     profile: ProfileUserType
@@ -56,7 +61,8 @@ let initialState: profilePageType = {
             small: '',
             large: '',
         }
-    }
+    },
+    status: ""
 }
 
 export const profileReducer = (state:profilePageType = initialState, action: ActionDispatchType):profilePageType => {
@@ -79,6 +85,8 @@ export const profileReducer = (state:profilePageType = initialState, action: Act
         }
         case SET_USER_PROFILE:
             return {...state, profile: action.profile}
+        case SET_STATUS:
+            return {...state, status: action.status}
         default: return state}
 
 }
@@ -95,10 +103,24 @@ export const AddLike = (count: number, id: string): AddLikeActionType => {
 export const SetUserProfile = (profile: ProfileUserType): SetUserProfileAT => {
     return {type: SET_USER_PROFILE, profile}
 }
+export const setStatusAC = (status: string): SetStatusAT => {
+    return {type: SET_STATUS, status}
+}
 
 export const getUserProfileTC = (userID: string) => (dispatch: Dispatch<ActionDispatchType>) => {
-    usersAPI.getUserProfile(userID)
+    profileAPI.getUserProfile(userID)
         .then(response => {
             dispatch(SetUserProfile(response.data))
+        })
+}
+export const getUserStatusTC = (userID: string) => (dispatch: Dispatch<ActionDispatchType>) => {
+    profileAPI.getStatus(userID)
+        .then(response => {
+            dispatch(setStatusAC(response.data))})
+}
+export const updateUserStatusTC = (status: string) => (dispatch: Dispatch<ActionDispatchType>) => {
+    profileAPI.updateStatus(status)
+        .then(response => {
+            if (response.data.resultCode === 0) dispatch(setStatusAC(status))
         })
 }

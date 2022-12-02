@@ -1,31 +1,45 @@
 import {TextField} from "@material-ui/core";
-import React from "react";
+import React, {ChangeEvent} from "react";
 
 type ProfileStatusProps = {
     status: string
+    updateUserStatus: (status: string) => void
 }
 
 export class ProfileStatus extends React.Component<ProfileStatusProps> {
     state = {
-        editMode: false
+        editMode: false,
+        status: this.props.status
     }
-    activateEditMode(){
+    activateEditMode = () => {
         this.setState({
             editMode: true
         })
     }
-    deactivateEditMode(){
+    deactivateEditMode = () => {
         this.setState({
             editMode: false
+        })
+        this.props.updateUserStatus(this.state.status)
+    }
+    onChangeStatus = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        this.setState({
+            status: e.currentTarget.value
         })
     }
 
     render() {
         return <>
-            <div>
+            <div style={{height: 'max-content', fontWeight: 'bold'}}>
+                Status:
                 {this.state.editMode
-                    ? <TextField value={this.props.status} onBlur={() => this.deactivateEditMode()} autoFocus/>
-                    : <span onDoubleClick={() => this.activateEditMode()}>{this.props.status} </span>
+                    ? <TextField value={this.state.status}
+                                 onBlur={this.deactivateEditMode}
+                                 onChange={this.onChangeStatus}
+                                 autoFocus/>
+                    : <span style={{fontStyle: 'italic',minWidth: '100px',minHeight: '12px', cursor: 'pointer', fontWeight: 'normal'}} onDoubleClick={this.activateEditMode}>
+                        {this.props.status ? ' ' + this.props.status : ' -'}
+                </span>
                 }
             </div>
         </>
@@ -40,12 +54,18 @@ export class ProfileStatus extends React.Component<ProfileStatusProps> {
 //     }
 //     return (
 //         <>
-//             <div>
-//                 {editMode
-//                     ? <TextField value={props.status} onBlur={() => setEditMode(false)}/>
-//                     : <span onDoubleClick={onClickStatusHandler}>{props.status} </span>
-//                 }
-//             </div>
+// <div style={{height: 'max-content'}}>
+//     Status:
+//     {this.state.editMode
+//         ? <TextField value={this.props.status}
+//                      onBlur={this.deactivateEditMode}
+//                      onChange={this.onChangeStatus}
+//                      autoFocus/>
+//         : <div style={{fontStyle: 'italic',minWidth: '100px',minHeight: '12px', cursor: 'pointer'}} onDoubleClick={this.activateEditMode}>
+//             {this.props.status}
+//         </div>
+//     }
+// </div>
 //         </>
 //     )
 // }

@@ -1,6 +1,6 @@
 import {usersPageType, UsersType} from "./store";
 import {Dispatch} from "redux";
-import {usersAPI} from "../API/api";
+import {profileAPI, usersAPI} from "../API/api";
 
 
 const FOLLOW_USER = 'FOLLOW_USER'
@@ -130,7 +130,7 @@ export const getUsersTC = (currentPage: number, pageSize: number) => (dispatch: 
 
 export const setFollowTC = (userID: number) => (dispatch: Dispatch<UserReducerAT>) => {
     dispatch(followingInProgressAC(true, userID))
-    usersAPI.setFollow(userID)
+    profileAPI.setFollow(userID)
         .then( response => {
             if (response === 0){
                 dispatch(FollowUserAC(userID))
@@ -141,7 +141,7 @@ export const setFollowTC = (userID: number) => (dispatch: Dispatch<UserReducerAT
 
 export const setUnFollowTC = (userID: number) => (dispatch: Dispatch<UserReducerAT>) => {
     dispatch(followingInProgressAC(true, userID))
-    usersAPI.setUnfollow(userID)
+    profileAPI.setUnfollow(userID)
         .then( response => {
             if (response === 0){
                 dispatch(setUnfollowUserAC(userID))

@@ -10,6 +10,8 @@ type ContentProps = {
     postData: PostDataType[]
     newPostText: string
     profile: ProfileUserType
+    status: string
+    updateUserStatus: (status: string) => void
 }
 
 
@@ -22,7 +24,9 @@ function Content(props: ContentProps) {
             </div>
             <div className={s.containerInfoAndPosts}>
                 <div className={s.containerInfo}>
-                    <ProfileInfo profile={props.profile}/>
+                    <ProfileInfo profile={props.profile}
+                                 status={props.status}
+                                 updateUserStatus={props.updateUserStatus}/>
                 </div>
                 <div className={s.containerPosts}>
 

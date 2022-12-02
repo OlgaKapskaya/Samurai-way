@@ -9,7 +9,13 @@ import {
     SetUsersAT,
     ToggleIsFetchingAT, UnfollowUserAT, UserReducerAT
 } from "./usersReducer";
-import {AddLikeActionType, AddPostActionType, ChangePostTextType, SetUserProfileAT} from "./profileReduser";
+import {
+    AddLikeActionType,
+    AddPostActionType,
+    ChangePostTextType,
+    SetStatusAT,
+    SetUserProfileAT
+} from "./profileReduser";
 import {AddMessageActionType} from "./dialogsReducer";
 import {AuthReducerAT, SetUserDataAT} from "./authReducer";
 
@@ -41,6 +47,7 @@ export type profilePageType = {
     postData: PostDataType[]
     newPostText: string
     profile: ProfileUserType
+    status: string
 }
 export type dialogsPageType = {
     dialogsData: DialogsDataType[]
@@ -80,7 +87,7 @@ export type ProfileUserType = {
 //dispatch action full type
 export type ActionDispatchType = AddPostActionType | ChangePostTextType
     | AddLikeActionType | AddMessageActionType
-    | SetUserProfileAT | AuthReducerAT | UserReducerAT
+    | SetUserProfileAT | AuthReducerAT | UserReducerAT | SetStatusAT
 
 
 // export type StoreType = {

@@ -12,7 +12,17 @@ export const usersAPI = {
     getUsers(currentPage: number = 1, pageSize: number = 10) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => response.data)
-    },
+    }
+
+}
+
+export const authAPI = {
+    getAuth() {
+        return instance.get('auth/me')
+            .then(response => response.data)
+    }
+}
+export const profileAPI = {
     setFollow(userID: number) {
         return instance.post(`follow/${userID}`, {})
             .then(response => response.data.resultCode)
@@ -22,18 +32,15 @@ export const usersAPI = {
             .then(response => response.data.resultCode)
     },
     getUserProfile(userID: string) {
-        if (!userID) {
-            userID = '26580'
-        }
+        if (!userID) userID = '26580'
         return instance.get(`profile/${userID}`)
-
-    }
-}
-
-export const authAPI = {
-    getAuth() {
-        return instance.get('auth/me')
-            .then(response => response.data)
+    },
+    getStatus(userID: string) {
+        if (!userID) userID = '26580'
+        return instance.get(`profile/status/${userID}`)
+    },
+    updateStatus(status: string) {
+        return instance.put(`profile/status`, {status: status})
     }
 }
 
