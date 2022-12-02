@@ -16,8 +16,7 @@ const theme = createTheme({
 ReactDOM.render(
     <Provider store={store}>
         <ThemeProvider theme={theme}>
-            <App state={store.getState()}
-            />
+            <App />
         </ThemeProvider>
     </Provider>,
     document.getElementById('root')

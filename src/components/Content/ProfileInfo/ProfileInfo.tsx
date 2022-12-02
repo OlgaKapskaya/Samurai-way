@@ -3,6 +3,7 @@ import s from "./ProfileInfo.module.css";
 import {ProfileUserType} from "../../../BLL/store";
 import noAvatarImg from "../../../IMG/no_avatar_img.webp";
 import {Preloader} from "../../common/Preloader/Preloader";
+import {ProfileStatus} from "../Status/ProfileStatus";
 
 type ProfileInfoProps = {
     profile: ProfileUserType
@@ -18,6 +19,7 @@ export const ProfileInfo = (props: ProfileInfoProps) => {
             </div>
             <div className={s.infoContainer}>
                 <div className={s.Name}>{props.profile.fullName}</div>
+                <ProfileStatus status='Hello'/>
                 <div className={s.data}><span> About me: </span> {props.profile.aboutMe}</div>
                 <div className={s.data}><span> Looking for a job: <input type={'checkbox'} checked={props.profile.lookingForAJob}/></span></div>
                 <div className={s.data}><span> Description: </span> {props.profile.lookingForAJobDescription}</div>

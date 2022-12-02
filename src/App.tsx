@@ -6,17 +6,12 @@ import {Music} from "./components/Music/Music";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import FindUsersContainer from "./components/Users/FindUsersContainer";
 import {Settings} from "./components/Settings/Settings";
-import {stateType} from "./BLL/redux-store";
 import ContentContainer from "./components/Content/ContentContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import {Login} from "./components/Login/Login";
 
 
-type AppProps = {
-    state: stateType
-}
-
-function App(props: AppProps) {
+function App() {
     return (
         <BrowserRouter>
 

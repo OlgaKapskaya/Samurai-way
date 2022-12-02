@@ -25,6 +25,7 @@ function Content(props: ContentProps) {
                     <ProfileInfo profile={props.profile}/>
                 </div>
                 <div className={s.containerPosts}>
+
                     <MyPostsContainer/>
                 </div>
 
