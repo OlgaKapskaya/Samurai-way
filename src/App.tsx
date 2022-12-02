@@ -3,11 +3,11 @@ import './App.css';
 import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
-import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
-import {FindUsersContainer} from "./components/Users/FindUsersContainer";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import FindUsersContainer from "./components/Users/FindUsersContainer";
 import {Settings} from "./components/Settings/Settings";
 import {stateType} from "./BLL/redux-store";
-import {ContentC} from "./components/Content/ContentContainer";
+import ContentContainer from "./components/Content/ContentContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import {Login} from "./components/Login/Login";
 
@@ -22,12 +22,9 @@ function App(props: AppProps) {
 
             <div className='app-wrapper'>
                 <HeaderContainer/>
-                {/*<Route path={'/'} render={() => <Content postData={props.state.profilePage.postData}*/}
-                {/*                                         user={props.state.user}*/}
-                {/*                                         newPostText={props.state.profilePage.newPostText}/>}*/}
-                {/*/>*/}
+                {/*<Route path={'/'} render={() => <ContentContainer/>}/>*/}
 
-                <Route path="/profile/:userID?" render={() => <ContentC/>}/>
+                <Route path="/profile/:userID?" render={() => <ContentContainer/>}/>
                 <Route path="/dialogs" render={() => <DialogsContainer/>}/>
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Music/>}/>

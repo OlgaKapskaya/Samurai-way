@@ -33,7 +33,6 @@ export const Dialogs = (props: DialogsProps) => {
             setMessage('');
         }
     }
-    // if (!props.isAuth) return <Redirect to='/login'/>
     return (
         <div className="content">
             <div className={s.dialogsContainer}>
@@ -64,15 +63,15 @@ export const Dialogs = (props: DialogsProps) => {
                     <div className={s.addDialogContainer}>
                         <TextField value={message}
                                    onChange={onChangeHandler}
-                                   variant={'outlined'}
-                                   color={'primary'}
-                                   label={'Enter message text'}
+                                   variant='outlined'
+                                   color='primary'
+                                   label='Enter message text'
                                    style={{margin: '10px'}}/>
                     <div className={s.buttonContainer}>
                         <Button onClick={sendMessageHandler}
-                                size={'small'}
-                                variant={'outlined'}
-                                color={'primary'}>
+                                size='small'
+                                variant='outlined'
+                                color='primary'>
                             SEND</Button>
                     </div>
                     </div>

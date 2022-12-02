@@ -3,12 +3,14 @@ import {Dialogs, DialogsDataType, MessagesDataType} from "./Dialogs";
 import {dispatchType, stateType} from "../../BLL/redux-store";
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../../HOC/withAuthRedirect";
+import {compose} from "redux";
+import React from "react";
 
 type MapStateToPropsType = {
     dialogsData: DialogsDataType[]
     messagesData: MessagesDataType[]
 }
-type MapDispatchToPropsType  = {
+type MapDispatchToPropsType = {
     sendMessage: (message: string) => void
 }
 
@@ -23,5 +25,6 @@ let mapDispatchToProps = (dispatch: dispatchType): MapDispatchToPropsType => {
         sendMessage: (message: string) => dispatch(AddMessageActionCreator(message))
     }
 }
-
-export const DialogsContainer = withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(Dialogs))
+export default compose<React.ComponentType>(
+    withAuthRedirect,
+    connect(mapStateToProps, mapDispatchToProps))(Dialogs)

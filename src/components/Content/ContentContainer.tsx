@@ -7,6 +7,7 @@ import {AddLike, AddPostAC, ChangePostText, getUserProfileTC, SetUserProfile} fr
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {stateType} from "../../BLL/redux-store";
 import {withAuthRedirect} from "../../HOC/withAuthRedirect";
+import {compose} from "redux";
 
 type mapStateToPropsType = {
     postData: PostDataType[]
@@ -33,7 +34,6 @@ export class ContentContainer extends React.Component<ContentPropsType> {
     }
 
     render() {
-
         return <Content {...this.props}/>
     }
 }
@@ -46,17 +46,10 @@ let mapStateToProps = (state: stateType): mapStateToPropsType => {
     }
 }
 
-export const ContentC = withAuthRedirect(
-    withRouter(
-        connect(mapStateToProps, {AddPost: AddPostAC, ChangePostText,
-            AddLike, SetUserProfile, getUserProfileTC} as mapDispatchToPropsType)(ContentContainer)
-    )
-)
+export default compose<React.ComponentType>(withAuthRedirect,
+    connect(mapStateToProps, {
+        AddPost: AddPostAC, ChangePostText,
+        AddLike, SetUserProfile, getUserProfileTC
+    } as mapDispatchToPropsType),
+    withRouter)(ContentContainer)
 
-
-//refactor this code
-
-// const WithURLDataContainerComponent = withRouter(ContentContainer)
-// export const ContentC = connect(mapStateToProps, {
-//     AddPost: AddPostAC, ChangePostText, AddLike, SetUserProfile
-// } as mapDispatchToPropsType)(ContentContainer)

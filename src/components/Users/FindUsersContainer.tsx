@@ -9,6 +9,7 @@ import React from "react";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
 import {withAuthRedirect} from "../../HOC/withAuthRedirect";
+import {compose} from "redux";
 
 
 type mapStateToPropsType = {
@@ -67,10 +68,12 @@ const mapStateToProps = (state: StateType): mapStateToPropsType => {
     }
 }
 
-export const FindUsersContainer = withAuthRedirect(connect(mapStateToProps, {
-    setCurrentPage: SetCurrentPageAC,
-    setPageSize: SetPageSizeAC,
-    getUsersTC: getUsersTC,
-    setFollowTC: setFollowTC,
-    setUnFollowTC: setUnFollowTC
-} as mapDispatchToPropsType)(FindUsersAPIComponent))
+export default compose<React.ComponentType>(withAuthRedirect,
+    connect(mapStateToProps,
+        {
+            setCurrentPage: SetCurrentPageAC,
+            setPageSize: SetPageSizeAC,
+            getUsersTC: getUsersTC,
+            setFollowTC: setFollowTC,
+            setUnFollowTC: setUnFollowTC
+        } as mapDispatchToPropsType))(FindUsersAPIComponent)
