@@ -8,7 +8,7 @@ import FindUsersContainer from "./components/Users/FindUsersContainer";
 import {Settings} from "./components/Settings/Settings";
 import ContentContainer from "./components/Content/ContentContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import {Login} from "./components/Login/Login";
+import Login from "./components/Login/Login";
 
 
 function App() {

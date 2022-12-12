@@ -5,16 +5,34 @@ import {ButtonSubmit} from "../common/FormsControls/ButtonSubmit/ButtonSubmit";
 import {TextareaFC} from "../common/FormsControls/TextareaTC/TextareaFC";
 import {CheckboxTC} from "../common/FormsControls/CheckboxTC/CheckboxTC";
 import {required} from "../../utils/validators/validators";
+import {connect} from "react-redux";
+import {loginTC} from "../../bll/authReducer";
+import {stateType} from "../../bll/redux-store";
+import {Redirect} from "react-router-dom";
 
 type FormDataType = {
     login: string
     password: string
     rememberMe: boolean
 }
-
-export const Login = () => {
+type LoginType = {
+    loginTC: (email: string, password: string, rememberMe: boolean) => void
+    isAuth: boolean
+}
+type mapStateToPropsType = {
+    isAuth: boolean
+}
+const mapStateToProps = (state: stateType): mapStateToPropsType => {
+    return {
+        isAuth: state.auth.isAuth
+    }
+}
+const Login = (props: LoginType) => {
     const onSubmit = (data: FormDataType) => {
-        console.log(data)
+        props.loginTC(data.login, data.password, data.rememberMe)
+    }
+    if (props.isAuth) {
+        return <Redirect to={'/profile'}/>
     }
     return (
         <div className='content'>
@@ -25,6 +43,7 @@ export const Login = () => {
         </div>
     )
 }
+export default connect(mapStateToProps, {loginTC})(Login)
 
 
 const LoginForm: FC<InjectedFormProps<FormDataType>> = (props) => {
@@ -32,7 +51,7 @@ const LoginForm: FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
         <form onSubmit={handleSubmit} className={s.form}>
             <div className={s.data}>
-                <Field placeholder='Login'
+                <Field placeholder='Email'
                        type='text'
                        name='login'
                        variant='standard'

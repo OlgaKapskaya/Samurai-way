@@ -1,5 +1,11 @@
 import axios from "axios";
 
+export type ResponseType<D = {}> = {
+    data: D
+    fieldsErrors: string[]
+    messages: string[]
+    resultCode: number
+}
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     withCredentials: true,
@@ -20,7 +26,14 @@ export const authAPI = {
     getAuth() {
         return instance.get('auth/me')
             .then(response => response.data)
-    }
+    },
+    login(email: string, password: string, rememberMe: boolean = false) {
+        const payload = {email, password, rememberMe}
+        return instance.post<ResponseType>('auth/login', payload)
+    },
+    logout() {
+        return instance.delete('auth/login')
+    },
 }
 export const profileAPI = {
     setFollow(userID: number) {
