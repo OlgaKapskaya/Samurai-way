@@ -27,12 +27,9 @@
     border-radius: 5px;
     box-shadow: 1px 1px 5px rgba(0,0,0, .2);
     margin: 20px 10px 10px 10px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
-}
-.buttonContainer{
-    align-self: flex-end;
-    margin: 0 10px 10px 10px;
 }
 .messageInput {
     background-color: transparent;

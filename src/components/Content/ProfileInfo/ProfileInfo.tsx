@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./ProfileInfo.module.css";
-import {ProfileUserType} from "../../../BLL/store";
+import {ProfileUserType} from "../../../bll/store";
 import noAvatarImg from "../../../IMG/no_avatar_img.webp";
 import {Preloader} from "../../common/Preloader/Preloader";
 import {ProfileStatus} from "../Status/ProfileStatus";

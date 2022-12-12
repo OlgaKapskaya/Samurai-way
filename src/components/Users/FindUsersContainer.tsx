@@ -1,14 +1,14 @@
-import {StateType, UsersType} from "../../BLL/store";
+import {StateType, UsersType} from "../../bll/store";
 import {connect} from "react-redux";
 import {
     getUsersTC,
     SetCurrentPageAC, setFollowTC, SetPageSizeAC, setUnFollowTC,
 
-} from "../../BLL/usersReducer";
+} from "../../bll/usersReducer";
 import React from "react";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
-import {withAuthRedirect} from "../../HOC/withAuthRedirect";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 

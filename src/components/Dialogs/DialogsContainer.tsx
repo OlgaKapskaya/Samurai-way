@@ -1,8 +1,8 @@
-import {AddMessageActionCreator} from "../../BLL/dialogsReducer";
+import {AddMessageActionCreator} from "../../bll/dialogsReducer";
 import {Dialogs, DialogsDataType, MessagesDataType} from "./Dialogs";
-import {dispatchType, stateType} from "../../BLL/redux-store";
+import {dispatchType, stateType} from "../../bll/redux-store";
 import {connect} from "react-redux";
-import {withAuthRedirect} from "../../HOC/withAuthRedirect";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import React from "react";
 

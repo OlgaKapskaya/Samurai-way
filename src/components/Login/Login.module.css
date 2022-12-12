@@ -11,27 +11,13 @@
     border-radius: 5px;
     background: ghostwhite;
     padding: 20px;
+    width: 300px;
 }
 .data{
-    margin: 10px;
+    margin: 5px;
 }
-.data input{
-    outline: none;
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #006d77;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-.data input:focus{
-    outline: 0;
-    box-shadow: 0 0 0 0.1rem #006d77;
-}
+
 .title{
     color: #006d77;
     font-size: 36px;
-}
-.button{
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
 }

@@ -3,7 +3,7 @@ import {PostDataType} from "./MyPosts/MyPosts";
 import s from './Content.module.css'
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {ProfileUserType} from "../../BLL/store";
+import {ProfileUserType} from "../../bll/store";
 
 
 type ContentProps = {

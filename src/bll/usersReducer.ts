@@ -1,6 +1,6 @@
 import {usersPageType, UsersType} from "./store";
 import {Dispatch} from "redux";
-import {profileAPI, usersAPI} from "../API/api";
+import {profileAPI, usersAPI} from "../api/api";
 
 
 const FOLLOW_USER = 'FOLLOW_USER'

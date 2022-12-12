@@ -1,7 +1,7 @@
 import React from "react";
 import Content from "./Content";
 import {PostDataType} from "./MyPosts/MyPosts";
-import {ProfileUserType} from "../../BLL/store";
+import {ProfileUserType} from "../../bll/store";
 import {connect} from "react-redux";
 import {
     AddLike,
@@ -9,10 +9,10 @@ import {
     getUserProfileTC,
     getUserStatusTC,
     SetUserProfile, updateUserStatusTC
-} from "../../BLL/profileReduser";
+} from "../../bll/profileReduser";
 import {RouteComponentProps, withRouter} from "react-router-dom";
-import {stateType} from "../../BLL/redux-store";
-import {withAuthRedirect} from "../../HOC/withAuthRedirect";
+import {stateType} from "../../bll/redux-store";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 type mapStateToPropsType = {

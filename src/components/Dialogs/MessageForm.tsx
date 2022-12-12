@@ -1,11 +1,14 @@
 import React, {FC} from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import s from "./Dialogs.module.css";
+import {TextareaFC} from "../common/FormsControls/TextareaTC/TextareaFC";
+import {maxLengthCreator, required} from "../../utils/validators/validators";
+import {ButtonSubmit} from "../common/FormsControls/ButtonSubmit/ButtonSubmit";
 
 export type MessageFormDataType = {
     message: string
 }
-
+const maxLength = maxLengthCreator(250)
 const MessageForm: FC<InjectedFormProps<MessageFormDataType>> = (props) => {
     const {handleSubmit} = props
     return (
@@ -14,14 +17,11 @@ const MessageForm: FC<InjectedFormProps<MessageFormDataType>> = (props) => {
                 <Field placeholder='Enter you message'
                        type='text'
                        name='message'
-                       component='textarea'
+                       validate={[required, maxLength]}
+                       component={TextareaFC}
                 />
             </div>
-            <div className={s.button}>
-                <button>
-                    Send
-                </button>
-            </div>
+            <ButtonSubmit form={MessageForm}/>
         </form>
     )
 }

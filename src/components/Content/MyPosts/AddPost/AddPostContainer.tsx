@@ -1,7 +1,7 @@
-import {AddPostAC} from "../../../../BLL/profileReduser";
+import {AddPostAC} from "../../../../bll/profileReduser";
 import {AddPost} from "./AddPost";
 import {connect} from "react-redux";
-import {dispatchType} from "../../../../BLL/redux-store";
+import {dispatchType} from "../../../../bll/redux-store";
 
 type  MapDispatchToPropsType = {
     addPost: (newPostText: string) => void

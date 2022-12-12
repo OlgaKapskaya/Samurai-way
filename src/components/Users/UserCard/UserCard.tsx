@@ -1,4 +1,4 @@
-import {UsersType} from "../../../BLL/store";
+import {UsersType} from "../../../bll/store";
 import s from './UserCard.module.css'
 import {Button} from "@material-ui/core";
 import noAvatarImg from '../../../IMG/no_avatar_img.webp'

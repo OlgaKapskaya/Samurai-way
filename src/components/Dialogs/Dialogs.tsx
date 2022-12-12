@@ -58,7 +58,6 @@ export const Dialogs: FC<DialogsProps> = ({
                     <div className={s.addDialogContainer}>
                         <MessageReduxForm onSubmit={sendMessageHandler}/>
                     </div>
-
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 import s from "./Users.module.css";
 import {UserCard} from "./UserCard/UserCard";
 import React from "react";
-import {UsersType} from "../../BLL/store";
+import {UsersType} from "../../bll/store";
 import {Pagination} from "@material-ui/lab";
 
 type UsersPropsType = {
