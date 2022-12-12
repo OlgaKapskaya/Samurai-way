@@ -19,6 +19,8 @@ type mapStateToPropsType = {
     postData: PostDataType[]
     profile: ProfileUserType
     status: string
+    isAuth: boolean
+    userID: number | null
 }
 type mapDispatchToPropsType = {
     AddPost: (newPostText: string) => void
@@ -37,8 +39,11 @@ type ContentPropsType = RouteComponentProps<PathParamsType> & mapStateToPropsTyp
 
 export class ContentContainer extends React.Component<ContentPropsType> {
     componentDidMount() {
-        this.props.getUserProfileTC(this.props.match.params.userID)
-        this.props.getUserStatusTC(this.props.match.params.userID)
+        let userAuthorizedID = this.props.match.params.userID
+        debugger
+        if (!userAuthorizedID) userAuthorizedID = this.props.userID ? this.props.userID.toString() : ''
+        this.props.getUserProfileTC(userAuthorizedID)
+        this.props.getUserStatusTC(userAuthorizedID)
     }
 
     render() {
@@ -50,7 +55,9 @@ let mapStateToProps = (state: stateType): mapStateToPropsType => {
     return {
         postData: state.profilePage.postData,
         profile: state.profilePage.profile,
-        status: state.profilePage.status
+        status: state.profilePage.status,
+        isAuth: state.auth.isAuth,
+        userID: state.auth.id
     }
 }
 

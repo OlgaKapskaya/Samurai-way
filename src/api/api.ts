@@ -2,7 +2,7 @@ import axios from "axios";
 
 export type ResponseType<D = {}> = {
     data: D
-    fieldsErrors: string[]
+    fieldsErrors: Array<{ field: string, error: string }>
     messages: string[]
     resultCode: number
 }
@@ -45,11 +45,9 @@ export const profileAPI = {
             .then(response => response.data.resultCode)
     },
     getUserProfile(userID: string) {
-        if (!userID) userID = '26580'
         return instance.get(`profile/${userID}`)
     },
     getStatus(userID: string) {
-        if (!userID) userID = '26580'
         return instance.get(`profile/status/${userID}`)
     },
     updateStatus(status: string) {

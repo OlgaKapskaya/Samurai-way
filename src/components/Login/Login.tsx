@@ -47,9 +47,11 @@ export default connect(mapStateToProps, {loginTC})(Login)
 
 
 const LoginForm: FC<InjectedFormProps<FormDataType>> = (props) => {
-    const {handleSubmit} = props
+    const {handleSubmit, error} = props
+    console.log(error)
     return (
         <form onSubmit={handleSubmit} className={s.form}>
+            {error && <div className={s.error}> { error } </div>}
             <div className={s.data}>
                 <Field placeholder='Email'
                        type='text'
@@ -73,6 +75,7 @@ const LoginForm: FC<InjectedFormProps<FormDataType>> = (props) => {
                        component={CheckboxTC}
                        label='remember me'/>
             </div>
+
             <div className={s.button}>
                 <ButtonSubmit form={LoginForm}/>
             </div>

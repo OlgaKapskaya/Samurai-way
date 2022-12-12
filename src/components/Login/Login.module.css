@@ -21,3 +21,15 @@
     color: #006d77;
     font-size: 36px;
 }
+.button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+.error{
+    color: red;
+    margin: 10px 5px;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    font-size: 12px;
+}

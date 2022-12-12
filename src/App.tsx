@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {BrowserRouter, Route} from "react-router-dom";
+import {HashRouter, Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
@@ -13,24 +13,22 @@ import Login from "./components/Login/Login";
 
 function App() {
     return (
-        <BrowserRouter>
+        <HashRouter>
 
             <div className='app-wrapper'>
                 <HeaderContainer/>
-                {/*<Route path={'/'} render={() => <ContentContainer/>}/>*/}
-
+                <Route path={'/'} render={() => <Login/>}/>
                 <Route path="/profile/:userID?" render={() => <ContentContainer/>}/>
                 <Route path="/dialogs" render={() => <DialogsContainer/>}/>
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Music/>}/>
                 <Route path="/users" render={() => <FindUsersContainer/>}/>
                 <Route path="/settings" render={() => <Settings/>}/>
-
                 <Route path="/login" render={() => <Login/>}/>
                 {/*<Footer/>*/}
 
             </div>
-        </BrowserRouter>
+        </HashRouter>
     );
 }
 
