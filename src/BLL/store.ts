@@ -1,23 +1,14 @@
 import {PostDataType} from "../components/Content/MyPosts/MyPosts";
 import {DialogsDataType, MessagesDataType} from "../components/Dialogs/Dialogs";
-import {
-    FollowingInProgressAT,
-    FollowUserAT,
-    SetCurrentPageAT,
-    SetPageSizeAT,
-    SetTotalUserCountAT,
-    SetUsersAT,
-    ToggleIsFetchingAT, UnfollowUserAT, UserReducerAT
-} from "./usersReducer";
+import {UserReducerAT} from "./usersReducer";
 import {
     AddLikeActionType,
     AddPostActionType,
-    ChangePostTextType,
     SetStatusAT,
     SetUserProfileAT
 } from "./profileReduser";
 import {AddMessageActionType} from "./dialogsReducer";
-import {AuthReducerAT, SetUserDataAT} from "./authReducer";
+import {AuthReducerAT} from "./authReducer";
 
 
 //types
@@ -45,7 +36,6 @@ export type UsersType = {
 }
 export type profilePageType = {
     postData: PostDataType[]
-    newPostText: string
     profile: ProfileUserType
     status: string
 }
@@ -85,8 +75,7 @@ export type ProfileUserType = {
 
 
 //dispatch action full type
-export type ActionDispatchType = AddPostActionType | ChangePostTextType
-    | AddLikeActionType | AddMessageActionType
+export type ActionDispatchType = AddPostActionType | AddLikeActionType | AddMessageActionType
     | SetUserProfileAT | AuthReducerAT | UserReducerAT | SetStatusAT
 
 

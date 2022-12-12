@@ -6,7 +6,6 @@ import {connect} from "react-redux";
 import {
     AddLike,
     AddPostAC,
-    ChangePostText,
     getUserProfileTC,
     getUserStatusTC,
     SetUserProfile, updateUserStatusTC
@@ -18,13 +17,11 @@ import {compose} from "redux";
 
 type mapStateToPropsType = {
     postData: PostDataType[]
-    newPostText: string
     profile: ProfileUserType
     status: string
 }
 type mapDispatchToPropsType = {
-    AddPost: () => void
-    ChangePostText: (message: string) => void
+    AddPost: (newPostText: string) => void
     AddLike: (count: number, id: string) => void
     SetUserProfile: (profile: ProfileUserType) => void
     getUserProfileTC: (userID: string) => void
@@ -52,7 +49,6 @@ export class ContentContainer extends React.Component<ContentPropsType> {
 let mapStateToProps = (state: stateType): mapStateToPropsType => {
     return {
         postData: state.profilePage.postData,
-        newPostText: state.profilePage.newPostText,
         profile: state.profilePage.profile,
         status: state.profilePage.status
     }
@@ -60,8 +56,8 @@ let mapStateToProps = (state: stateType): mapStateToPropsType => {
 
 export default compose<React.ComponentType>(withAuthRedirect,
     connect(mapStateToProps, {
-        AddPost: AddPostAC, ChangePostText,
-        AddLike, SetUserProfile, getUserProfileTC, getUserStatusTC, updateUserStatus: updateUserStatusTC
+        AddPost: AddPostAC, AddLike, SetUserProfile,
+        getUserProfileTC, getUserStatusTC, updateUserStatus: updateUserStatusTC
     } as mapDispatchToPropsType),
     withRouter)(ContentContainer)
 

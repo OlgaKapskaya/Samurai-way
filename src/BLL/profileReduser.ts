@@ -5,7 +5,6 @@ import {profileAPI} from "../API/api";
 
 
 const ADD_POST = 'ADD-POST'
-const CHANGE_NEW_POST_TEXT = 'CHANGE-NEW-POST-TEXT'
 const ADD_LIKE = 'ADD-LIKE'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
@@ -21,10 +20,7 @@ export type SetUserProfileAT = {
 }
 export type AddPostActionType = {
     type: "ADD-POST"
-}
-export type ChangePostTextType = {
-    type: "CHANGE-NEW-POST-TEXT"
-    message: string
+    newPostText: string
 }
 export type AddLikeActionType = {
     type: "ADD-LIKE"
@@ -33,7 +29,6 @@ export type AddLikeActionType = {
 }
 
 let initialState: profilePageType = {
-    newPostText: "",
     postData: [
         {id: v1(), message: 'Hi, how are you?', likes: 3},
         {id: v1(), message: 'It\'s my first post', likes: 5},
@@ -67,18 +62,13 @@ let initialState: profilePageType = {
 
 export const profileReducer = (state:profilePageType = initialState, action: ActionDispatchType):profilePageType => {
     switch (action.type) {
-        case ADD_POST : {
-            let newPost = {
+        case ADD_POST: {
+            const newPost = {
                 id: v1(),
-                message: state.newPostText,
+                message: action.newPostText,
                 likes: 0
             }
             return {...state, postData: [newPost, ...state.postData]}
-        }
-        case CHANGE_NEW_POST_TEXT: {
-            let newState = {...state}
-            newState.newPostText = action.message
-            return newState
         }
         case ADD_LIKE: {
             return {...state, postData: state.postData.map(elem => elem.id === action.id ? {...elem, likes: action.count} : elem)}
@@ -94,9 +84,8 @@ export const profileReducer = (state:profilePageType = initialState, action: Act
 
 
 //dispatch action creators
-export const AddPostAC = (): AddPostActionType => {return {type: ADD_POST}}
-export const ChangePostText = (message: string): ChangePostTextType => {
-    return {type: CHANGE_NEW_POST_TEXT, message: message}
+export const AddPostAC = (newPostText: string): AddPostActionType => {
+    return {type: ADD_POST, newPostText}
 }
 export const AddLike = (count: number, id: string): AddLikeActionType => {
     return {type: ADD_LIKE, count: count, id: id}}

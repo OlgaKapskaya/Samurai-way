@@ -45,8 +45,8 @@
 .content{
   grid-area: content;
   background-color: #e9ecef;
-  min-height: 700px;
-  height: 100%;
+  min-height: 100vh;
+  height: max-content;
   border-radius: 5px;
   margin-right: 10px;
   margin-top: 10px;

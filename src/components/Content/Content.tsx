@@ -8,7 +8,6 @@ import {ProfileUserType} from "../../BLL/store";
 
 type ContentProps = {
     postData: PostDataType[]
-    newPostText: string
     profile: ProfileUserType
     status: string
     updateUserStatus: (status: string) => void

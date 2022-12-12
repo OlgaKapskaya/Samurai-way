@@ -5,7 +5,6 @@ import {PostComponentContainer} from "./Posts/PostComponent";
 
 export type MyPostsProps = {
     postData: Array<PostDataType>
-    newPostText: string
     userName: string
     userAvatar: string
     addLike: (count: number, id: string) => void
