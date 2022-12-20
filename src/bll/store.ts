@@ -9,6 +9,7 @@ import {
 } from "./profileReduser";
 import {AddMessageActionType} from "./dialogsReducer";
 import {AuthReducerAT} from "./authReducer";
+import {AppReducerAT} from "./appReducer";
 
 
 //types
@@ -76,7 +77,7 @@ export type ProfileUserType = {
 
 //dispatch action full type
 export type ActionDispatchType = AddPostActionType | AddLikeActionType | AddMessageActionType
-    | SetUserProfileAT | AuthReducerAT | UserReducerAT | SetStatusAT
+    | SetUserProfileAT | AuthReducerAT | UserReducerAT | SetStatusAT | AppReducerAT
 
 
 // export type StoreType = {

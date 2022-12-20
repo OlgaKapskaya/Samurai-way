@@ -7,7 +7,7 @@ import {FormAction, stopSubmit} from "redux-form";
 
 const SET_USER_DATA = 'SET_USER_DATA'
 
-const initState:AuthDataType = {
+const initState: AuthDataType = {
     id: null,
     login: '',
     email: '',
@@ -34,7 +34,8 @@ export const authReducer = (state = initState, action: AuthReducerAT): AuthDataT
                 ...state,
                 ...action.data
             }
-        default: return state
+        default:
+            return state
     }
 }
 
@@ -43,8 +44,8 @@ export const setAuthUserData = (id: number | null, login: string, email: string,
 }
 
 export const setAuthUserTC = () => (dispatch: Dispatch<AuthReducerAT>) => {
-    authAPI.getAuth()
-        .then( (response) => {
+    return authAPI.getAuth()
+        .then((response) => {
             if (response.resultCode === 0) {
                 const {id, login, email} = response.data
                 dispatch(setAuthUserData(id, login, email, true))
@@ -52,9 +53,9 @@ export const setAuthUserTC = () => (dispatch: Dispatch<AuthReducerAT>) => {
         })
 }
 
-export const loginTC = (email: string, password: string, rememberMe: boolean) => (dispatch: ThunkDispatch<stateType, any, ActionDispatchType | FormAction> ) => {
-    authAPI.login(email,password,rememberMe)
-        .then( (response) => {
+export const loginTC = (email: string, password: string, rememberMe: boolean) => (dispatch: ThunkDispatch<stateType, any, ActionDispatchType | FormAction>) => {
+    authAPI.login(email, password, rememberMe)
+        .then((response) => {
             if (response.data.resultCode === 0) {
                 dispatch(setAuthUserTC())
             } else {
@@ -65,9 +66,9 @@ export const loginTC = (email: string, password: string, rememberMe: boolean) =>
 }
 export const logoutTC = () => (dispatch: Dispatch<AuthReducerAT>) => {
     authAPI.logout()
-        .then( response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(setAuthUserData(null, '', '', false))
-                }
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setAuthUserData(null, '', '', false))
+            }
         })
 }

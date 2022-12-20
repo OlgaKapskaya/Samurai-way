@@ -48,7 +48,6 @@ export default connect(mapStateToProps, {loginTC})(Login)
 
 const LoginForm: FC<InjectedFormProps<FormDataType>> = (props) => {
     const {handleSubmit, error} = props
-    console.log(error)
     return (
         <form onSubmit={handleSubmit} className={s.form}>
             {error && <div className={s.error}> { error } </div>}

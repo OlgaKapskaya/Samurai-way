@@ -12,7 +12,6 @@ import {
 } from "../../bll/profileReduser";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {stateType} from "../../bll/redux-store";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 type mapStateToPropsType = {
@@ -40,8 +39,13 @@ type ContentPropsType = RouteComponentProps<PathParamsType> & mapStateToPropsTyp
 export class ContentContainer extends React.Component<ContentPropsType> {
     componentDidMount() {
         let userAuthorizedID = this.props.match.params.userID
-        debugger
-        if (!userAuthorizedID) userAuthorizedID = this.props.userID ? this.props.userID.toString() : ''
+        if (!userAuthorizedID) {
+            userAuthorizedID = this.props.userID ? this.props.userID.toString() : ''
+            if (userAuthorizedID === '') {
+                this.props.history.push('/login')
+            }
+        }
+
         this.props.getUserProfileTC(userAuthorizedID)
         this.props.getUserStatusTC(userAuthorizedID)
     }
@@ -61,7 +65,8 @@ let mapStateToProps = (state: stateType): mapStateToPropsType => {
     }
 }
 
-export default compose<React.ComponentType>(withAuthRedirect,
+export default compose<React.ComponentType>(
+    // withAuthRedirect,
     connect(mapStateToProps, {
         AddPost: AddPostAC, AddLike, SetUserProfile,
         getUserProfileTC, getUserStatusTC, updateUserStatus: updateUserStatusTC

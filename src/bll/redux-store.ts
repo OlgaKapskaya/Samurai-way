@@ -7,6 +7,7 @@ import thunkMiddleware, {ThunkDispatch} from "redux-thunk";
 import { reducer as formReducer } from "redux-form"
 import {ActionDispatchType} from "./store";
 import {useDispatch} from "react-redux";
+import {appReducer} from "./appReducer";
 
 
 
@@ -15,11 +16,12 @@ let rootReducer = combineReducers({
     dialogsPage: dialogsReducer,
     usersPage: usersReducer,
     auth: authReducer,
+    app: appReducer,
     form: formReducer
 })
 export let store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 export type stateType = ReturnType<typeof rootReducer> // типизация того,что наш стор вернет
 export type storeType = typeof store // типизация самого стора
-export type dispatchType = typeof store.dispatch
-export const useAppDispatch: () => ThunkDispatch<stateType, any, ActionDispatchType> = useDispatch
+export type AppDispatchType = ThunkDispatch<stateType, any, ActionDispatchType>
+export const useAppDispatch: () => AppDispatchType = useDispatch

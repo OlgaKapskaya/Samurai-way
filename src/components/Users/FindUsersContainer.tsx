@@ -8,7 +8,6 @@ import {
 import React from "react";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 
@@ -68,7 +67,8 @@ const mapStateToProps = (state: StateType): mapStateToPropsType => {
     }
 }
 
-export default compose<React.ComponentType>(withAuthRedirect,
+export default compose<React.ComponentType>(
+    // withAuthRedirect,
     connect(mapStateToProps,
         {
             setCurrentPage: SetCurrentPageAC,
@@ -76,4 +76,5 @@ export default compose<React.ComponentType>(withAuthRedirect,
             getUsersTC: getUsersTC,
             setFollowTC: setFollowTC,
             setUnFollowTC: setUnFollowTC
-        } as mapDispatchToPropsType))(FindUsersAPIComponent)
+        } as mapDispatchToPropsType))
+(FindUsersAPIComponent)
