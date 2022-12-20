@@ -1,8 +1,18 @@
 import {stateType} from "../redux-store";
+import {UsersType} from "../store";
+// import {createSelector, Selector} from "reselect";
 
-export const getUsers = (state: stateType) => {
+
+export const getUsers = (state: stateType): UsersType[] => {
     return state.usersPage.users
 }
+
+//пример использования и типизации мемоизированного селектора (для сложных вычисляемых селекторов)
+// export const getUsersFilter  = createSelector<[Selector<stateType, UsersType[]>], UsersType[]>(getUsers, (users) => {
+//    return users.filter(elem => true)
+// });
+
+
 export const getPageSize = (state: stateType) => {
     return state.usersPage.pageSize
 }
