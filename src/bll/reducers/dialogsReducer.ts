@@ -1,4 +1,4 @@
-import {ActionDispatchType, dialogsPageType} from "./store";
+import {ActionDispatchType, dialogsPageType} from "../store";
 import {v1} from "uuid";
 
 const ADD_MESSAGE = 'ADD-MESSAGE'

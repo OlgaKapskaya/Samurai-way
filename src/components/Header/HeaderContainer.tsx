@@ -2,7 +2,8 @@ import React from "react";
 import Header from "./Header";
 import {connect} from "react-redux";
 import {stateType} from "../../bll/redux-store";
-import {logoutTC} from "../../bll/authReducer";
+import {logoutTC} from "../../bll/reducers/authReducer";
+import {getIsAuth, getUserLogin} from "../../bll/selectors/authSelectors";
 
 type mapStateToPropsType = {
     isAuth: boolean
@@ -13,8 +14,8 @@ type mapDispatchToPropsType = {
 }
 const mapStateToProps = (state: stateType): mapStateToPropsType => {
     return {
-        isAuth: state.auth.isAuth,
-        login: state.auth.login
+        isAuth: getIsAuth(state),
+        login: getUserLogin(state)
     }
 }
 

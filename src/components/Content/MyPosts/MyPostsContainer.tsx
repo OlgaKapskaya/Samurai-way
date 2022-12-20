@@ -1,6 +1,6 @@
 import {StateType} from "../../../bll/store";
 import {AppDispatchType} from "../../../bll/redux-store";
-import {AddLike} from "../../../bll/profileReduser";
+import {AddLike} from "../../../bll/reducers/profileReduser";
 import {connect} from "react-redux";
 import {MyPostsComponent, PostDataType} from "./MyPosts";
 

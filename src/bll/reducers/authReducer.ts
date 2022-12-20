@@ -1,7 +1,7 @@
-import {ActionDispatchType, AuthDataType} from "./store";
+import {ActionDispatchType, AuthDataType} from "../store";
 import {Dispatch} from "redux";
-import {authAPI} from "../api/api";
-import {stateType} from "./redux-store";
+import {authAPI} from "../../api/api";
+import {stateType} from "../redux-store";
 import {ThunkDispatch} from "redux-thunk";
 import {FormAction, stopSubmit} from "redux-form";
 

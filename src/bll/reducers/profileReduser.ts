@@ -1,7 +1,7 @@
-import {ActionDispatchType, profilePageType, ProfileUserType} from "./store";
+import {ActionDispatchType, profilePageType, ProfileUserType} from "../store";
 import {v1} from "uuid";
 import {Dispatch} from "redux";
-import {profileAPI} from "../api/api";
+import {profileAPI} from "../../api/api";
 
 
 const ADD_POST = 'ADD-POST'

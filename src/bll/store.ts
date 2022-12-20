@@ -1,15 +1,15 @@
 import {PostDataType} from "../components/Content/MyPosts/MyPosts";
 import {DialogsDataType, MessagesDataType} from "../components/Dialogs/Dialogs";
-import {UserReducerAT} from "./usersReducer";
+import {UserReducerAT} from "./reducers/usersReducer";
 import {
     AddLikeActionType,
     AddPostActionType,
     SetStatusAT,
     SetUserProfileAT
-} from "./profileReduser";
-import {AddMessageActionType} from "./dialogsReducer";
-import {AuthReducerAT} from "./authReducer";
-import {AppReducerAT} from "./appReducer";
+} from "./reducers/profileReduser";
+import {AddMessageActionType} from "./reducers/dialogsReducer";
+import {AuthReducerAT} from "./reducers/authReducer";
+import {AppReducerAT} from "./reducers/appReducer";
 
 
 //types

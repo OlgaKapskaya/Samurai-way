@@ -6,7 +6,7 @@ import {TextareaFC} from "../common/FormsControls/TextareaTC/TextareaFC";
 import {CheckboxTC} from "../common/FormsControls/CheckboxTC/CheckboxTC";
 import {required} from "../../utils/validators/validators";
 import {connect} from "react-redux";
-import {loginTC} from "../../bll/authReducer";
+import {loginTC} from "../../bll/reducers/authReducer";
 import {stateType} from "../../bll/redux-store";
 import {Redirect} from "react-router-dom";
 

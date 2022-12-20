@@ -1,10 +1,11 @@
-import {AddMessageActionCreator} from "../../bll/dialogsReducer";
+import {AddMessageActionCreator} from "../../bll/reducers/dialogsReducer";
 import {Dialogs, DialogsDataType, MessagesDataType} from "./Dialogs";
 import {AppDispatchType, stateType} from "../../bll/redux-store";
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import React from "react";
+import {getDialogsData, getMessagesData} from "../../bll/selectors/dialogsSelectors";
 
 type MapStateToPropsType = {
     dialogsData: DialogsDataType[]
@@ -16,8 +17,8 @@ type MapDispatchToPropsType = {
 
 let mapStateToProps = (state: stateType): MapStateToPropsType => {
     return {
-        dialogsData: state.dialogsPage.dialogsData,
-        messagesData: state.dialogsPage.messagesData,
+        dialogsData: getDialogsData(state),
+        messagesData: getMessagesData(state),
     }
 }
 let mapDispatchToProps = (dispatch: AppDispatchType): MapDispatchToPropsType => {

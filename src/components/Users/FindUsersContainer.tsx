@@ -1,14 +1,22 @@
-import {StateType, UsersType} from "../../bll/store";
+import {UsersType} from "../../bll/store";
 import {connect} from "react-redux";
 import {
     getUsersTC,
     SetCurrentPageAC, setFollowTC, SetPageSizeAC, setUnFollowTC,
 
-} from "../../bll/usersReducer";
+} from "../../bll/reducers/usersReducer";
 import React from "react";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
 import {compose} from "redux";
+import {
+    getCurrentPage,
+    getPageSize,
+    getTotalUsersCount, getUserFollowingInProgress,
+    getUsers,
+    getUsersIsFetching
+} from "../../bll/selectors/usersSelectors";
+import {stateType} from "../../bll/redux-store";
 
 
 type mapStateToPropsType = {
@@ -56,14 +64,14 @@ class FindUsersAPIComponent extends React.Component<FindUsersProps> { //React.Co
 }
 
 
-const mapStateToProps = (state: StateType): mapStateToPropsType => {
+const mapStateToProps = (state: stateType): mapStateToPropsType => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getUsersIsFetching(state),
+        followingInProgress: getUserFollowingInProgress(state)
     }
 }
 

@@ -1,13 +1,13 @@
 import {applyMiddleware, combineReducers, legacy_createStore} from "redux";
-import {profileReducer} from "./profileReduser";
-import {dialogsReducer} from "./dialogsReducer";
-import {usersReducer} from "./usersReducer";
-import {authReducer} from "./authReducer";
+import {profileReducer} from "./reducers/profileReduser";
+import {dialogsReducer} from "./reducers/dialogsReducer";
+import {usersReducer} from "./reducers/usersReducer";
+import {authReducer} from "./reducers/authReducer";
 import thunkMiddleware, {ThunkDispatch} from "redux-thunk";
 import { reducer as formReducer } from "redux-form"
 import {ActionDispatchType} from "./store";
 import {useDispatch} from "react-redux";
-import {appReducer} from "./appReducer";
+import {appReducer} from "./reducers/appReducer";
 
 
 

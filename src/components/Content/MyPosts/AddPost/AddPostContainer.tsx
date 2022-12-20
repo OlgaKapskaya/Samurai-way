@@ -1,4 +1,4 @@
-import {AddPostAC} from "../../../../bll/profileReduser";
+import {AddPostAC} from "../../../../bll/reducers/profileReduser";
 import {AddPost} from "./AddPost";
 import {connect} from "react-redux";
 import {AppDispatchType} from "../../../../bll/redux-store";

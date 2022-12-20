@@ -9,10 +9,12 @@ import {
     getUserProfileTC,
     getUserStatusTC,
     SetUserProfile, updateUserStatusTC
-} from "../../bll/profileReduser";
+} from "../../bll/reducers/profileReduser";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {stateType} from "../../bll/redux-store";
 import {compose} from "redux";
+import {getIsAuth, getUserID} from "../../bll/selectors/authSelectors";
+import {getPostsData, getProfileData, getProfileStatus} from "../../bll/selectors/profileSelectors";
 
 type mapStateToPropsType = {
     postData: PostDataType[]
@@ -57,11 +59,11 @@ export class ContentContainer extends React.Component<ContentPropsType> {
 
 let mapStateToProps = (state: stateType): mapStateToPropsType => {
     return {
-        postData: state.profilePage.postData,
-        profile: state.profilePage.profile,
-        status: state.profilePage.status,
-        isAuth: state.auth.isAuth,
-        userID: state.auth.id
+        postData: getPostsData(state),
+        profile: getProfileData(state),
+        status: getProfileStatus(state),
+        isAuth: getIsAuth(state),
+        userID: getUserID(state)
     }
 }
 

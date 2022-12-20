@@ -4,11 +4,11 @@ import s from './Preloader.module.css'
 
 export const Preloader = () => {
     return (
-        <div className={'content'}>
+        // <div className={'content'}>
             <div className={s.preloader}>
-                <CircularProgress color={'primary'}
-                                  size={'56px'}/>
+                <CircularProgress color='primary'
+                                  size='56px'/>
             </div>
-        </div>
+        // </div>
     )
 }

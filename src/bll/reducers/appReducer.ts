@@ -1,5 +1,5 @@
 import {setAuthUserTC} from "./authReducer";
-import {AppDispatchType} from "./redux-store";
+import {AppDispatchType} from "../redux-store";
 
 const SET_INITIALIZED = 'SET_INITIALIZED'
 
