@@ -16,9 +16,9 @@ type ContentProps = {
 
 function Content(props: ContentProps) {
     return (
-        <div className={'content'}>
+        <div className='content'>
             <div >
-                <img className={s.headerContent} alt={'big content'}
+                <img className={s.headerContent} alt='big content'
                      src='https://img5.goodfon.ru/wallpaper/nbig/5/2e/gory-skaly-vodoem-les-otrazhenie-bereg.jpg'/>
             </div>
             <div className={s.containerInfoAndPosts}>

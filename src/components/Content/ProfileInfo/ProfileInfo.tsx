@@ -4,6 +4,7 @@ import {ProfileUserType} from "../../../bll/store";
 import noAvatarImg from "../../../IMG/no_avatar_img.webp";
 import {Preloader} from "../../common/Preloader/Preloader";
 import {ProfileStatus} from "../Status/ProfileStatus";
+import {ProfileStatusWithHooks} from "../Status/ProfileStatusWithHooks";
 
 type ProfileInfoProps = {
     profile: ProfileUserType
@@ -21,8 +22,12 @@ export const ProfileInfo = (props: ProfileInfoProps) => {
             </div>
             <div className={s.infoContainer}>
                 <div className={s.Name}>{props.profile.fullName}</div>
-                <ProfileStatus status={props.status}
-                               updateUserStatus={props.updateUserStatus}/>
+
+                <ProfileStatusWithHooks status={props.status}
+                                        updateUserStatus={props.updateUserStatus}/>
+                {/*<ProfileStatus status={props.status}*/}
+                {/*               updateUserStatus={props.updateUserStatus}/>*/}
+
                 <div className={s.data}><span> About me: </span> {props.profile.aboutMe}</div>
                 <div className={s.data}><span> Looking for a job: <input type={'checkbox'} checked={props.profile.lookingForAJob}/></span></div>
                 <div className={s.data}><span> Description: </span> {props.profile.lookingForAJobDescription}</div>
