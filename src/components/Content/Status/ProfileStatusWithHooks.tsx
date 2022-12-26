@@ -1,5 +1,5 @@
 import {TextField} from "@material-ui/core";
-import React, {ChangeEvent, FC, useState} from "react";
+import React, {ChangeEvent, FC, useEffect, useState} from "react";
 
 type ProfileStatusWithHooksPropsType = {
     status: string
@@ -9,6 +9,11 @@ export const ProfileStatusWithHooks: FC<ProfileStatusWithHooksPropsType> = ({sta
 
     const [editMode, setEditMode] = useState<boolean>(false)
     const [newStatus, setNewStatus] = useState<string>(status)
+
+    useEffect(() => {
+        if (status !== newStatus)
+        setNewStatus(status)
+    }, [status])
 
     const deactivateEditMode = () => {
         setEditMode(false)
