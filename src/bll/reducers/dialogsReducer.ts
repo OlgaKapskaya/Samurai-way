@@ -1,7 +1,7 @@
 import {ActionDispatchType, dialogsPageType} from "../store";
 import {v1} from "uuid";
 
-const ADD_MESSAGE = 'ADD-MESSAGE'
+const ADD_MESSAGE = 'DIALOGS/ADD-MESSAGE'
 let initialState = {
     dialogsData: [
         {
@@ -38,7 +38,7 @@ let initialState = {
     ]
 }
 export type AddMessageActionType = {
-    type: "ADD-MESSAGE"
+    type: "DIALOGS/ADD-MESSAGE"
     message: string
 }
 export const dialogsReducer = (state: dialogsPageType = initialState, action: ActionDispatchType) => {

@@ -1,7 +1,7 @@
 import {setAuthUserTC} from "./authReducer";
 import {AppDispatchType} from "../redux-store";
 
-const SET_INITIALIZED = 'SET_INITIALIZED'
+const SET_INITIALIZED = 'APP/SET_INITIALIZED'
 
 export type AppReducerAT = SetInitializedAT
 
@@ -27,11 +27,7 @@ export const appReducer = (state: AppDataType = initState, action: AppReducerAT)
 export const setInitializedSuccessAC = () => {
     return {type: SET_INITIALIZED} as const
 }
-export const initializeApp = () => (dispatch: AppDispatchType) => {
-    Promise.all([dispatch(setAuthUserTC())])
-        .then(() => {
+export const initializeApp = () => async (dispatch: AppDispatchType) => {
+    await Promise.all([dispatch(setAuthUserTC())])
             dispatch(setInitializedSuccessAC())
-        })
-
-
 }

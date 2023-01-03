@@ -28,7 +28,6 @@ function Content(props: ContentProps) {
                                  updateUserStatus={props.updateUserStatus}/>
                 </div>
                 <div className={s.containerPosts}>
-
                     <MyPostsContainer/>
                 </div>
 

@@ -4,26 +4,26 @@ import {Dispatch} from "redux";
 import {profileAPI} from "../../api/api";
 
 
-const ADD_POST = 'ADD-POST'
-const ADD_LIKE = 'ADD-LIKE'
-const SET_USER_PROFILE = 'SET_USER_PROFILE'
-const SET_STATUS = 'SET_STATUS'
+const ADD_POST = 'POSTS/ADD-POST'
+const ADD_LIKE = 'POSTS/ADD-LIKE'
+const SET_USER_PROFILE = 'POSTS/SET_USER_PROFILE'
+const SET_STATUS = 'POSTS/SET_STATUS'
 
 //action types
 export type SetStatusAT = {
-    type: 'SET_STATUS',
+    type: 'POSTS/SET_STATUS',
     status: string
 }
 export type SetUserProfileAT = {
-    type: 'SET_USER_PROFILE'
+    type: 'POSTS/SET_USER_PROFILE'
     profile: ProfileUserType
 }
 export type AddPostActionType = {
-    type: "ADD-POST"
+    type: 'POSTS/ADD-POST'
     newPostText: string
 }
 export type AddLikeActionType = {
-    type: "ADD-LIKE"
+    type: 'POSTS/ADD-LIKE'
     id: string
     count: number
 }
@@ -60,7 +60,7 @@ let initialState: profilePageType = {
     status: ""
 }
 
-export const profileReducer = (state:profilePageType = initialState, action: ActionDispatchType):profilePageType => {
+export const profileReducer = (state: profilePageType = initialState, action: ActionDispatchType): profilePageType => {
     switch (action.type) {
         case ADD_POST: {
             const newPost = {
@@ -71,18 +71,22 @@ export const profileReducer = (state:profilePageType = initialState, action: Act
             return {...state, postData: [newPost, ...state.postData]}
         }
         case ADD_LIKE: {
-            return {...state, postData: state.postData.map(elem => elem.id === action.id ? {...elem, likes: action.count} : elem)}
+            return {
+                ...state,
+                postData: state.postData.map(elem => elem.id === action.id ? {...elem, likes: action.count} : elem)
+            }
         }
         case SET_USER_PROFILE:
             return {...state, profile: action.profile}
         case SET_STATUS:
             return {...state, status: action.status}
-        case "DELETE_POST":
+        case "POSTS/DELETE_POST":
             return {...state, postData: state.postData.filter(elem => elem.id !== action.id)}
-        default: return state}
+        default:
+            return state
+    }
 
 }
-
 
 
 //dispatch action creators
@@ -90,32 +94,27 @@ export const AddPostAC = (newPostText: string): AddPostActionType => {
     return {type: ADD_POST, newPostText}
 }
 export const AddLike = (count: number, id: string): AddLikeActionType => {
-    return {type: ADD_LIKE, count: count, id: id}}
+    return {type: ADD_LIKE, count: count, id: id}
+}
 export const SetUserProfile = (profile: ProfileUserType): SetUserProfileAT => {
     return {type: SET_USER_PROFILE, profile}
 }
 export const setStatusAC = (status: string): SetStatusAT => {
     return {type: SET_STATUS, status}
 }
-
 export const DeletePostAC = (id: string) => {
-    return {type: 'DELETE_POST', id} as const
+    return {type: 'POSTS/DELETE_POST', id} as const
 }
 
-export const getUserProfileTC = (userID: string) => (dispatch: Dispatch<ActionDispatchType>) => {
-    profileAPI.getUserProfile(userID)
-        .then(response => {
-            dispatch(SetUserProfile(response.data))
-        })
+export const getUserProfileTC = (userID: string) => async (dispatch: Dispatch<ActionDispatchType>) => {
+    const response = await profileAPI.getUserProfile(userID)
+    dispatch(SetUserProfile(response.data))
 }
-export const getUserStatusTC = (userID: string) => (dispatch: Dispatch<ActionDispatchType>) => {
-    profileAPI.getStatus(userID)
-        .then(response => {
-            dispatch(setStatusAC(response.data))})
+export const getUserStatusTC = (userID: string) => async (dispatch: Dispatch<ActionDispatchType>) => {
+    const response = await profileAPI.getStatus(userID)
+    dispatch(setStatusAC(response.data))
 }
-export const updateUserStatusTC = (status: string) => (dispatch: Dispatch<ActionDispatchType>) => {
-    profileAPI.updateStatus(status)
-        .then(response => {
-            if (response.data.resultCode === 0) dispatch(setStatusAC(status))
-        })
+export const updateUserStatusTC = (status: string) => async (dispatch: Dispatch<ActionDispatchType>) => {
+    const response = await profileAPI.updateStatus(status)
+    if (response.data.resultCode === 0) dispatch(setStatusAC(status))
 }

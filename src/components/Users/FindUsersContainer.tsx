@@ -39,7 +39,8 @@ type FindUsersProps = mapStateToPropsType & mapDispatchToPropsType
 
 class FindUsersAPIComponent extends React.Component<FindUsersProps> { //React.Component<PROPS_Type, COMPONENT_LOCAL_STATE_Type>
     componentDidMount() {
-        this.props.getUsersTC(this.props.currentPage, this.props.pageSize)
+        const {getUsersTC, currentPage, pageSize} = this.props
+        getUsersTC(currentPage, pageSize)
     }
 
     render() {

@@ -1,8 +1,8 @@
 import s from "./Users.module.css";
 import {UserCard} from "./UserCard/UserCard";
-import React from "react";
+import React, {FC} from "react";
 import {UsersType} from "../../bll/store";
-import {Pagination} from "@material-ui/lab";
+import {CustomPagination} from "../common/CustomPagination/CustomPagination";
 
 type UsersPropsType = {
     users: UsersType[]
@@ -12,35 +12,33 @@ type UsersPropsType = {
     followingInProgress: number[]
     setFollowTC: (userID: number) => void
     setUnFollowTC: (userID: number) => void
-
     onPageChanged: (pageNumber: number) => void
 
 }
-export const Users = (props: UsersPropsType) => {
-    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-
-
+export const Users: FC<UsersPropsType> = ({users,
+                                              totalUsersCount,
+                                              onPageChanged, currentPage,
+                                              pageSize,
+                                              setFollowTC,
+                                              setUnFollowTC,
+                                              followingInProgress}) => {
     return (
-        <div className={'content'}>
+        <div className='content'>
             <div className={s.usersContainer}>
                 <div className={s.sidebar}>
-
                 </div>
                 <div className={s.usersCards}>
-                    <Pagination count={pagesCount}
-                                color='primary'
-                                variant='outlined'
-                                shape='rounded'
-                                showFirstButton
-                                showLastButton
-                                page={props.currentPage}
-                                onChange={(event, page) => props.onPageChanged(page)}
-                    />
-                    {props.users.map(elem => <UserCard key={elem.id}
+                    <CustomPagination currentPage={currentPage}
+                                      totalUsersCount={totalUsersCount}
+                                      pageSize={pageSize}
+                                      onPageChanged={onPageChanged}/>
+                    {
+                        users.map(elem => <UserCard key={elem.id}
                                                        userInfo={elem}
-                                                       followingInProgress={props.followingInProgress}
-                                                       setFollowTC={props.setFollowTC}
-                                                       setUnFollowTC={props.setUnFollowTC}/>)}
+                                                       followingInProgress={followingInProgress}
+                                                       setFollowTC={setFollowTC}
+                                                       setUnFollowTC={setUnFollowTC}/>)
+                    }
                 </div>
             </div>
 
