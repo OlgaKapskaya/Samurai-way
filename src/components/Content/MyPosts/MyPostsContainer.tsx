@@ -2,7 +2,7 @@ import {StateType} from "../../../bll/store";
 import {AppDispatchType} from "../../../bll/redux-store";
 import {AddLike} from "../../../bll/reducers/profileReduser";
 import {connect} from "react-redux";
-import {MyPostsComponent, PostDataType} from "./MyPosts";
+import {MyPosts, PostDataType} from "./MyPosts";
 
 type mapStateToPropsType = {
     postData: PostDataType[]
@@ -27,4 +27,4 @@ let mapDispatchToProps = (dispatch: AppDispatchType): mapDispatchToPropsType => 
     }
 }
 
-export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPostsComponent)
+export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)

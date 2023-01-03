@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import {AddPostContainer} from "./AddPost/AddPostContainer";
 import s from './MyPosts.module.css'
 import {PostComponentContainer} from "./Posts/PostComponent";
@@ -17,7 +17,7 @@ export type PostDataType = {
 }
 
 
-const MyPosts = (props: MyPostsProps) => {
+export const  MyPosts = memo((props: MyPostsProps) => {
     return (
         <div className={s.myPostsContainer}>
             <AddPostContainer/>
@@ -35,5 +35,4 @@ const MyPosts = (props: MyPostsProps) => {
             })}
         </div>
     )
-}
-export const MyPostsComponent = React.memo(MyPosts)
+})
