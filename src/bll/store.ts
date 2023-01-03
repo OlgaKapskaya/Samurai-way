@@ -3,10 +3,10 @@ import {DialogsDataType, MessagesDataType} from "../components/Dialogs/Dialogs";
 import {UserReducerAT} from "./reducers/usersReducer";
 import {
     AddLikeActionType,
-    AddPostActionType,
+    AddPostActionType, DeletePostAC,
     SetStatusAT,
     SetUserProfileAT
-} from "./reducers/profileReduser";
+} from "./reducers/profileReducer";
 import {AddMessageActionType} from "./reducers/dialogsReducer";
 import {AuthReducerAT} from "./reducers/authReducer";
 import {AppReducerAT} from "./reducers/appReducer";
@@ -77,7 +77,7 @@ export type ProfileUserType = {
 
 //dispatch action full type
 export type ActionDispatchType = AddPostActionType | AddLikeActionType | AddMessageActionType
-    | SetUserProfileAT | AuthReducerAT | UserReducerAT | SetStatusAT | AppReducerAT
+    | SetUserProfileAT | AuthReducerAT | UserReducerAT | SetStatusAT | AppReducerAT | ReturnType<typeof DeletePostAC>
 
 
 // export type StoreType = {

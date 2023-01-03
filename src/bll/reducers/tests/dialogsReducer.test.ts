@@ -1,9 +1,5 @@
-import {v1} from "uuid";
-import {AddMessageActionCreator, dialogsReducer} from "./dialogsReducer";
+import {AddMessageActionCreator, dialogsReducer} from "../dialogsReducer";
 
-beforeEach(() => {
-
-})
 
 test('add message function', () => {
     const data = {

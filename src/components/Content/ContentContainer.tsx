@@ -9,7 +9,7 @@ import {
     getUserProfileTC,
     getUserStatusTC,
     SetUserProfile, updateUserStatusTC
-} from "../../bll/reducers/profileReduser";
+} from "../../bll/reducers/profileReducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {stateType} from "../../bll/redux-store";
 import {compose} from "redux";
