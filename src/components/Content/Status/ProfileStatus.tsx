@@ -17,10 +17,10 @@ export class ProfileStatus extends React.Component<ProfileStatusProps> {
         })
     }
     deactivateEditMode = () => {
+        this.props.updateUserStatus(this.state.status)
         this.setState({
             editMode: false
         })
-        this.props.updateUserStatus(this.state.status)
     }
     onChangeStatus = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         this.setState({

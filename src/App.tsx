@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import {Route, Switch, withRouter} from "react-router-dom";
+import {HashRouter, Route, Switch, withRouter} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
@@ -9,11 +9,13 @@ import {Settings} from "./components/Settings/Settings";
 import ContentContainer from "./components/Content/ContentContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./bll/reducers/appReducer";
-import {stateType} from "./bll/redux-store";
+import {stateType, store} from "./bll/redux-store";
 import {Preloader} from "./components/common/Preloader/Preloader";
+import {createTheme, ThemeProvider} from "@material-ui/core";
+import {teal} from "@material-ui/core/colors";
 
 type mapStateToPropsType = {
     initialized: boolean
@@ -27,6 +29,7 @@ class App extends React.Component<AppType> {
     componentDidMount() {
         this.props.initializeApp()
     }
+
     render() {
         if (!this.props.initialized) return <Preloader/>
 
@@ -42,7 +45,12 @@ class App extends React.Component<AppType> {
                     <Route path="/settings" render={() => <Settings/>}/>
                     <Route exact path="/login" render={() => <Login/>}/>
                     <Route exact path="/" render={() => <ContentContainer/>}/>
-                    <Route path='*' render={() => <div className="content" style={{display: "flex", alignItems: "flex-start", width: "100%", justifyContent: "center"}}><h1>404: PAGE NOT FOUND</h1></div>} />
+                    <Route path='*' render={() => <div className="content" style={{
+                        display: "flex",
+                        alignItems: "flex-start",
+                        width: "100%",
+                        justifyContent: "center"
+                    }}><h1>404: PAGE NOT FOUND</h1></div>}/>
                 </Switch>
             </div>
         )
@@ -54,7 +62,28 @@ const mapStateToProps = (state: stateType): mapStateToPropsType => {
         initialized: state.app.initialized
     }
 }
-export default compose<React.ComponentType>(
+const AppContainer = compose<React.ComponentType>(
     connect(mapStateToProps, {initializeApp}),
     withRouter
 )(App)
+
+const theme = createTheme({
+    palette: {
+        primary: teal,
+    },
+});
+
+const MainApp = () => {
+    return (
+        <Provider store={store}>
+            <ThemeProvider theme={theme}>
+                <HashRouter>
+                    <AppContainer/>
+                </HashRouter>
+            </ThemeProvider>
+        </Provider>
+    )
+}
+export default MainApp
+
+
