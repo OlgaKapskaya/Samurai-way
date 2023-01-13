@@ -3,18 +3,16 @@ import "./App.css";
 import {HashRouter, Route, Switch, withRouter} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
-
-
 import {Settings} from "./components/Settings/Settings";
 import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./bll/reducers/appReducer";
 import {stateType, store} from "./bll/redux-store";
 import {Preloader} from "./components/common/Preloader/Preloader";
-import {createTheme, ThemeProvider} from "@material-ui/core";
-import {teal} from "@material-ui/core/colors";
+import {ThemeProvider} from "@material-ui/core";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import {withSuspense} from "./hoc/withSuspense";
+import {theme} from "./utils/constants/appTheme";
 
 const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'));
 const FindUsersContainer = lazy(() => import('./components/Users/FindUsersContainer'));
@@ -70,11 +68,7 @@ const AppContainer = compose<React.ComponentType>(
     withRouter
 )(App)
 
-const theme = createTheme({
-    palette: {
-        primary: teal,
-    },
-});
+
 
 const MainApp = () => {
     return (
