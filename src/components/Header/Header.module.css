@@ -38,7 +38,13 @@
     align-items: center;
 }
 .loginBlock{
-
+    color: #edf6f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loginBlock > span{
+    margin-right: 10px;
 }
 .link{
     display: flex;

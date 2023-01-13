@@ -1,5 +1,7 @@
 .usersContainer{
     display: flex;
+    margin: 10px 0;
+
 }
 .sidebar{
     width: 30%;
@@ -10,7 +12,6 @@
     width: 40%;
 }
 .usersCards nav{
-    margin-top: 10px;
     align-self: center;
 }
 

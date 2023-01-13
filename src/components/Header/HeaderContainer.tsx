@@ -8,6 +8,7 @@ import {getIsAuth, getUserLogin} from "../../bll/selectors/authSelectors";
 type mapStateToPropsType = {
     isAuth: boolean
     login: string
+    avatar: string
 }
 type mapDispatchToPropsType = {
     logoutTC: () => void
@@ -15,7 +16,8 @@ type mapDispatchToPropsType = {
 const mapStateToProps = (state: stateType): mapStateToPropsType => {
     return {
         isAuth: getIsAuth(state),
-        login: getUserLogin(state)
+        login: getUserLogin(state),
+        avatar: state.profilePage.profile.photos.large
     }
 }
 

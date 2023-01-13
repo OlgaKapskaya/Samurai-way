@@ -11,19 +11,12 @@
 
 }
 
-.avatar {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    border: 5px solid #e9ecef;
-    margin-top: -70px;
-}
-
 .avatarContainer {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: -70px
 }
 
 .infoContainer {
@@ -50,9 +43,11 @@
     font-size: 15px;
     font-weight: normal;
     margin-top: 7px;
+    word-break: break-word;
 }
 .data span{
     font-weight: bold;
+
     /*color: #006d77;*/
 }
 

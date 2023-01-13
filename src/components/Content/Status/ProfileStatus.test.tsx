@@ -5,10 +5,11 @@ describe('ProfileStatus component', () => {
     test('status from props should be into state', () => {
         const component = create(<ProfileStatus status='it-kamasutra' updateUserStatus={()=>{}}/>)
         const instance = component.getInstance()
+        // @ts-ignore
         expect(instance.state.status).toBe('it-kamasutra')
     })
     test('after creation <span> with status should be displayed', () => {
-        const component = create(<ProfileStatus status='it-kamasutra'/>)
+        const component = create(<ProfileStatus status='it-kamasutra' updateUserStatus={()=>{}}/>)
         const instance = component.root
         const span = instance.findByType('span')
         expect(span).toBeDefined()
@@ -38,6 +39,7 @@ describe('ProfileStatus component', () => {
         const mockCallback = jest.fn()
         const component = create(<ProfileStatus status='it-kamasutra' updateUserStatus={()=>{}}/>)
         const instance = component.getInstance()
+        // @ts-ignore
         instance.activateEditMode()
         expect(mockCallback.mock.calls.length).toBe(0)
     })

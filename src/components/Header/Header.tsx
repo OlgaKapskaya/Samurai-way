@@ -4,10 +4,12 @@ import {Navigation} from "./Navigation/Navigation";
 import {NavLink} from "react-router-dom";
 import {IconButton} from "@material-ui/core";
 import {ExitToApp} from "@material-ui/icons";
+import {UserAvatar} from "../Content/ProfileInfo/Avatar/UserAvatar";
 
 type HeaderPropsType = {
     isAuth: boolean
     login: string
+    avatar: string
     logoutTC: () => void
 }
 
@@ -24,10 +26,11 @@ function Header(props: HeaderPropsType) {
 
                 <Navigation/>
 
-                <div className={header.loginBlock}>
+                <div >
                     {props.isAuth
-                        ? <div style={{color: 'white'}}>
-                            {props.login}
+                        ? <div className={header.loginBlock}>
+                            <span>{props.login}</span>
+                            <UserAvatar img={props.avatar} size={36}/>
                             <IconButton onClick={onClickHandler} style={{color: 'white'}}>
                                 <ExitToApp/>
                             </IconButton>

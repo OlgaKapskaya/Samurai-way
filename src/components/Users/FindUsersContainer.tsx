@@ -59,8 +59,8 @@ class FindUsersAPIComponent extends React.Component<FindUsersProps> { //React.Co
         )
     }
 
-    onPageChanged = (newPageNumber: number) => {
-        this.props.getUsersTC(newPageNumber, this.props.pageSize)
+    onPageChanged = (newPageNumber: number, pageSize: number = 10) => {
+        this.props.getUsersTC(newPageNumber, pageSize)
     }
 }
 

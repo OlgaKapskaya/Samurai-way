@@ -24,6 +24,7 @@ export const Users: FC<UsersPropsType> = ({users,
                                               followingInProgress}) => {
     return (
         <div className='content'>
+
             <div className={s.usersContainer}>
                 <div className={s.sidebar}>
                 </div>

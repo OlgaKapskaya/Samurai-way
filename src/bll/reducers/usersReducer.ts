@@ -109,6 +109,7 @@ export const getUsersTC = (currentPage: number, pageSize: number) => async (disp
     dispatch(ToggleIsFetchingAC(false))
     dispatch(SetUsersAC(response.items))
     dispatch(SetCurrentPageAC(currentPage))
+    dispatch(SetPageSizeAC(pageSize))
     dispatch(SetTotalUserCountAC(response.totalCount))
 }
 
