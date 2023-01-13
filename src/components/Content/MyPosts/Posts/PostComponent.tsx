@@ -2,7 +2,7 @@ import React from "react";
 import post from "./PostCompponent.module.css"
 import {IconButton} from "@material-ui/core";
 import {FavoriteBorder} from "@material-ui/icons";
-import noAvatarImg from "../../../../IMG/no_avatar_img.webp";
+import {UserAvatar} from "../../ProfileInfo/Avatar/UserAvatar";
 
 
 type PostComponentProps = {
@@ -24,10 +24,8 @@ const PostComponent = (props: PostComponentProps) => {
     return (
         <div className={post.post}>
             <div className={post.avatarAndName}>
-                <img className={post.avatar}
-                     src={props.userAvatar !== null ? props.userAvatar : noAvatarImg}
-                     alt={'avatar'}/>
-                <h5>{props.userName}</h5>
+                <UserAvatar img={props.userAvatar} size={30}/>
+                <h5 style={{marginLeft: '5px'}}>{props.userName}</h5>
             </div>
             <span className={post.message}> {props.message}</span>
             <div className={post.likes}>

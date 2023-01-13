@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, {FC, useEffect} from "react";
 import {TablePagination} from "@material-ui/core";
 
 type CustomPaginationPropsType = {
@@ -15,6 +15,10 @@ export const CustomPagination: FC<CustomPaginationPropsType> = ({
                                                                 }) => {
     const pagesCount = Math.ceil(totalUsersCount / pageSize)
     const [rowsPerPage, setRowsPerPage] = React.useState(pageSize);
+    useEffect(() => {
+        if (pageSize === rowsPerPage) return
+        setRowsPerPage(pageSize)
+    }, [pageSize])
 
     const handleChangeRowsPerPage = (
         event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,

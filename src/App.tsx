@@ -1,14 +1,11 @@
-import React from "react";
+import React, {lazy} from "react";
 import "./App.css";
 import {HashRouter, Route, Switch, withRouter} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import FindUsersContainer from "./components/Users/FindUsersContainer";
+
+
 import {Settings} from "./components/Settings/Settings";
-import ContentContainer from "./components/Content/ContentContainer";
-import HeaderContainer from "./components/Header/HeaderContainer";
-import Login from "./components/Login/Login";
 import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./bll/reducers/appReducer";
@@ -16,6 +13,13 @@ import {stateType, store} from "./bll/redux-store";
 import {Preloader} from "./components/common/Preloader/Preloader";
 import {createTheme, ThemeProvider} from "@material-ui/core";
 import {teal} from "@material-ui/core/colors";
+import HeaderContainer from "./components/Header/HeaderContainer";
+import {withSuspense} from "./hoc/withSuspense";
+
+const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'));
+const FindUsersContainer = lazy(() => import('./components/Users/FindUsersContainer'));
+const ContentContainer = lazy(() => import('./components/Content/ContentContainer'));
+const Login = lazy(() => import('./components/Login/Login'));
 
 type mapStateToPropsType = {
     initialized: boolean
@@ -23,9 +27,8 @@ type mapStateToPropsType = {
 type mapDispatchToPropsType = {
     initializeApp: () => void
 }
-type AppType = mapDispatchToPropsType & mapStateToPropsType
 
-class App extends React.Component<AppType> {
+class App extends React.Component<mapDispatchToPropsType & mapStateToPropsType> {
     componentDidMount() {
         this.props.initializeApp()
     }
@@ -37,14 +40,14 @@ class App extends React.Component<AppType> {
             <div className="app-wrapper">
                 <HeaderContainer/>
                 <Switch>
-                    <Route path="/profile/:userID?" render={() => <ContentContainer/>}/>
-                    <Route path="/dialogs" render={() => <DialogsContainer/>}/>
+                    <Route path="/profile/:userID?" render={withSuspense(ContentContainer)}/>
+                    <Route path="/dialogs" render={withSuspense(DialogsContainer)}/>
                     <Route path="/news" render={() => <News/>}/>
                     <Route path="/music" render={() => <Music/>}/>
-                    <Route path="/users" render={() => <FindUsersContainer/>}/>
+                    <Route path="/users" render={withSuspense(FindUsersContainer)}/>
                     <Route path="/settings" render={() => <Settings/>}/>
-                    <Route exact path="/login" render={() => <Login/>}/>
-                    <Route exact path="/" render={() => <ContentContainer/>}/>
+                    <Route exact path="/login" render={withSuspense(Login)}/>
+                    <Route exact path="/" render={withSuspense(ContentContainer)}/>
                     <Route path='*' render={() => <div className="content" style={{
                         display: "flex",
                         alignItems: "flex-start",
