@@ -52,7 +52,22 @@ export const profileAPI = {
     },
     updateStatus(status: string) {
         return instance.put(`profile/status`, {status: status})
+    },
+    updatePhoto(photo: File) {
+        const formData = new FormData()
+        formData.append('image', photo)
+        return instance.put<UpdatePhotoResponseType>('profile/photo', formData, {
+            headers: {
+                'Content-Type' : 'multipart/form-data'
+            }
+        })
     }
+}
+
+export type UpdatePhotoResponseType = Omit<ResponseType<{photos: PhotosType}>, 'fieldsErrors'>
+export type PhotosType = {
+    large: string
+    small: string
 }
 
 

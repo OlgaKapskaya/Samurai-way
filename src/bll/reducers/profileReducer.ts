@@ -1,7 +1,7 @@
 import {ActionDispatchType, profilePageType, ProfileUserType} from "../store";
 import {v1} from "uuid";
 import {Dispatch} from "redux";
-import {profileAPI} from "../../api/api";
+import {PhotosType, profileAPI} from "../../api/api";
 
 
 const ADD_POST = 'POSTS/ADD-POST'
@@ -27,6 +27,7 @@ export type AddLikeActionType = {
     id: string
     count: number
 }
+export type ChangePhotosAT = ReturnType<typeof changePhotosAC>
 
 let initialState: profilePageType = {
     postData: [
@@ -82,6 +83,17 @@ export const profileReducer = (state: profilePageType = initialState, action: Ac
             return {...state, status: action.status}
         case "POSTS/DELETE_POST":
             return {...state, postData: state.postData.filter(elem => elem.id !== action.id)}
+        case "PROFILE/UPDATE_PHOTOS":
+            return {
+                ...state,
+                profile: {
+                    ...state.profile,
+                    photos: {
+                        ...state.profile.photos,
+                        ...action.photos
+                    }
+                }
+            }
         default:
             return state
     }
@@ -105,6 +117,9 @@ export const setStatusAC = (status: string): SetStatusAT => {
 export const DeletePostAC = (id: string) => {
     return {type: 'POSTS/DELETE_POST', id} as const
 }
+export const changePhotosAC = (photos: PhotosType) => {
+    return {type: 'PROFILE/UPDATE_PHOTOS', photos} as const
+}
 
 export const getUserProfileTC = (userID: string) => async (dispatch: Dispatch<ActionDispatchType>) => {
     const response = await profileAPI.getUserProfile(userID)
@@ -118,3 +133,10 @@ export const updateUserStatusTC = (status: string) => async (dispatch: Dispatch<
     const response = await profileAPI.updateStatus(status)
     if (response.data.resultCode === 0) dispatch(setStatusAC(status))
 }
+export const savePhotoTC = (photo: File) => async (dispatch: Dispatch<ActionDispatchType>) => {
+    const response = await profileAPI.updatePhoto(photo)
+    if (response.data.resultCode === 0) {
+        dispatch(changePhotosAC(response.data.data.photos))
+    }
+}
+

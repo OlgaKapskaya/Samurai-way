@@ -13,7 +13,6 @@ export const CustomPagination: FC<CustomPaginationPropsType> = ({
                                                                     onPageChanged,
                                                                     currentPage
                                                                 }) => {
-    const pagesCount = Math.ceil(totalUsersCount / pageSize)
     const [rowsPerPage, setRowsPerPage] = React.useState(pageSize);
     useEffect(() => {
         if (pageSize === rowsPerPage) return
@@ -33,7 +32,7 @@ export const CustomPagination: FC<CustomPaginationPropsType> = ({
         <TablePagination
             component="div"
             labelRowsPerPage="Users per page:"
-            count={pagesCount}
+            count={totalUsersCount}
             page={currentPage - 1}
             onPageChange={handleChangePage}
             rowsPerPage={rowsPerPage}

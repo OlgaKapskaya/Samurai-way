@@ -3,7 +3,7 @@ import {DialogsDataType, MessagesDataType} from "../components/Dialogs/Dialogs";
 import {UserReducerAT} from "./reducers/usersReducer";
 import {
     AddLikeActionType,
-    AddPostActionType, DeletePostAC,
+    AddPostActionType, ChangePhotosAT, DeletePostAC,
     SetStatusAT,
     SetUserProfileAT
 } from "./reducers/profileReducer";
@@ -76,7 +76,7 @@ export type ProfileUserType = {
 
 
 //dispatch action full type
-export type ActionDispatchType = AddPostActionType | AddLikeActionType | AddMessageActionType
+export type ActionDispatchType = AddPostActionType | AddLikeActionType | AddMessageActionType | ChangePhotosAT
     | SetUserProfileAT | AuthReducerAT | UserReducerAT | SetStatusAT | AppReducerAT | ReturnType<typeof DeletePostAC>
 
 

@@ -1,17 +1,38 @@
-import React, {FC} from "react";
-import {Avatar} from "@material-ui/core";
+import React, {ChangeEvent, FC} from "react";
+import {Avatar, IconButton} from "@material-ui/core";
+import {Photo} from "@material-ui/icons";
+import s from './UserAvatar.module.css'
 
 type UserAvatarPropsType = {
     img: string
     size: number
+    isOwner?: boolean
+    savePhoto?: (photo: File) => void
 }
-export const UserAvatar: FC<UserAvatarPropsType> = ({img, size}) => {
+export const UserAvatar: FC<UserAvatarPropsType> = ({img, size, isOwner, savePhoto}) => {
     const avatarSize = {
         width: `${size}px`,
         height: `${size}px`,
         border: `5px solid #e9ecef`
     }
+
+    const onChangeMainPhoto = (event: ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files && event.target.files.length > 0)
+        savePhoto?.(event.target.files[0])
+    }
     return (
-        <Avatar src={img} style={avatarSize}/>
+        <div className={s.container}>
+            <Avatar src={img} style={avatarSize}/>
+            {isOwner &&
+                <IconButton className={s.button}>
+                    <Photo/>
+                    <input
+                        onChange={onChangeMainPhoto}
+                        type="file"
+                        hidden
+                    />
+                </IconButton>
+            }
+        </div>
     )
 }

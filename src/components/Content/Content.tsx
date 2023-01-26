@@ -11,6 +11,8 @@ type ContentProps = {
     profile: ProfileUserType
     status: string
     updateUserStatus: (status: string) => void
+    savePhoto: (photo: File) => void
+    isOwner: boolean
 }
 
 
@@ -25,6 +27,8 @@ function Content(props: ContentProps) {
                 <div className={s.containerInfo}>
                     <ProfileInfo profile={props.profile}
                                  status={props.status}
+                                 isOwner={props.isOwner}
+                                 savePhoto={props.savePhoto}
                                  updateUserStatus={props.updateUserStatus}/>
                 </div>
                 <div className={s.containerPosts}>

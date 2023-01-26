@@ -7,7 +7,7 @@ import {
     AddLike,
     AddPostAC,
     getUserProfileTC,
-    getUserStatusTC,
+    getUserStatusTC, savePhotoTC,
     SetUserProfile, updateUserStatusTC
 } from "../../bll/reducers/profileReducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
@@ -30,16 +30,20 @@ type mapDispatchToPropsType = {
     getUserProfileTC: (userID: string) => void
     getUserStatusTC: (userID: string) => void
     updateUserStatus: (status: string) => void
+    savePhotoTC: (photo: File) => void
+
 }
 type PathParamsType = {
     userID: string,
 }
 
+
+
 type ContentPropsType = RouteComponentProps<PathParamsType> & mapStateToPropsType
     & mapDispatchToPropsType
 
 export class ContentContainer extends React.Component<ContentPropsType> {
-    componentDidMount() {
+    refreshProfile = () => {
         let userAuthorizedID = this.props.match.params.userID
         if (!userAuthorizedID) {
             userAuthorizedID = this.props.userID ? this.props.userID.toString() : ''
@@ -51,9 +55,18 @@ export class ContentContainer extends React.Component<ContentPropsType> {
         this.props.getUserProfileTC(userAuthorizedID)
         this.props.getUserStatusTC(userAuthorizedID)
     }
+    componentDidMount() {
+        this.refreshProfile()
+    }
+    componentDidUpdate(prevProps: Readonly<ContentPropsType>, prevState: Readonly<{}>, snapshot?: any) {
+        if (this.props.match.params.userID !== prevProps.match.params.userID)
+        this.refreshProfile()
+    }
 
     render() {
-        return <Content {...this.props}/>
+        return <Content isOwner={!this.props.match.params.userID}
+                        savePhoto={this.props.savePhotoTC}
+                        {...this.props}/>
     }
 }
 
@@ -63,7 +76,7 @@ let mapStateToProps = (state: stateType): mapStateToPropsType => {
         profile: getProfileData(state),
         status: getProfileStatus(state),
         isAuth: getIsAuth(state),
-        userID: getUserID(state)
+        userID: getUserID(state),
     }
 }
 
@@ -71,7 +84,8 @@ export default compose<React.ComponentType>(
     // withAuthRedirect,
     connect(mapStateToProps, {
         AddPost: AddPostAC, AddLike, SetUserProfile,
-        getUserProfileTC, getUserStatusTC, updateUserStatus: updateUserStatusTC
+        getUserProfileTC, getUserStatusTC,
+        updateUserStatus: updateUserStatusTC, savePhotoTC
     } as mapDispatchToPropsType),
     withRouter)(ContentContainer)
 
