@@ -40,15 +40,24 @@
 
 
 .data {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
     font-size: 15px;
     font-weight: normal;
     margin-top: 7px;
     word-break: break-word;
 }
-.data span{
+.data > span{
     font-weight: bold;
-
-    /*color: #006d77;*/
+}
+.contacts{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.contacts > span{
+    margin-right: 10px;
 }
 
 

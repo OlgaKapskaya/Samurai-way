@@ -1,4 +1,5 @@
 import axios from "axios";
+import {ProfileDataFormDataType} from "../components/Content/Profile/ProfileDataForm/ProfileDataForm";
 
 export type ResponseType<D = {}> = {
     data: D
@@ -61,6 +62,26 @@ export const profileAPI = {
                 'Content-Type' : 'multipart/form-data'
             }
         })
+    },
+    updateProfile(profile: ProfileDataFormDataType) {
+        const {fullName, aboutMe, lookingForAJob, lookingForAJobDescription, website, vk, github, instagram, twitter, youtube, mainLink, facebook} = profile
+        const response = {
+            fullName,
+            aboutMe,
+            lookingForAJob,
+            lookingForAJobDescription,
+            contacts: {
+                website,
+                facebook,
+                vk,
+                github,
+                instagram,
+                twitter,
+                youtube,
+                mainLink
+            }
+        }
+        return instance.put('profile', response)
     }
 }
 

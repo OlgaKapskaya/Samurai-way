@@ -4,7 +4,7 @@ import {Navigation} from "./Navigation/Navigation";
 import {NavLink} from "react-router-dom";
 import {IconButton} from "@material-ui/core";
 import {ExitToApp} from "@material-ui/icons";
-import {UserAvatar} from "../Content/ProfileInfo/Avatar/UserAvatar";
+import {UserAvatar} from "../Content/Profile/Avatar/UserAvatar";
 
 type HeaderPropsType = {
     isAuth: boolean

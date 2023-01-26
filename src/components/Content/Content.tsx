@@ -2,8 +2,9 @@ import React from "react";
 import {PostDataType} from "./MyPosts/MyPosts";
 import s from './Content.module.css'
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
-import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
+import {Profile} from "./Profile/Profile";
 import {ProfileUserType} from "../../bll/store";
+import {ProfileDataFormDataType} from "./Profile/ProfileDataForm/ProfileDataForm";
 
 
 type ContentProps = {
@@ -12,6 +13,7 @@ type ContentProps = {
     status: string
     updateUserStatus: (status: string) => void
     savePhoto: (photo: File) => void
+    saveProfile: (data: ProfileDataFormDataType) => void
     isOwner: boolean
 }
 
@@ -25,11 +27,12 @@ function Content(props: ContentProps) {
             </div>
             <div className={s.containerInfoAndPosts}>
                 <div className={s.containerInfo}>
-                    <ProfileInfo profile={props.profile}
-                                 status={props.status}
-                                 isOwner={props.isOwner}
-                                 savePhoto={props.savePhoto}
-                                 updateUserStatus={props.updateUserStatus}/>
+                    <Profile profile={props.profile}
+                             status={props.status}
+                             isOwner={props.isOwner}
+                             savePhoto={props.savePhoto}
+                             saveProfile={props.saveProfile}
+                             updateUserStatus={props.updateUserStatus}/>
                 </div>
                 <div className={s.containerPosts}>
                     <MyPostsContainer/>

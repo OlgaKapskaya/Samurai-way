@@ -2,6 +2,10 @@ import {ActionDispatchType, profilePageType, ProfileUserType} from "../store";
 import {v1} from "uuid";
 import {Dispatch} from "redux";
 import {PhotosType, profileAPI} from "../../api/api";
+import {ProfileDataFormDataType} from "../../components/Content/Profile/ProfileDataForm/ProfileDataForm";
+import {ThunkDispatch} from "redux-thunk";
+import {stateType} from "../redux-store";
+import {FormAction, stopSubmit} from "redux-form";
 
 
 const ADD_POST = 'POSTS/ADD-POST'
@@ -138,5 +142,14 @@ export const savePhotoTC = (photo: File) => async (dispatch: Dispatch<ActionDisp
     if (response.data.resultCode === 0) {
         dispatch(changePhotosAC(response.data.data.photos))
     }
+}
+export const saveProfileTC = (profile: ProfileDataFormDataType) => async (dispatch: ThunkDispatch<stateType, any, ActionDispatchType | FormAction>, getState: () => stateType) => {
+        const userId = getState().profilePage.profile.userId
+        const response = await profileAPI.updateProfile(profile)
+        if (response.data.resultCode === 0) {
+            dispatch(getUserProfileTC(userId.toString()))
+        } else {
+            dispatch(stopSubmit('profileInfoForm', {_error: response.data.messages[0]}))
+        }
 }
 

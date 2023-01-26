@@ -10,7 +10,7 @@ export const CheckboxTC: FC<WrappedFieldProps & CheckboxProps & FormControlLabel
     <FormControlLabel
         control={
             <Checkbox
-                checked={input.value ? true : false}
+                checked={!!input.value}
                 onChange={input.onChange}
                 color='primary'
             />

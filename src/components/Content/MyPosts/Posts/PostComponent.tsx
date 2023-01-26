@@ -2,7 +2,7 @@ import React from "react";
 import post from "./PostCompponent.module.css"
 import {IconButton} from "@material-ui/core";
 import {FavoriteBorder} from "@material-ui/icons";
-import {UserAvatar} from "../../ProfileInfo/Avatar/UserAvatar";
+import {UserAvatar} from "../../Profile/Avatar/UserAvatar";
 
 
 type PostComponentProps = {

@@ -7,7 +7,7 @@ import {
     AddLike,
     AddPostAC,
     getUserProfileTC,
-    getUserStatusTC, savePhotoTC,
+    getUserStatusTC, savePhotoTC, saveProfileTC,
     SetUserProfile, updateUserStatusTC
 } from "../../bll/reducers/profileReducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
@@ -15,6 +15,7 @@ import {stateType} from "../../bll/redux-store";
 import {compose} from "redux";
 import {getIsAuth, getUserID} from "../../bll/selectors/authSelectors";
 import {getPostsData, getProfileData, getProfileStatus} from "../../bll/selectors/profileSelectors";
+import {ProfileDataFormDataType} from "./Profile/ProfileDataForm/ProfileDataForm";
 
 type mapStateToPropsType = {
     postData: PostDataType[]
@@ -31,6 +32,7 @@ type mapDispatchToPropsType = {
     getUserStatusTC: (userID: string) => void
     updateUserStatus: (status: string) => void
     savePhotoTC: (photo: File) => void
+    saveProfileTC: (data: ProfileDataFormDataType) => void
 
 }
 type PathParamsType = {
@@ -66,6 +68,7 @@ export class ContentContainer extends React.Component<ContentPropsType> {
     render() {
         return <Content isOwner={!this.props.match.params.userID}
                         savePhoto={this.props.savePhotoTC}
+                        saveProfile={this.props.saveProfileTC}
                         {...this.props}/>
     }
 }
@@ -85,7 +88,7 @@ export default compose<React.ComponentType>(
     connect(mapStateToProps, {
         AddPost: AddPostAC, AddLike, SetUserProfile,
         getUserProfileTC, getUserStatusTC,
-        updateUserStatus: updateUserStatusTC, savePhotoTC
+        updateUserStatus: updateUserStatusTC, savePhotoTC, saveProfileTC
     } as mapDispatchToPropsType),
     withRouter)(ContentContainer)
 

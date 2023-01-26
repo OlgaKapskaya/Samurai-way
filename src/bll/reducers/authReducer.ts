@@ -56,7 +56,6 @@ export const loginTC = (email: string, password: string, rememberMe: boolean) =>
             if (response.data.resultCode === 0) {
                 dispatch(setAuthUserTC())
             } else {
-                console.log(response.data.fieldsErrors)
                 dispatch(stopSubmit('login', {_error: response.data.fieldsErrors[0].error}))
             }
 }

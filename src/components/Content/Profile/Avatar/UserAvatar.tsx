@@ -1,5 +1,5 @@
 import React, {ChangeEvent, FC} from "react";
-import {Avatar, IconButton} from "@material-ui/core";
+import {Avatar, IconButton, Tooltip} from "@material-ui/core";
 import {Photo} from "@material-ui/icons";
 import s from './UserAvatar.module.css'
 
@@ -24,8 +24,10 @@ export const UserAvatar: FC<UserAvatarPropsType> = ({img, size, isOwner, savePho
         <div className={s.container}>
             <Avatar src={img} style={avatarSize}/>
             {isOwner &&
-                <IconButton className={s.button}>
+                <IconButton className={s.button} component="label">
+                    <Tooltip title='Change photo' arrow>
                     <Photo/>
+                    </Tooltip>
                     <input
                         onChange={onChangeMainPhoto}
                         type="file"

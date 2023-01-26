@@ -76,8 +76,10 @@ export type ProfileUserType = {
 
 
 //dispatch action full type
-export type ActionDispatchType = AddPostActionType | AddLikeActionType | AddMessageActionType | ChangePhotosAT
-    | SetUserProfileAT | AuthReducerAT | UserReducerAT | SetStatusAT | AppReducerAT | ReturnType<typeof DeletePostAC>
+export type ActionDispatchType = AddPostActionType | AddLikeActionType
+    | AddMessageActionType | ChangePhotosAT
+    | SetUserProfileAT | AuthReducerAT | UserReducerAT
+    | SetStatusAT | AppReducerAT | ReturnType<typeof DeletePostAC>
 
 
 // export type StoreType = {
