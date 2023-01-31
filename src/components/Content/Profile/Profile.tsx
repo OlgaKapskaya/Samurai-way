@@ -54,6 +54,7 @@ export const Profile: FC<ProfileInfoProps> = ({
                     && <Button onClick={() => setEditMode(true)}
                                variant='contained'
                                color='primary'
+                               className={s.editButton}
                     >
                         Edit
                     </Button>}

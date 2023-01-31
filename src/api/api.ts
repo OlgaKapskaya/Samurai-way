@@ -28,8 +28,8 @@ export const authAPI = {
         return instance.get('auth/me')
             .then(response => response.data)
     },
-    login(email: string, password: string, rememberMe: boolean = false) {
-        const payload = {email, password, rememberMe}
+    login(email: string, password: string, rememberMe: boolean = false, captcha: string | null = null) {
+        const payload = {email, password, rememberMe, captcha}
         return instance.post<ResponseType>('auth/login', payload)
     },
     logout() {
@@ -82,6 +82,12 @@ export const profileAPI = {
             }
         }
         return instance.put('profile', response)
+    }
+}
+
+export const securityAPI = {
+    getCaptcha(){
+        return instance.get('security/get-captcha-url')
     }
 }
 

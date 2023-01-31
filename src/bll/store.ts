@@ -23,6 +23,7 @@ export type AuthDataType = {
     login: string
     email: string
     isAuth: boolean
+    captchaURL: null | string
 }
 export type UsersType = {
     name: string

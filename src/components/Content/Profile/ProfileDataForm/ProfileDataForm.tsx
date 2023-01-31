@@ -64,7 +64,6 @@ export const ProfileDataForm: FC<InjectedFormProps<ProfileDataFormDataType>> = (
         />)}
 
         <ButtonSubmit form={ProfileDataForm}/>
-
     </form>
 }
 export const ProfileForm = reduxForm<ProfileDataFormDataType>({
