@@ -1,4 +1,4 @@
-import {ActionDispatchType, profilePageType, ProfileUserType} from "../store";
+import {ActionDispatchType, profilePageType, ProfileUserType} from "../types";
 import {v1} from "uuid";
 import {Dispatch} from "redux";
 import {PhotosType, profileAPI} from "../../api/api";
@@ -14,26 +14,18 @@ const SET_USER_PROFILE = 'POSTS/SET_USER_PROFILE'
 const SET_STATUS = 'POSTS/SET_STATUS'
 
 //action types
-export type SetStatusAT = {
-    type: 'POSTS/SET_STATUS',
-    status: string
-}
-export type SetUserProfileAT = {
-    type: 'POSTS/SET_USER_PROFILE'
-    profile: ProfileUserType
-}
-export type AddPostActionType = {
-    type: 'POSTS/ADD-POST'
-    newPostText: string
-}
-export type AddLikeActionType = {
-    type: 'POSTS/ADD-LIKE'
-    id: string
-    count: number
-}
-export type ChangePhotosAT = ReturnType<typeof changePhotosAC>
+type SetStatusAT = ReturnType<typeof setStatusAC>
+type SetUserProfileAT = ReturnType<typeof setUserProfile>
+type AddPostAT = ReturnType<typeof addPostAC>
+type AddLikeAT = ReturnType<typeof addLike>
+type ChangePhotosAT = ReturnType<typeof changePhotosAC>
+type DeletePostAT = ReturnType<typeof deletePostAC>
 
-let initialState: profilePageType = {
+export type ProfileReducerAT = SetStatusAT | SetUserProfileAT | AddPostAT
+    | AddLikeAT | ChangePhotosAT | DeletePostAT
+
+
+const initialState: profilePageType = {
     postData: [
         {id: v1(), message: 'Hi, how are you?', likes: 3},
         {id: v1(), message: 'It\'s my first post', likes: 5},
@@ -65,7 +57,7 @@ let initialState: profilePageType = {
     status: ""
 }
 
-export const profileReducer = (state: profilePageType = initialState, action: ActionDispatchType): profilePageType => {
+export const profileReducer = (state: profilePageType = initialState, action: ProfileReducerAT): profilePageType => {
     switch (action.type) {
         case ADD_POST: {
             const newPost = {
@@ -105,29 +97,31 @@ export const profileReducer = (state: profilePageType = initialState, action: Ac
 }
 
 
-//dispatch action creators
-export const AddPostAC = (newPostText: string): AddPostActionType => {
-    return {type: ADD_POST, newPostText}
+//action creators
+export const addPostAC = (newPostText: string) => {
+    return {type: ADD_POST, newPostText} as const
 }
-export const AddLike = (count: number, id: string): AddLikeActionType => {
-    return {type: ADD_LIKE, count: count, id: id}
+export const addLike = (count: number, id: string) => {
+    return {type: ADD_LIKE, count: count, id: id} as const
 }
-export const SetUserProfile = (profile: ProfileUserType): SetUserProfileAT => {
-    return {type: SET_USER_PROFILE, profile}
+export const setUserProfile = (profile: ProfileUserType) => {
+    return {type: SET_USER_PROFILE, profile} as const
 }
-export const setStatusAC = (status: string): SetStatusAT => {
-    return {type: SET_STATUS, status}
+export const setStatusAC = (status: string) => {
+    return {type: SET_STATUS, status} as const
 }
-export const DeletePostAC = (id: string) => {
+export const deletePostAC = (id: string) => {
     return {type: 'POSTS/DELETE_POST', id} as const
 }
 export const changePhotosAC = (photos: PhotosType) => {
     return {type: 'PROFILE/UPDATE_PHOTOS', photos} as const
 }
 
+//thunk creators
+
 export const getUserProfileTC = (userID: string) => async (dispatch: Dispatch<ActionDispatchType>) => {
     const response = await profileAPI.getUserProfile(userID)
-    dispatch(SetUserProfile(response.data))
+    dispatch(setUserProfile(response.data))
 }
 export const getUserStatusTC = (userID: string) => async (dispatch: Dispatch<ActionDispatchType>) => {
     const response = await profileAPI.getStatus(userID)

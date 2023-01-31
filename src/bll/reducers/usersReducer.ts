@@ -1,4 +1,4 @@
-import {usersPageType, UsersType} from "../store";
+import {usersPageType, UsersType} from "../types";
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../../api/api";
 
@@ -126,9 +126,9 @@ const followUnfollowFlow = async (dispatch: Dispatch<UserReducerAT>,
 }
 
 export const setFollowTC = (userID: number) => async (dispatch: Dispatch<UserReducerAT>) => {
-    followUnfollowFlow(dispatch, userID, true, profileAPI.setFollow)
+    await followUnfollowFlow(dispatch, userID, true, profileAPI.setFollow)
 }
 
 export const setUnFollowTC = (userID: number) => async (dispatch: Dispatch<UserReducerAT>) => {
-    followUnfollowFlow(dispatch, userID, false, profileAPI.setUnfollow)
+    await followUnfollowFlow(dispatch, userID, false, profileAPI.setUnfollow)
 }

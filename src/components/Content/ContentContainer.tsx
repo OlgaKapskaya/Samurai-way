@@ -1,14 +1,14 @@
 import React from "react";
 import Content from "./Content";
 import {PostDataType} from "./MyPosts/MyPosts";
-import {ProfileUserType} from "../../bll/store";
+import {ProfileUserType} from "../../bll/types";
 import {connect} from "react-redux";
 import {
-    AddLike,
-    AddPostAC,
+    addLike,
+    addPostAC,
     getUserProfileTC,
-    getUserStatusTC, savePhotoTC, saveProfileTC,
-    SetUserProfile, updateUserStatusTC
+    getUserStatusTC, savePhotoTC, saveProfileTC, setUserProfile,
+    updateUserStatusTC
 } from "../../bll/reducers/profileReducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {stateType} from "../../bll/redux-store";
@@ -25,9 +25,9 @@ type mapStateToPropsType = {
     userID: number | null
 }
 type mapDispatchToPropsType = {
-    AddPost: (newPostText: string) => void
-    AddLike: (count: number, id: string) => void
-    SetUserProfile: (profile: ProfileUserType) => void
+    addPost: (newPostText: string) => void
+    addLike: (count: number, id: string) => void
+    setUserProfile: (profile: ProfileUserType) => void
     getUserProfileTC: (userID: string) => void
     getUserStatusTC: (userID: string) => void
     updateUserStatus: (status: string) => void
@@ -86,7 +86,7 @@ let mapStateToProps = (state: stateType): mapStateToPropsType => {
 export default compose<React.ComponentType>(
     // withAuthRedirect,
     connect(mapStateToProps, {
-        AddPost: AddPostAC, AddLike, SetUserProfile,
+        addPost: addPostAC, addLike, setUserProfile,
         getUserProfileTC, getUserStatusTC,
         updateUserStatus: updateUserStatusTC, savePhotoTC, saveProfileTC
     } as mapDispatchToPropsType),

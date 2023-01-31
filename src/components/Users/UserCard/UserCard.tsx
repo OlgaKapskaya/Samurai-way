@@ -1,7 +1,7 @@
-import {UsersType} from "../../../bll/store";
+import {UsersType} from "../../../bll/types";
 import s from './UserCard.module.css'
 import {Button} from "@material-ui/core";
-import noAvatarImg from '../../../IMG/no_avatar_img.webp'
+import noAvatarImg from '../../../assets/img/no_avatar_img.webp'
 import {NavLink} from "react-router-dom";
 import {FC} from "react";
 

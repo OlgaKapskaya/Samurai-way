@@ -1,5 +1,5 @@
-import {profilePageType} from "../../store";
-import {AddLike, AddPostAC, DeletePostAC, profileReducer, setStatusAC} from "../profileReducer";
+import {profilePageType} from "../../types";
+import {addLike, addPostAC, deletePostAC, profileReducer, setStatusAC} from "../profileReducer";
 
 let startState = {} as profilePageType
 beforeEach(() => {
@@ -37,12 +37,12 @@ beforeEach(() => {
 })
 test('Add post test',() => {
     const newPost = 'newPost'
-    const endState = profileReducer(startState, AddPostAC(newPost))
+    const endState = profileReducer(startState, addPostAC(newPost))
     expect(endState.postData.length).toBe(6)
 })
 
 test('Add likes to post', () => {
-    const endState = profileReducer(startState, AddLike(10, '5'))
+    const endState = profileReducer(startState, addLike(10, '5'))
     expect(endState.postData[4].likes).toBe(10)
 })
 test('Set new status', () => {
@@ -50,7 +50,7 @@ test('Set new status', () => {
     expect(endState.status).toBe('newStatus')
 })
 test('Delete post (before deleting length post should be decrement)', () => {
-    let action = DeletePostAC('5')
+    let action = deletePostAC('5')
     const endState = profileReducer(startState, action)
     expect(endState.postData.length).toBe(4)
 })

@@ -12,7 +12,7 @@ export const ProfileStatusWithHooks: FC<ProfileStatusWithHooksPropsType> = ({sta
 
     useEffect(() => {
         if (status !== newStatus)
-        setNewStatus(status)
+            setNewStatus(status)
     }, [status])
 
     const deactivateEditMode = () => {
@@ -26,8 +26,12 @@ export const ProfileStatusWithHooks: FC<ProfileStatusWithHooksPropsType> = ({sta
         setNewStatus(e.currentTarget.value)
     }
     return (
-        <>
-            <div style={{height: 'max-content', fontWeight: 'bold'}}>
+            <div style={{
+                height: 'max-content',
+                fontWeight: 'bold',
+                width: '100%',
+                wordBreak: 'break-word'
+            }}>
                 Status:
                 {
                     editMode
@@ -40,13 +44,13 @@ export const ProfileStatusWithHooks: FC<ProfileStatusWithHooksPropsType> = ({sta
                             minWidth: '100px',
                             minHeight: '12px',
                             cursor: 'pointer',
-                            fontWeight: 'normal'
+                            fontWeight: 'normal',
+
                         }}
                                 onDoubleClick={activateEditMode}>
                         {status ? ' ' + status : ' -'}
                         </span>
                 }
             </div>
-        </>
     )
 }

@@ -1,5 +1,5 @@
 import {stateType} from "../redux-store";
-import {UsersType} from "../store";
+import {UsersType} from "../types";
 // import {createSelector, Selector} from "reselect";
 
 

@@ -1,4 +1,4 @@
-import {UsersType} from "../../bll/store";
+import {UsersType} from "../../bll/types";
 import {connect} from "react-redux";
 import {
     getUsersTC,

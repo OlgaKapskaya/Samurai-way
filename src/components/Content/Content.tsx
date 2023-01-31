@@ -3,7 +3,7 @@ import {PostDataType} from "./MyPosts/MyPosts";
 import s from './Content.module.css'
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 import {Profile} from "./Profile/Profile";
-import {ProfileUserType} from "../../bll/store";
+import {ProfileUserType} from "../../bll/types";
 import {ProfileDataFormDataType} from "./Profile/ProfileDataForm/ProfileDataForm";
 
 

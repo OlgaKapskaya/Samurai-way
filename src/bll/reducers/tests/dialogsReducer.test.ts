@@ -1,4 +1,4 @@
-import {AddMessageActionCreator, dialogsReducer} from "../dialogsReducer";
+import {addMessageAC, dialogsReducer} from "../dialogsReducer";
 
 
 test('add message function', () => {
@@ -38,7 +38,7 @@ test('add message function', () => {
         ]
     }
     const newMessage = 'newMessage'
-    const newData = dialogsReducer(data, AddMessageActionCreator(newMessage))
+    const newData = dialogsReducer(data, addMessageAC(newMessage))
 
     expect(newData).not.toBe(data)
     expect(newData.messagesData.length).toBe(data.messagesData.length + 1)

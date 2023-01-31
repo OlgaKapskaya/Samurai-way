@@ -19,16 +19,23 @@ const FindUsersContainer = lazy(() => import('./components/Users/FindUsersContai
 const ContentContainer = lazy(() => import('./components/Content/ContentContainer'));
 const Login = lazy(() => import('./components/Login/Login'));
 
-type mapStateToPropsType = {
+type MapStateToPropsType = {
     initialized: boolean
 }
-type mapDispatchToPropsType = {
+type MapDispatchToPropsType = {
     initializeApp: () => void
 }
 
-class App extends React.Component<mapDispatchToPropsType & mapStateToPropsType> {
+class App extends React.Component<MapDispatchToPropsType & MapStateToPropsType> {
+    catchAllErrors = (promiseRejectionEvent: PromiseRejectionEvent) => {
+        alert("Some error occurred")
+    }
     componentDidMount() {
         this.props.initializeApp()
+        window.addEventListener("unhandledrejection", this.catchAllErrors);
+    }
+    componentWillUnmount() {
+        window.removeEventListener("unhandledrejection", this.catchAllErrors)
     }
 
     render() {
@@ -58,7 +65,7 @@ class App extends React.Component<mapDispatchToPropsType & mapStateToPropsType> 
     }
 }
 
-const mapStateToProps = (state: stateType): mapStateToPropsType => {
+const mapStateToProps = (state: stateType): MapStateToPropsType => {
     return {
         initialized: state.app.initialized
     }

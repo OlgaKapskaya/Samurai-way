@@ -1,7 +1,7 @@
 import s from "./Users.module.css";
 import {UserCard} from "./UserCard/UserCard";
 import React, {FC} from "react";
-import {UsersType} from "../../bll/store";
+import {UsersType} from "../../bll/types";
 import {CustomPagination} from "../common/CustomPagination/CustomPagination";
 
 type UsersPropsType = {

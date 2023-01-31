@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import s from "../../../Dialogs/Dialogs.module.css";
-import {maxLengthCreator, required} from "../../../../utils/validators/validators";
+import {maxLengthCreator} from "../../../../utils/validators/validators";
 import {TextareaFC} from "../../../common/FormsControls/TextareaTC/TextareaFC";
 import {ButtonSubmit} from "../../../common/FormsControls/ButtonSubmit/ButtonSubmit";
 
@@ -18,7 +18,7 @@ const AddPostForm: FC<InjectedFormProps<AddPostFormDataType>> = (props) => {
                        type='text'
                        name='post'
                        component={TextareaFC}
-                       validate={[required, maxLength]}
+                       validate={[maxLength]}
                 />
             </div>
                 <ButtonSubmit form={AddPostForm}/>
@@ -26,6 +26,5 @@ const AddPostForm: FC<InjectedFormProps<AddPostFormDataType>> = (props) => {
     )
 }
 export const AddPostReduxForm = reduxForm<AddPostFormDataType>({
-    // a unique name for the form
     form: 'profileAddPostForm'
 })(AddPostForm)

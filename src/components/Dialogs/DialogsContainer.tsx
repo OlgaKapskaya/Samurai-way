@@ -1,4 +1,3 @@
-import {AddMessageActionCreator} from "../../bll/reducers/dialogsReducer";
 import {Dialogs, DialogsDataType, MessagesDataType} from "./Dialogs";
 import {AppDispatchType, stateType} from "../../bll/redux-store";
 import {connect} from "react-redux";
@@ -6,6 +5,7 @@ import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import React from "react";
 import {getDialogsData, getMessagesData} from "../../bll/selectors/dialogsSelectors";
+import {addMessageAC} from "../../bll/reducers/dialogsReducer";
 
 type MapStateToPropsType = {
     dialogsData: DialogsDataType[]
@@ -23,7 +23,7 @@ let mapStateToProps = (state: stateType): MapStateToPropsType => {
 }
 let mapDispatchToProps = (dispatch: AppDispatchType): MapDispatchToPropsType => {
     return {
-        sendMessage: (message: string) => dispatch(AddMessageActionCreator(message))
+        sendMessage: (message: string) => dispatch(addMessageAC(message))
     }
 }
 export default compose<React.ComponentType>(

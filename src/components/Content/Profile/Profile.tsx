@@ -1,6 +1,6 @@
 import React, {FC, useState} from "react";
 import s from "./Profile.module.css";
-import {ProfileUserType} from "../../../bll/store";
+import {ProfileUserType} from "../../../bll/types";
 import {Preloader} from "../../common/Preloader/Preloader";
 import {ProfileStatusWithHooks} from "./Status/ProfileStatusWithHooks";
 import {UserAvatar} from "./Avatar/UserAvatar";

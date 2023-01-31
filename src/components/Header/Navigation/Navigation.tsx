@@ -1,7 +1,7 @@
 import React from "react";
 import nav from "./Navigation.module.css"
 import {NavLink} from "react-router-dom";
-import {Announcement, MailOutline, Person, PlayCircleOutline, Search, Settings} from "@material-ui/icons";
+import {MailOutline, Person, Search} from "@material-ui/icons";
 
 
 
@@ -19,17 +19,17 @@ export function Navigation(){
             <div className={nav.item}>
                 <NavLink className={(isActive) => isActive ? nav.active : nav.link} to={"/users"}> <Search/> Find</NavLink>
             </div>
-            <div className={nav.item}>
-                <NavLink className={(isActive) => isActive ? nav.active : nav.link} to={"/news"}> <Announcement/> News</NavLink>
-            </div>
-            <div className={nav.item}>
+            {/*<div className={nav.item}>*/}
+            {/*    <NavLink className={(isActive) => isActive ? nav.active : nav.link} to={"/news"}> <Announcement/> News</NavLink>*/}
+            {/*</div>*/}
+            {/*<div className={nav.item}>*/}
 
-                <NavLink className={(isActive) => isActive ? nav.active : nav.link} to={"/music"}>  <PlayCircleOutline/> Music</NavLink>
-            </div>
-            <div className={nav.item}>
+            {/*    <NavLink className={(isActive) => isActive ? nav.active : nav.link} to={"/music"}>  <PlayCircleOutline/> Music</NavLink>*/}
+            {/*</div>*/}
+            {/*<div className={nav.item}>*/}
 
-                <NavLink className={(isActive) => isActive ? nav.active : nav.link} to={"/settings"}> <Settings/> Settings</NavLink>
-            </div>
+            {/*    <NavLink className={(isActive) => isActive ? nav.active : nav.link} to={"/settings"}> <Settings/> Settings</NavLink>*/}
+            {/*</div>*/}
         </nav>
     )
 }

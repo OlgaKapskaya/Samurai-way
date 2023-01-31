@@ -1,8 +1,8 @@
-import {ActionDispatchType, dialogsPageType} from "../store";
+import { dialogsPageType} from "../types";
 import {v1} from "uuid";
 
 const ADD_MESSAGE = 'DIALOGS/ADD-MESSAGE'
-let initialState = {
+const initialState = {
     dialogsData: [
         {
             id: v1(),
@@ -37,11 +37,10 @@ let initialState = {
         {id: v1(), message: "Hey!", avatar: 'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-Vector.png'}
     ]
 }
-export type AddMessageActionType = {
-    type: "DIALOGS/ADD-MESSAGE"
-    message: string
-}
-export const dialogsReducer = (state: dialogsPageType = initialState, action: ActionDispatchType) => {
+type AddMessageAT = ReturnType<typeof addMessageAC>
+export type DialogsReducerAT = AddMessageAT
+
+export const dialogsReducer = (state: dialogsPageType = initialState, action: DialogsReducerAT) => {
     switch (action.type) {
         case ADD_MESSAGE : {
             let newMessage = {
@@ -55,7 +54,7 @@ export const dialogsReducer = (state: dialogsPageType = initialState, action: Ac
     }
 }
 
-//dispatch action creators
-export const AddMessageActionCreator = (message: string):AddMessageActionType => {
-    return {type: ADD_MESSAGE, message: message}
+//action creators
+export const addMessageAC= (message: string) => {
+    return {type: ADD_MESSAGE, message: message} as const
 }

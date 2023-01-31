@@ -1,8 +1,8 @@
-import {StateType} from "../../../bll/store";
+import {StateType} from "../../../bll/types";
 import {AppDispatchType} from "../../../bll/redux-store";
-import {AddLike} from "../../../bll/reducers/profileReducer";
 import {connect} from "react-redux";
 import {MyPosts, PostDataType} from "./MyPosts";
+import {addLike} from "../../../bll/reducers/profileReducer";
 
 type mapStateToPropsType = {
     postData: PostDataType[]
@@ -23,7 +23,7 @@ let mapStateToProps = (state: StateType):mapStateToPropsType => {
 
 let mapDispatchToProps = (dispatch: AppDispatchType): mapDispatchToPropsType => {
     return {
-        addLike: (count: number, id: string) => dispatch(AddLike(count, id)),
+        addLike: (count: number, id: string) => dispatch(addLike(count, id)),
     }
 }
 

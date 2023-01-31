@@ -1,7 +1,7 @@
-import {AddPostAC} from "../../../../bll/reducers/profileReducer";
 import {AddPost} from "./AddPost";
 import {connect} from "react-redux";
 import {AppDispatchType} from "../../../../bll/redux-store";
+import {addPostAC} from "../../../../bll/reducers/profileReducer";
 
 type  MapDispatchToPropsType = {
     addPost: (newPostText: string) => void
@@ -9,7 +9,7 @@ type  MapDispatchToPropsType = {
 
 const mapDispatchToProps = (dispatch: AppDispatchType): MapDispatchToPropsType => {
     return {
-        addPost: (newPostText: string) => dispatch(AddPostAC(newPostText))
+        addPost: (newPostText: string) => dispatch(addPostAC(newPostText))
     }
 }
 

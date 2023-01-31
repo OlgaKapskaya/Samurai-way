@@ -1,7 +1,7 @@
 import s from "../Profile.module.css";
 import {Contact} from "./Contact/Contact";
 import React, {FC} from "react";
-import {ProfileUserType} from "../../../../bll/store";
+import {ProfileUserType} from "../../../../bll/types";
 
 type ProfileDataPropsType = {
     profile: ProfileUserType

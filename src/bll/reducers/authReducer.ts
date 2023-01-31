@@ -1,4 +1,4 @@
-import {ActionDispatchType, AuthDataType} from "../store";
+import {ActionDispatchType, AuthDataType} from "../types";
 import {Dispatch} from "redux";
 import {authAPI, securityAPI} from "../../api/api";
 import {stateType} from "../redux-store";

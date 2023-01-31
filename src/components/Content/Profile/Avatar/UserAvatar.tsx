@@ -32,6 +32,7 @@ export const UserAvatar: FC<UserAvatarPropsType> = ({img, size, isOwner, savePho
                         onChange={onChangeMainPhoto}
                         type="file"
                         hidden
+                        accept="image/png, image/jpeg"
                     />
                 </IconButton>
             }
